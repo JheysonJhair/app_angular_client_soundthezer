@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+	margin: 0;
+	padding: 5.5px;
+	font-family: 'Belanosima', sans-serif;
+	font-family: 'Kanit', sans-serif;
+	font-family: 'Krub', sans-serif;
+	font-family: 'Mulish', sans-serif;
+	font-family: 'Oswald', sans-serif;
+	font-family: 'Ubuntu', sans-serif;
+	background-color: black;
+}
+a{
+	text-decoration: none;
+	
+}

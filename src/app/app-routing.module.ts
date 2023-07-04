@@ -4,6 +4,7 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
 
 const routes: Routes = [
   { path: '' , component: VideoPlayerComponent},
+  { path: 'update/:id', component: VideoPlayerComponent},
   { path: '**', redirectTo: '/', pathMatch:'full'}
 ];
 

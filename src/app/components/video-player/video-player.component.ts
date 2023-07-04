@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { dtoVideo } from 'src/app/interfaces/Video';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VideoService } from 'src/app/services/video.service';
 
 @Component({
@@ -9,14 +11,36 @@ import { VideoService } from 'src/app/services/video.service';
   styleUrls: ['./video-player.component.css'],
 })
 export class VideoPlayerComponent {
+  //Listar videos
   listVideo: dtoVideo[] = [];
+
+  //ADD - EDIT Videos
+  addVideo: FormGroup;
+  accion = 'Registrar';
+  id = '';
+  str2 = null;
+  dtoVideo: dtoVideo | undefined;
+
   constructor(
+    private fb: FormBuilder,
+    private router: Router,
     private _videoService: VideoService,
+    private aRoute: ActivatedRoute,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.addVideo = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      url: ['', Validators.required],
+    });
+    this.id = this.aRoute.snapshot.paramMap.get('id')!;
+  }
+
   ngOnInit(): void {
     this.getVideo();
+    this.esEdit();
   }
+  //---------------------------------------------------------------LISTAR VIDEO
   getVideo() {
     this._videoService.getListVideo().subscribe(
       (data) => {
@@ -36,11 +60,80 @@ export class VideoPlayerComponent {
           'El video fue eliminado con exito',
           'Registro eliminado!'
         );
+        this.router.navigate([' ']);
       },
       (error) => {
         this.toastr.error('Opss ocurrio un error', 'Error');
         console.log(error);
       }
     );
+  }
+  //---------------------------------------------------------------AGREGAR - EDITAR VIDEO
+  esEdit() {
+    if (this.id !== null) {
+      this.accion = 'Editar';
+      this._videoService.getVideo(this.id).subscribe(
+        (data) => {
+          console.log(data);
+          this.dtoVideo = data;
+
+          this.addVideo.controls['name'].setValue(data[0].name);
+          this.addVideo.controls['description'].setValue(data[0].description);
+          this.addVideo.controls['url'].setValue(data[0].url);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }
+  addEditVideo() {
+    if (this.dtoVideo == undefined) {
+      let formData = new FormData();
+      formData.append('dtoVideo.name', this.addVideo?.get('name')?.value);
+      formData.append(
+        'dtoVideo.description',
+        this.addVideo?.get('description')?.value
+      );
+      formData.append('dtoVideo.url', this.addVideo?.get('url')?.value);
+
+      this._videoService.saveVideo(formData).subscribe(
+        (data) => {
+          this.getVideo();
+          this.toastr.success(
+            'El video fue registrado con exito',
+            'Registro completo!'
+          );
+        },
+        (error) => {
+          this.toastr.error('Opss ocurrio un error', 'Error');
+          console.log(error);
+        }
+      );
+    } else {
+      let formData = new FormData();
+      formData.append('dtoVideo.idVideo', this.id);
+      formData.append('dtoVideo.name', this.addVideo.get('name')?.value);
+      formData.append(
+        'dtoVideo.description',
+        this.addVideo.get('description')?.value
+      );
+      formData.append('dtoVideo.url', this.addVideo.get('url')?.value);
+
+      this._videoService.updateVideo(formData).subscribe(
+        (data) => {
+          this.getVideo();
+          this.toastr.info(
+            'El video fue actualizado con exito',
+            'Estudiante actualizado!'
+          );
+          this.router.navigate([' ']);
+        },
+        (error) => {
+          this.toastr.error('Opss ocurrio un error', 'Error');
+          console.log(error);
+        }
+      );
+    }
   }
 }

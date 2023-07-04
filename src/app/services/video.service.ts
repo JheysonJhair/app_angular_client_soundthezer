@@ -9,7 +9,7 @@ export class VideoService {
   private myAppUrl = 'https://localhost:7282/';
   private myUrlGet = 'video/getall/';
   private myApiInsert = 'video/insert/';
-  private myUrlDelete = 'video/delete?idstudent=';
+  private myUrlDelete = 'video/delete?idVideo=';
   private myUrlPut = 'video/update/';
   private myUrlGetId = 'video/getbyid?id=';
 
@@ -25,7 +25,7 @@ export class VideoService {
     return this.http.post(this.myAppUrl + this.myApiInsert,dtoVideo);
   }
   getVideo(id: string): Observable<any>{
-    return this.http.get(this.myAppUrl + this.myUrlGetId);
+    return this.http.get(this.myAppUrl + this.myUrlGetId + id);
   }
   updateVideo(dtoVideo: FormData ): Observable<any>{
     return this.http.post(this.myAppUrl + this.myUrlPut, dtoVideo);

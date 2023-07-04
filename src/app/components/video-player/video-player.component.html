@@ -40,33 +40,36 @@
         <video #media [vgMedia]="$any(media)" [src]="currentVideo.src" id="singleVideo" preload="auto" crossorigin>
         </video>
       </vg-player>-->
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/N7gX4ka65Xs" frameborder="0"
+      <iframe width="560" height="300" src="https://www.youtube.com/embed/N7gX4ka65Xs" frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
       </iframe>
     </div>
   </div>
 </div>
 <div class="form">
-  <form action="">
+  <div class="h">
+    <h3 >{{accion}} PlayList</h3>
+  </div>
+  <form [formGroup]="addVideo"  (ngSubmit)="addEditVideo()" action="">
     <div class="row">
       <label for="nombre">Nombre: </label>
-      <input type="text" placeholder="Músic">
+      <input formControlName="name" class="form-control" type="text" placeholder="Músic">
     </div>
     <div class="row">
-      <label for="descripcion">Descripcion: </label>
-      <input type="text" placeholder="This thender Appeal">
+      <label for="descripcion">Descripción: </label>
+      <input formControlName="description" class="form-control" type="text" placeholder="This thender Appeal">
     </div>
     <div class="row">
       <label for="url">Url: </label>
-      <input type="text" placeholder="https//:">
+      <input formControlName="url" class="form-control" type="url" placeholder="https://www.youtube.com/">
     </div>
-    <button type="submit">Agregar</button>
+    <button type="submit" [disabled]="addVideo.invalid" type="submit">Agregar</button>
   </form>
 </div>
 <div class="lista">
   <div class="card">
     <div class="card-body">
-      <h3>Listado de Reproduccion</h3>
+      <h3 class="h">Listado de Reproduccion</h3>
       <div class="cn">
         <table *ngIf="listVideo.length > 0" class="table table-hover mt-3">
           <thead>

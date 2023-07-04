@@ -183,7 +183,9 @@ h3{
   color: rgb(242, 83, 83);
 }
 
-
+.text-verde{
+  color: hsl(141.41, 75.51%, 48.04%);
+}
 
 .cn{
   max-height: 150px; /* Ajusta la altura máxima según tus necesidades */

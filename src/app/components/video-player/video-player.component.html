@@ -18,7 +18,7 @@
   </div>
   <div class="contenedor">
     <div class="video-player-wrapper">
-      <vg-player (onPlayerReady)="videoPlayerInit($event)">
+      <!--<vg-player (onPlayerReady)="videoPlayerInit($event)">
         <vg-overlay-play></vg-overlay-play>
         <vg-buffering></vg-buffering>
         <vg-scrub-bar>
@@ -39,7 +39,10 @@
         </vg-controls>
         <video #media [vgMedia]="$any(media)" [src]="currentVideo.src" id="singleVideo" preload="auto" crossorigin>
         </video>
-      </vg-player>
+      </vg-player>-->
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/N7gX4ka65Xs" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
     </div>
   </div>
 </div>

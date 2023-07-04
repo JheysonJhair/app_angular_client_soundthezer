@@ -14,7 +14,10 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
 import { MusicPlayerComponent } from './components/music-player/music-player.component';
 import { HeadComponent } from './components/head/head.component';
 
-
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +27,11 @@ import { HeadComponent } from './components/head/head.component';
     HeadComponent
   ],
   imports: [
+    BrowserModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

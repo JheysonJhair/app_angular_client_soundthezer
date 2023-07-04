@@ -18,31 +18,9 @@
   </div>
   <div class="contenedor">
     <div class="video-player-wrapper">
-      <!--<vg-player (onPlayerReady)="videoPlayerInit($event)">
-        <vg-overlay-play></vg-overlay-play>
-        <vg-buffering></vg-buffering>
-        <vg-scrub-bar>
-          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-          <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
-        </vg-scrub-bar>
-        <vg-controls>
-          <vg-play-pause></vg-play-pause>
-          <vg-playback-button></vg-playback-button>
-          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
-          <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
-          <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
-          <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
-          <vg-track-selector></vg-track-selector>
-          <vg-mute></vg-mute>
-          <vg-volume></vg-volume>
-          <vg-fullscreen></vg-fullscreen>
-        </vg-controls>
-        <video #media [vgMedia]="$any(media)" [src]="currentVideo.src" id="singleVideo" preload="auto" crossorigin>
-        </video>
-      </vg-player>-->
-      <iframe width="560" height="300" src="https://www.youtube.com/embed/N7gX4ka65Xs" frameborder="0"
+      <iframe width="550" height="300" [src]="safeVideoUrl" frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-      </iframe>
+    </iframe>
     </div>
   </div>
 </div>
@@ -61,7 +39,10 @@
     </div>
     <div class="row">
       <label for="url">Url: </label>
-      <input formControlName="url" class="form-control" type="url" placeholder="https://www.youtube.com/">
+      <input formControlName="url" class="form-control" type="url" placeholder="https://youtu.be/16vYufC54wc">
+      <span *ngIf="addVideo.get('url')?.dirty && addVideo.get('url')?.invalid">
+        Invalido
+      </span>
     </div>
     <button type="submit" [disabled]="addVideo.invalid" type="submit">Agregar</button>
   </form>
@@ -88,7 +69,7 @@
               <td>{{video.description}}</td>
               <td>{{video.url}}</td>
               <td>
-                <i class="fa-solid fa-play text-verde"></i>
+                <i (click)="ver(video.url)" class="fa-solid fa-play text-verde"></i>
               </td>
               <td>
                 <i [routerLink]="['/update',video.idVideo]" class="far fa-solid fa-pen-to-square text-info"></i>

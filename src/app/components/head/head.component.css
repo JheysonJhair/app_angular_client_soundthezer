@@ -2,28 +2,28 @@
     display: flex;
     justify-content: space-between;
     background-color: hsl(198.26,14.29%,31.57%);
-    border-top-left-radius: 8px;  
+    border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
-  
+
   .izquierda {
     display: flex;
     align-items: center;
     margin-left: 13px;
   }
-  
+
   .derecha {
     display: flex;
     align-items: center;
     margin-right: 13px;
   }
-  
+
   .derecha ul {
     list-style: none;
     display: flex;
     gap: 10px;
   }
-  
+
   .derecha ul li {
     color: #000;
   }
@@ -54,4 +54,7 @@
     font-size: 14px;
     margin-left: 5px;
     margin-right: 5px;
+  }
+  .l{
+    margin-right: 20px;
   }

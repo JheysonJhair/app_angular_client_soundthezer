@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { dtoVideo } from 'src/app/interfaces/Video';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VideoService } from 'src/app/services/video.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-video-player',
@@ -11,6 +12,9 @@ import { VideoService } from 'src/app/services/video.service';
   styleUrls: ['./video-player.component.css'],
 })
 export class VideoPlayerComponent {
+  defaultVideoUrl: string = "https://youtu.be/DXV79KHSftc";
+  safeVideoUrl: SafeResourceUrl; // URL segura del video
+
   //Listar videos
   listVideo: dtoVideo[] = [];
 
@@ -22,6 +26,8 @@ export class VideoPlayerComponent {
   dtoVideo: dtoVideo | undefined;
 
   constructor(
+    private formBuilder: FormBuilder,
+    private sanitizer: DomSanitizer,
     private fb: FormBuilder,
     private router: Router,
     private _videoService: VideoService,
@@ -31,12 +37,13 @@ export class VideoPlayerComponent {
     this.addVideo = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      url: ['', Validators.required],
+      url: ['', [Validators.required, ]]
     });
     this.id = this.aRoute.snapshot.paramMap.get('id')!;
   }
 
   ngOnInit(): void {
+    this.ver(this.defaultVideoUrl);
     this.getVideo();
     this.esEdit();
   }
@@ -87,6 +94,17 @@ export class VideoPlayerComponent {
       );
     }
   }
+  ver(url: string) {
+    const videoId = this.extraerVideoId(url);
+    this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);
+  }
+
+  extraerVideoId(url: string): string {
+    // Extraer el identificador del video de la URL abreviada
+    const videoId = url.replace('https://youtu.be/', '');
+    return videoId;
+  }
+
   addEditVideo() {
     if (this.dtoVideo == undefined) {
       let formData = new FormData();
@@ -125,7 +143,7 @@ export class VideoPlayerComponent {
           this.getVideo();
           this.toastr.info(
             'El video fue actualizado con exito',
-            'Estudiante actualizado!'
+            'Video actualizado!'
           );
           this.router.navigate([' ']);
         },
@@ -136,4 +154,12 @@ export class VideoPlayerComponent {
       );
     }
   }
+  //
+  validateYouTubeUrl(control: AbstractControl): { [key: string]: any } | null {
+    const urlPattern = /^https:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}$/;
+    const validUrl = urlPattern.test(control.value);
+
+    return validUrl ? null : { invalidUrl: true };
+  }
+
 }

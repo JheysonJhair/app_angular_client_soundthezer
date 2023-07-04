@@ -1,43 +1,122 @@
 <app-head></app-head>
 <div class="cont">
-    <div class="c1">
-        <div class="img">
-            <img src="../../../assets/img/c8e0605567e98d794a7f43a7050bd998.jpg" alt="">
+  <div class="c1">
+    <div class="img">
+      <img src="../../../assets/img/c8e0605567e98d794a7f43a7050bd998.jpg" alt="">
+    </div>
+    <div>
+      <h1>Peaceful Piano</h1>
+      <div class="row">
+        <div>
+          <i class="fa-brands fa-spotify"></i>
         </div>
         <div>
-            <h1>Peaceful Piano</h1>
-            <div class="row">
-                <div>
-                    <i class="fa-brands fa-spotify"></i>
-                </div>
-                <div><p>Peaceful piano to help you slow down, brethe adn relax.</p></div>
-            </div>
-        </div>
-    </div>
-    <div class="contenedor">
-        <div class="video-player-wrapper">
-          <vg-player  (onPlayerReady)="videoPlayerInit($event)">
-            <vg-overlay-play></vg-overlay-play>
-            <vg-buffering></vg-buffering>
-            <vg-scrub-bar>
-              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-              <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
-            </vg-scrub-bar>
-            <vg-controls>
-              <vg-play-pause></vg-play-pause>
-              <vg-playback-button></vg-playback-button>
-              <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
-              <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
-              <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
-              <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
-              <vg-track-selector></vg-track-selector>
-              <vg-mute></vg-mute>
-              <vg-volume></vg-volume>
-              <vg-fullscreen></vg-fullscreen>
-            </vg-controls>
-            <video #media [vgMedia]="$any(media)" [src]="currentVideo.src" id="singleVideo" preload="auto" crossorigin>
-            </video>
-          </vg-player>
+          <p>Peaceful piano to help you slow down, brethe adn relax.</p>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="contenedor">
+    <div class="video-player-wrapper">
+      <vg-player (onPlayerReady)="videoPlayerInit($event)">
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+        <vg-scrub-bar>
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+        </vg-scrub-bar>
+        <vg-controls>
+          <vg-play-pause></vg-play-pause>
+          <vg-playback-button></vg-playback-button>
+          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+          <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+          <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+          <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+          <vg-track-selector></vg-track-selector>
+          <vg-mute></vg-mute>
+          <vg-volume></vg-volume>
+          <vg-fullscreen></vg-fullscreen>
+        </vg-controls>
+        <video #media [vgMedia]="$any(media)" [src]="currentVideo.src" id="singleVideo" preload="auto" crossorigin>
+        </video>
+      </vg-player>
+    </div>
+  </div>
+</div>
+<div class="form">
+  <form action="">
+    <div class="row">
+      <label for="nombre">Nombre: </label>
+      <input type="text" placeholder="Músic">
+    </div>
+    <div class="row">
+      <label for="descripcion">Descripcion: </label>
+      <input type="text" placeholder="This thender Appeal">
+    </div>
+    <div class="row">
+      <label for="url">Url: </label>
+      <input type="text" placeholder="https//:">
+    </div>
+    <button type="submit">Agregar</button>
+  </form>
+</div>
+<div class="lista">
+  <div class="card">
+    <div class="card-body">
+      <h3>Listado de Reproduccion</h3>
+      <div class="cn">
+        <table class="table table-hover mt-3">
+          <thead>
+            <tr>
+              <th class="bol">Artista</th>
+              <th class="bol">Descripción</th>
+              <th class="bol">Link</th>
+              <th></th>
+              <th></th>
+            </tr>
+            
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kevin Karl</td>
+              <td>Vamonos a marte</td>
+              <td>https://jhar</td>
+              <td>
+                <i class="far fa-solid fa-pen-to-square text-info"></i>
+              </td>
+              <td>
+                <i class="far fa-solid fa-trash-can text-danger"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>Kevin Karl</td>
+              <td>Vamonos a marte</td>
+              <td>https://jhar</td>
+              <td>
+                <i class="far fa-solid fa-pen-to-square text-info"></i>
+              </td>
+              <td>
+                <i class="far fa-solid fa-trash-can text-danger"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>Kevin Karl</td>
+              <td>Vamonos a marte</td>
+              <td>https://jhar</td>
+              <td>
+                <i class="far fa-solid fa-pen-to-square text-info"></i>
+              </td>
+              <td>
+                <i class="far fa-solid fa-trash-can text-danger"></i>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <h5>No hay Estudiantes por mostrar.</h5>
+    </div>
+  </div>
 </div>

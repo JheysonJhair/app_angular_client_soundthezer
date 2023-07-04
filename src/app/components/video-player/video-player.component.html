@@ -68,7 +68,7 @@
     <div class="card-body">
       <h3>Listado de Reproduccion</h3>
       <div class="cn">
-        <table class="table table-hover mt-3">
+        <table *ngIf="listVideo.length > 0" class="table table-hover mt-3">
           <thead>
             <tr>
               <th class="bol">Artista</th>
@@ -80,33 +80,22 @@
 
           </thead>
           <tbody>
-            <tr>
-              <td>Kevin Karl</td>
-              <td>Vamonos a marte</td>
-              <td>https://jhar</td>
+            <tr *ngFor="let video of listVideo">
+              <td>{{video.name}}</td>
+              <td>{{video.description}}</td>
+              <td>{{video.url}}</td>
               <td>
-                <i class="far fa-solid fa-pen-to-square text-info"></i>
+                <i [routerLink]="['/update',video.idVideo]" class="far fa-solid fa-pen-to-square text-info"></i>
               </td>
               <td>
-                <i class="far fa-solid fa-trash-can text-danger"></i>
-              </td>
-            </tr>
-            <tr>
-              <td>Kevin Karl</td>
-              <td>Vamonos a marte</td>
-              <td>https://jhar</td>
-              <td>
-                <i class="far fa-solid fa-pen-to-square text-info"></i>
-              </td>
-              <td>
-                <i class="far fa-solid fa-trash-can text-danger"></i>
+                <i (click)="deleteVideo(video.idVideo)" class="far fa-solid fa-trash-can text-danger"></i>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="row mt-5">
+    <div *ngIf="listVideo.length == 0" class="row mt-5">
       <h5>No hay videos por mostrar.</h5>
     </div>
   </div>

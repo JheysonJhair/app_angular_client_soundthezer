@@ -1,50 +1,46 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { dtoVideo } from 'src/app/interfaces/Video';
+import { VideoService } from 'src/app/services/video.service';
 
 @Component({
   selector: 'app-video-player',
   templateUrl: './video-player.component.html',
-  styleUrls: ['./video-player.component.css']
+  styleUrls: ['./video-player.component.css'],
 })
-  export class VideoPlayerComponent implements OnInit {
-    videoItems = [
-      {
-        name: "Canon in D (Pachelbel's Canon) - Cello & Piano",
-        src: '../../assets/cannon.mp4',
-        type: 'video/mp4'
-      },
-      {
-        name: "Shingeki no Kyojin -『Guren no Yumiya』| OP 1 | ",
-        src: '../../assets/Shingeki.mp4',
-        type: 'video/mp4'
-      },
-      {
-        name: "See Siang Wong - One Summer's Day",
-        src: '../../assets/OneSummerDay.mp4',
-        type: 'video/mp4'
-      }
-    ];
-    activeIndex = 0;
-    currentVideo = this.videoItems[this.activeIndex];
-    data: any;
-    constructor() { }
-    ngOnInit(): void { }
-    videoPlayerInit(data: any) {
-      this.data = data;
-      this.data.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
-      this.data.getDefaultMedia().subscriptions.ended.subscribe(this.nextVideo.bind(this));
-    }
-    nextVideo() {
-      this.activeIndex++;
-      if (this.activeIndex === this.videoItems.length) {
-        this.activeIndex = 0;
-      }
-      this.currentVideo = this.videoItems[this.activeIndex];
-    }
-    initVdo() {
-      this.data.play();
-    }
-    startPlaylistVdo(item: any, index: number) {
-      this.activeIndex = index;
-      this.currentVideo = item;
-    }
+export class VideoPlayerComponent {
+  listVideo: dtoVideo[] = [];
+  constructor(
+    private _videoService: VideoService,
+    private toastr: ToastrService
+  ) {}
+  ngOnInit(): void {
+    this.getVideo();
   }
+  getVideo() {
+    this._videoService.getListVideo().subscribe(
+      (data) => {
+        this.listVideo = data.listDtoVideo;
+      },
+      (error) => {
+        this.toastr.error('Opss ocurrio un error', 'Error');
+        console.log(error);
+      }
+    );
+  }
+  deleteVideo(id: any) {
+    this._videoService.deleteVideo(id).subscribe(
+      (data) => {
+        this.getVideo();
+        this.toastr.error(
+          'El video fue eliminado con exito',
+          'Registro eliminado!'
+        );
+      },
+      (error) => {
+        this.toastr.error('Opss ocurrio un error', 'Error');
+        console.log(error);
+      }
+    );
+  }
+}

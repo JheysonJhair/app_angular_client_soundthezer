@@ -11,7 +11,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.css'],
 })
-export class VideoPlayerComponent {
+export class VideoPlayerComponent implements OnInit {
   defaultVideoUrl: string = "https://youtu.be/DXV79KHSftc";
   safeVideoUrl: SafeResourceUrl; // URL segura del video
 
@@ -161,5 +161,4 @@ export class VideoPlayerComponent {
 
     return validUrl ? null : { invalidUrl: true };
   }
-
 }

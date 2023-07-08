@@ -67,6 +67,9 @@
               <td>{{video.description}}</td>
               <td>{{video.url}}</td>
               <td>
+                <button (click)="descargarVideo()">Descargar video</button>
+              </td>
+              <td>
                 <i (click)="ver(video.url)" class="fa-solid fa-play text-verde"></i>
               </td>
               <td>

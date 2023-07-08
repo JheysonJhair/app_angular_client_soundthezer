@@ -162,4 +162,16 @@ export class MusicPlayerComponent implements OnInit {
 
     return validUrl ? null : { invalidUrl: true };
   }
+
+  descargarVideo() {
+    const url = 'https://youtu.be/M-qc8lJ9x2o?list=RDM-qc8lJ9x2o'; // Reemplaza esto con la URL del video que deseas descargar
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'Triste Payaso.mp4'; // Especifica el nombre del archivo que se descargará
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }

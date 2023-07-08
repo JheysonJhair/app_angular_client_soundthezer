@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="head">
+    <div class="log">
+        <img width="100px" src="../../../assets/Logo2.png" alt="">
+    </div>
+  </div>
+</div>
+<body>
+  <div class="main">
+    <h1>Inicia sesión en Spotify</h1>
+    <div class="form">
+      <form action="">
+        <div class="roww">
+          <div class="l">
+            <label for="Email">Email o nombre de usuario</label>
+          </div>
+          <div>
+            <input type="email" placeholder="Email o nombre de usuario">
+          </div>
+        </div>
+        <div class="roww">
+          <div class="l">
+            <label for="pass">Contraseña</label>
+          </div>
+          <div>
+            <input type="password" placeholder="Contraseña">
+          </div>
+        </div>
+        <div class="roww ">
+          <button  [routerLink]="['/video']" routerLinkActive="router-link-active"  class="btn btn-primary">Iniciar sesión</button>
+        </div>
+        <div class="a">
+          <a href="">¿Has olvidado tu contraseña?</a>
+        </div>
+      </form>
+    </div>
+    <div class="a">
+      <span>¿No tienes cuenta? </span><a href="">Regístrate en Spotify</a>
+    </div>
+  </div>
+</body>

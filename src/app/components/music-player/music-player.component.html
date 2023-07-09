@@ -1,3 +1,8 @@
+<div class="container">
+  <div class="item">
+    <app-asidetwo></app-asidetwo>
+  </div>
+  <div class="item">
 <app-head></app-head>
 <div class="cont">
   <div class="c1">
@@ -73,10 +78,10 @@
                 <i (click)="ver(video.url)" class="fa-solid fa-play text-verde"></i>
               </td>
               <td>
-                <i [routerLink]="['/update',video.idVideo]" class="far fa-solid fa-pen-to-square text-info"></i>
+                <i [routerLink]="['/update',video.id]" class="far fa-solid fa-pen-to-square text-info"></i>
               </td>
               <td>
-                <i (click)="deleteVideo(video.idVideo)" class="far fa-solid fa-trash-can text-danger"></i>
+                <i (click)="deleteVideo(video.id)" class="far fa-solid fa-trash-can text-danger"></i>
               </td>
             </tr>
           </tbody>
@@ -87,4 +92,6 @@
       <h5>No hay videos por mostrar.</h5>
     </div>
   </div>
+</div>
+</div>
 </div>

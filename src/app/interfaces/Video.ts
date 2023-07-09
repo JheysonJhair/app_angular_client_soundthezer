@@ -1,5 +1,5 @@
 export interface dtoVideo{
-  idVideo?: 	  	string,
+  id?: 	  	string,
   name: 			    string,
   description: 	  string,
   url:            string

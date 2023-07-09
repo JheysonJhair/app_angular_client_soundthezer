@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,28 +6,26 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { User } from 'src/app/interfaces/User';
 import { LoginService } from 'src/app/services/login.service';
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent {
-  //ACCES - USER
-  accesUser: FormGroup;
+export class RegisterComponent {
+  //ADD - USER
+  addUser: FormGroup;
   User: User | undefined;
 
   constructor(
     private fb: FormBuilder,
     private _loginService: LoginService,
-    private router: Router,
     private toastr: ToastrService
   ) {
-    this.accesUser = this.fb.group({
+    this.addUser = this.fb.group({
+      name: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
@@ -35,16 +33,17 @@ export class LoginComponent {
 
   ngOnInit(): void {}
 
-  accesUsuario() {
+  addUsuario() {
     const user = {
-      email: this.accesUser?.get('email')?.value,
-      password: this.accesUser?.get('password')?.value,
+      name: this.addUser?.get('name')?.value,
+      email: this.addUser?.get('email')?.value,
+      password: this.addUser?.get('password')?.value
     };
 
-    this._loginService.insertLogin(user).subscribe(
+    this._loginService.insertUser(user).subscribe(
       (data) => {
-        this.toastr.success('Acceso', 'Biemvenido!');
-        this.router.navigate(['/video']);
+        this.toastr.success('Registrado con éxito', 'Registro completo!');
+        this.addUser?.reset();
       },
       (error) => {
         this.toastr.error('Oops, ocurrió un error', 'Error');

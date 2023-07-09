@@ -19,6 +19,8 @@ import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { LoginComponent } from './components/login/login.component';
+import { AsidetwoComponent } from './components/asidetwo/asidetwo.component';
+import { RegisterComponent } from './components/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import { LoginComponent } from './components/login/login.component';
     VideoPlayerComponent,
     MusicPlayerComponent,
     HeadComponent,
-    LoginComponent
+    LoginComponent,
+    AsidetwoComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

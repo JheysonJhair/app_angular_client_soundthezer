@@ -6,19 +6,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class VideoService {
-  private myAppUrl = 'https://localhost:7282/';
+  private myAppUrl = 'http://localhost:3030/';
   private myUrlGet = 'video/getall/';
   private myApiInsert = 'video/insert/';
-  private myUrlDelete = 'video/delete?idVideo=';
+  private myUrlDelete = 'video/delete/';
   private myUrlPut = 'video/update/';
   private myUrlGetId = 'video/getbyid?id=';
 
   constructor(private http: HttpClient) { }
 
-  getListVideo(): Observable<any>{
-    return this.http.get(this.myAppUrl + this.myUrlGet);
+  getListVideo(): Observable<any> {
+    return this.http.get<any>(this.myAppUrl + this.myUrlGet);
   }
-  deleteVideo(id: string): Observable<any>{
+  deleteVideo(id: any): Observable<any>{
     return this.http.delete(this.myAppUrl + this.myUrlDelete + id)
   }
   saveVideo(dtoVideo: FormData): Observable<any>{

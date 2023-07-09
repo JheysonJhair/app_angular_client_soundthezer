@@ -12,7 +12,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./video-player.component.css'],
 })
 export class VideoPlayerComponent implements OnInit {
-  defaultVideoUrl: string = "https://youtu.be/DXV79KHSftc";
+  defaultVideoUrl: string = "https://www.youtube.com/watch?v=eOyNWshrOJQ&list=RDeOyNWshrOJQ&start_radio=1";
   safeVideoUrl: SafeResourceUrl; // URL segura del video
 
   //Listar videos
@@ -50,8 +50,9 @@ export class VideoPlayerComponent implements OnInit {
   //---------------------------------------------------------------LISTAR VIDEO
   getVideo() {
     this._videoService.getListVideo().subscribe(
-      (data) => {
-        this.listVideo = data.listDtoVideo;
+      response => {
+        const result = response.result;
+        this.listVideo = result;
       },
       (error) => {
         this.toastr.error('Opss ocurrio un error', 'Error');
@@ -59,6 +60,7 @@ export class VideoPlayerComponent implements OnInit {
       }
     );
   }
+
   deleteVideo(id: any) {
     this._videoService.deleteVideo(id).subscribe(
       (data) => {
@@ -67,7 +69,7 @@ export class VideoPlayerComponent implements OnInit {
           'El video fue eliminado con exito',
           'Registro eliminado!'
         );
-        this.router.navigate([' ']);
+        this.getVideo();
       },
       (error) => {
         this.toastr.error('Opss ocurrio un error', 'Error');

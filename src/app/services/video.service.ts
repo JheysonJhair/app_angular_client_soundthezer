@@ -11,7 +11,7 @@ export class VideoService {
   private myApiInsert = 'video/insert/';
   private myUrlDelete = 'video/delete/';
   private myUrlPut = 'video/update/';
-  private myUrlGetId = 'video/getbyid?id=';
+  private myUrlGetId = 'video/getbyid/';
 
   constructor(private http: HttpClient) { }
 
@@ -21,13 +21,13 @@ export class VideoService {
   deleteVideo(id: any): Observable<any>{
     return this.http.delete(this.myAppUrl + this.myUrlDelete + id)
   }
-  saveVideo(dtoVideo: FormData): Observable<any>{
-    return this.http.post(this.myAppUrl + this.myApiInsert,dtoVideo);
+  saveVideo(video:any): Observable<any>{
+    return this.http.post(this.myAppUrl + this.myApiInsert,video);
   }
   getVideo(id: string): Observable<any>{
     return this.http.get(this.myAppUrl + this.myUrlGetId + id);
   }
-  updateVideo(dtoVideo: FormData ): Observable<any>{
-    return this.http.post(this.myAppUrl + this.myUrlPut, dtoVideo);
+  updateVideo(video: any ): Observable<any>{
+    return this.http.post(this.myAppUrl + this.myUrlPut, video);
   }
 }

@@ -109,53 +109,50 @@ export class VideoPlayerComponent implements OnInit {
 
   addEditVideo() {
     if (this.dtoVideo == undefined) {
-      let formData = new FormData();
-      formData.append('dtoVideo.name', this.addVideo?.get('name')?.value);
-      formData.append(
-        'dtoVideo.description',
-        this.addVideo?.get('description')?.value
-      );
-      formData.append('dtoVideo.url', this.addVideo?.get('url')?.value);
+      const videoData = {
+        name: this.addVideo?.get('name')?.value,
+        description: this.addVideo?.get('description')?.value,
+        url: this.addVideo?.get('url')?.value
+      };
 
-      this._videoService.saveVideo(formData).subscribe(
+      this._videoService.saveVideo(videoData).subscribe(
         (data) => {
           this.getVideo();
           this.toastr.success(
-            'El video fue registrado con exito',
+            'El video fue registrado con éxito',
             'Registro completo!'
           );
         },
         (error) => {
-          this.toastr.error('Opss ocurrio un error', 'Error');
+          this.toastr.error('Oops, ocurrió un error', 'Error');
           console.log(error);
         }
       );
     } else {
-      let formData = new FormData();
-      formData.append('dtoVideo.idVideo', this.id);
-      formData.append('dtoVideo.name', this.addVideo.get('name')?.value);
-      formData.append(
-        'dtoVideo.description',
-        this.addVideo.get('description')?.value
-      );
-      formData.append('dtoVideo.url', this.addVideo.get('url')?.value);
+      const videoData = {
+        idVideo: this.id,
+        name: this.addVideo.get('name')?.value,
+        description: this.addVideo.get('description')?.value,
+        url: this.addVideo.get('url')?.value
+      };
 
-      this._videoService.updateVideo(formData).subscribe(
+      this._videoService.updateVideo(videoData).subscribe(
         (data) => {
           this.getVideo();
           this.toastr.info(
-            'El video fue actualizado con exito',
+            'El video fue actualizado con éxito',
             'Video actualizado!'
           );
           this.router.navigate([' ']);
         },
         (error) => {
-          this.toastr.error('Opss ocurrio un error', 'Error');
+          this.toastr.error('Oops, ocurrió un error', 'Error');
           console.log(error);
         }
       );
     }
   }
+
   //
   validateYouTubeUrl(control: AbstractControl): { [key: string]: any } | null {
     const urlPattern = /^https:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}$/;

@@ -239,3 +239,12 @@ td{
 h5{
   margin: 15px;
 }
+
+
+.disabled-icon {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.cance{
+  background-color: #ccc;
+}

@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'register' , component: RegisterComponent},
   { path: 'video' , component: VideoPlayerComponent},
   { path: 'update/:id', component: VideoPlayerComponent},
+  { path: 'update', component: VideoPlayerComponent},
   { path: 'music' , component: MusicPlayerComponent},
   { path: '**', redirectTo: '/', pathMatch:'full'}
 ];

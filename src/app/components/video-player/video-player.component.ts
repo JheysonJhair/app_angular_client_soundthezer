@@ -15,13 +15,14 @@ export class VideoPlayerComponent implements OnInit {
   defaultVideoUrl: string = "https://www.youtube.com/watch?v=eOyNWshrOJQ&list=RDeOyNWshrOJQ&start_radio=1";
   safeVideoUrl: SafeResourceUrl; // URL segura del video
 
+  edit: boolean = false;
   //Listar videos
   listVideo: dtoVideo[] = [];
 
   //ADD - EDIT Videos
   addVideo: FormGroup;
   accion = 'Registrar';
-  id = '';
+  id: string;
   str2 = null;
   dtoVideo: dtoVideo | undefined;
 
@@ -40,12 +41,15 @@ export class VideoPlayerComponent implements OnInit {
       url: ['', [Validators.required, ]]
     });
     this.id = this.aRoute.snapshot.paramMap.get('id')!;
+    console.log("ID:"+this.id)
   }
+
 
   ngOnInit(): void {
     this.ver(this.defaultVideoUrl);
     this.getVideo();
     this.esEdit();
+
   }
   //---------------------------------------------------------------LISTAR VIDEO
   getVideo() {
@@ -81,6 +85,7 @@ export class VideoPlayerComponent implements OnInit {
   esEdit() {
     if (this.id !== null) {
       this.accion = 'Editar';
+      this.edit = true;
       this._videoService.getVideo(this.id).subscribe(
         (data) => {
           console.log(data);
@@ -89,13 +94,16 @@ export class VideoPlayerComponent implements OnInit {
           this.addVideo.controls['name'].setValue(this.dtoVideo?.name);
           this.addVideo.controls['description'].setValue(this.dtoVideo?.description);
           this.addVideo.controls['url'].setValue(this.dtoVideo?.url);
+
         },
         (error) => {
           console.log(error);
         }
       );
     }
+
   }
+
   ver(url: string) {
     const videoId = this.extraerVideoId(url);
     this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);

@@ -75,9 +75,16 @@
             Invalido
           </span>
         </div>
-        <button type="submit" [disabled]="addVideo.invalid" type="submit">
-          Agregar
-        </button>
+        <div>
+          <button type="submit" [disabled]="addVideo.invalid" type="submit">
+            Aceptar
+          </button>
+          <div *ngIf="edit == true">
+            <button class="cance"  [routerLink]="['/video']" type="button"type="submit">
+              Cancelar
+            </button>
+          </div>
+        </div>
       </form>
     </div>
     <div class="lista">
@@ -110,10 +117,10 @@
                     ></i>
                   </td>
                   <td>
-                    <i
-                      [routerLink]="['/update', video.id]"
-                      class="far fa-solid fa-pen-to-square text-info"
-                    ></i>
+                    <i [routerLink]="['/update', video.id]"
+                       class="far fa-solid fa-pen-to-square text-info"
+                       [ngClass]="{'disabled-icon': edit}">
+                    </i>
                   </td>
                   <td>
                     <i

@@ -44,7 +44,7 @@
       </div>
       <form [formGroup]="addVideo" (ngSubmit)="addEditVideo()" action="">
         <div class="row">
-          <label for="nombre">Nombre: </label>
+          <label for="nombre">Música: </label>
           <input
             formControlName="name"
             class="form-control"
@@ -53,7 +53,7 @@
           />
         </div>
         <div class="row">
-          <label for="descripcion">Descripción: </label>
+          <label for="descripcion">Artista: </label>
           <input
             formControlName="description"
             class="form-control"
@@ -95,8 +95,8 @@
             <table *ngIf="listVideo.length > 0" class="table table-hover mt-3">
               <thead>
                 <tr>
+                  <th class="bol">Música</th>
                   <th class="bol">Artista</th>
-                  <th class="bol">Descripción</th>
                   <th class="bol">Link</th>
                   <th></th>
                   <th></th>
@@ -108,12 +108,15 @@
                   <td>{{ video.description }}</td>
                   <td>{{ video.url }}</td>
                   <td>
-                    <i class="fa-solid fa-download text-amarillo"></i>
+                    <i (click)="descargarVideo2()"
+                     [ngClass]="{'disabled-icon': edit}"
+                     class="fa-solid fa-download text-amarillo"></i>
                   </td>
                   <td>
                     <i
                       (click)="ver(video.url)"
                       class="fa-solid fa-play text-verde"
+                      [ngClass]="{'disabled-icon': edit}"
                     ></i>
                   </td>
                   <td>
@@ -126,6 +129,7 @@
                     <i
                       (click)="deleteVideo(video.id)"
                       class="far fa-solid fa-trash-can text-danger"
+                      [ngClass]="{'disabled-icon': edit}"
                     ></i>
                   </td>
                 </tr>

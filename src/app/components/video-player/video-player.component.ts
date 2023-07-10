@@ -5,7 +5,7 @@ import { dtoVideo } from 'src/app/interfaces/Video';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VideoService } from 'src/app/services/video.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-video-player',
   templateUrl: './video-player.component.html',
@@ -33,7 +33,8 @@ export class VideoPlayerComponent implements OnInit {
     private router: Router,
     private _videoService: VideoService,
     private aRoute: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private http: HttpClient
   ) {
     this.addVideo = this.fb.group({
       name: ['', Validators.required],
@@ -130,6 +131,7 @@ export class VideoPlayerComponent implements OnInit {
             'El video fue registrado con éxito',
             'Registro completo!'
           );
+          this.addVideo.reset();
         },
         (error) => {
           this.toastr.error('Oops, ocurrió un error', 'Error');
@@ -167,5 +169,38 @@ export class VideoPlayerComponent implements OnInit {
     const validUrl = urlPattern.test(control.value);
 
     return validUrl ? null : { invalidUrl: true };
+  }
+
+  descargarVideo(videoId: string) {
+    const apiUrl = `http://localhost:3030/video/descargar/${videoId}`; // Reemplaza 'URL_DEL_BACKEND' por la URL real de tu backend
+    const downloadUrl = `http://localhost:4200/assets/videos/${videoId}.mp4`; // Reemplaza 'http://localhost:4200' por la URL base de tu aplicación
+
+    // Realiza la solicitud HTTP para obtener el video desde el backend
+    this.http.get(apiUrl, { responseType: 'blob' }).subscribe((response: Blob) => {
+      // Crea una URL local para el objeto Blob del video
+      const videoUrl = URL.createObjectURL(response);
+
+      // Crea un enlace temporal y haz clic en él para descargar el video
+      const a = document.createElement('a');
+      a.href = videoUrl;
+      a.download = `${videoId}.mp4`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      // Libera la URL creada para el video
+      URL.revokeObjectURL(videoUrl);
+    });
+  }
+  descargarVideo2(){
+    this._videoService.getDescargar().subscribe(
+      response => {
+        console.log("VIDEO: "+response);
+      },
+      (error) => {
+        this.toastr.error('Opss ocurrio un error', 'Error');
+        console.log(error);
+      }
+    );
   }
 }

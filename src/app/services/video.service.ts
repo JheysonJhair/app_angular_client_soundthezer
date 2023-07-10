@@ -12,6 +12,7 @@ export class VideoService {
   private myUrlDelete = 'video/delete/';
   private myUrlPut = 'video/update/';
   private myUrlGetId = 'video/getbyid/';
+  private myUrlGetDescargar = 'video/descargar/';
 
   constructor(private http: HttpClient) { }
 
@@ -29,5 +30,8 @@ export class VideoService {
   }
   updateVideo(id:any,video: any ): Observable<any>{
     return this.http.put(this.myAppUrl + this.myUrlPut + id, video);
+  }
+  getDescargar(): Observable<any>{
+    return this.http.get<any>(this.myAppUrl + this.myUrlGetDescargar);
   }
 }

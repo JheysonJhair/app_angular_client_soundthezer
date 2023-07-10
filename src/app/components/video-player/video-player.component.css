@@ -200,7 +200,9 @@ h3{
 .text-verde{
   color: hsl(141.41, 75.51%, 48.04%);
 }
-
+.text-amarillo{
+  color: hsl(51, 76%, 48%);
+}
 .cn{
   max-height: 150px; /* Ajusta la altura máxima según tus necesidades */
   overflow: auto;

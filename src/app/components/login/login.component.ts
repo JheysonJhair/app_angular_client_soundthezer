@@ -43,7 +43,7 @@ export class LoginComponent {
 
     this._loginService.insertLogin(user).subscribe(
       (data) => {
-        this.toastr.success('Acceso', 'Biemvenido!');
+        this.toastr.success('Acceso', 'Bienvenido!');
         this.router.navigate(['/video']);
       },
       (error) => {

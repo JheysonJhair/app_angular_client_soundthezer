@@ -79,15 +79,25 @@ color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    height: 35px;
+    margin-top: 10px;
   }p span {
   font-weight: 550;
   color: #fff;
   font-size: 12px;
 }
-
+.cuad2{
+  margin-left: 12px;
+}
+.ps{
+  color: #ccc;
+}
 p {
-  font-size: 10px;
+  font-size: 11px;
   color: #fff;
   font-weight: 100;
 }
@@ -128,7 +138,7 @@ transform: scale(1.1);
 cursor: pointer;
 }
 .copi{
-  margin-top: 242px;
+  margin-top: 366px;
   text-align: justify;
 }
 .copi p{

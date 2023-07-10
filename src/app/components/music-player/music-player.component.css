@@ -99,7 +99,7 @@ cursor: pointer;
   display: grid;
   grid-template-columns: 4fr 2fr;
   grid-gap: 10px;
-  background: linear-gradient(to bottom, hsl(0, 3%, 74%), hsl(0, 1%, 43%) 100%);
+  background: linear-gradient(to bottom, hsl(30, 38%, 84%), hsl(35, 27%, 32%) 100%);
   padding: 23px;
   place-items: center;
 }
@@ -274,7 +274,7 @@ button{
 }
 .lista{
   background-color:rgb(27, 27, 24);
-  min-height: 233px;
+  height: 455px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   width: 100%;
@@ -306,16 +306,22 @@ h3{
   border-collapse: collapse;
   border: 0;
 }
-.table th,
+.table th
+{
+  padding: 10px;
+  text-align: left;
+  color: #ffffffd2;
+}
 .table td {
   padding: 10px;
   text-align: left;
+  color: #ffffff7f;
 }
 .table th.bol {
   font-weight: bold;
 }
 .table-hover tbody tr:hover {
-  background-color: #e0e0e06d;
+  background-color: #e0e0e058;
 }
 
 .table i {

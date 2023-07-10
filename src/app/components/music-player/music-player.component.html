@@ -30,7 +30,7 @@
       <div class="c1">
         <div class="img">
           <img
-            src="../../../assets/img/c8e0605567e98d794a7f43a7050bd998.jpg"
+            src="../../../assets/img/Logo2.jpg"
             alt=""
           />
         </div>
@@ -82,12 +82,6 @@
                   </td>
                   <td>
                     <i
-                      [routerLink]="['/update', music.id]"
-                      class="far fa-solid fa-pen-to-square text-info"
-                    ></i>
-                  </td>
-                  <td>
-                    <i
                       (click)="deleteMusic(music.id)"
                       class="far fa-solid fa-trash-can text-danger"
                     ></i>
@@ -98,7 +92,7 @@
           </div>
         </div>
         <div *ngIf="listMusic.length == 0" class="row mt-5">
-          <h5>No hay videos por mostrar.</h5>
+          <h5>No hay musicas por mostrar.</h5>
         </div>
       </div>
     </div>

@@ -16,7 +16,19 @@ import { MusicService } from 'src/app/services/music.service';
 })
 export class MusicPlayerComponent implements OnInit {
   //Listar videos
-  listMusic: dtoMusic[] = [];
+  listMusic: dtoMusic[] = [
+    {
+      name: 'Video 1',
+      description: 'Descripción del video 1',
+      url: 'https://example.com/video1.mp4'
+    },
+    {
+      name: 'Video 2',
+      description: 'Descripción del video 2',
+      url: 'https://example.com/video2.mp4'
+    }
+
+  ];
 
   //ADD - EDIT Videos
   addMusic: FormGroup;

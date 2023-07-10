@@ -24,10 +24,10 @@ export class VideoService {
   saveVideo(video:any): Observable<any>{
     return this.http.post(this.myAppUrl + this.myApiInsert,video);
   }
-  getVideo(id: string): Observable<any>{
+  getVideo(id: any): Observable<any>{
     return this.http.get(this.myAppUrl + this.myUrlGetId + id);
   }
-  updateVideo(video: any ): Observable<any>{
-    return this.http.post(this.myAppUrl + this.myUrlPut, video);
+  updateVideo(id:any,video: any ): Observable<any>{
+    return this.http.put(this.myAppUrl + this.myUrlPut + id, video);
   }
 }

@@ -84,11 +84,11 @@ export class VideoPlayerComponent implements OnInit {
       this._videoService.getVideo(this.id).subscribe(
         (data) => {
           console.log(data);
-          this.dtoVideo = data;
+          this.dtoVideo = data.result;
 
-          this.addVideo.controls['name'].setValue(data[0].name);
-          this.addVideo.controls['description'].setValue(data[0].description);
-          this.addVideo.controls['url'].setValue(data[0].url);
+          this.addVideo.controls['name'].setValue(this.dtoVideo?.name);
+          this.addVideo.controls['description'].setValue(this.dtoVideo?.description);
+          this.addVideo.controls['url'].setValue(this.dtoVideo?.url);
         },
         (error) => {
           console.log(error);
@@ -130,20 +130,20 @@ export class VideoPlayerComponent implements OnInit {
       );
     } else {
       const videoData = {
-        idVideo: this.id,
+
+        id: this.id,
         name: this.addVideo.get('name')?.value,
         description: this.addVideo.get('description')?.value,
         url: this.addVideo.get('url')?.value
       };
-
-      this._videoService.updateVideo(videoData).subscribe(
+      console.log(videoData);
+      this._videoService.updateVideo(this.id,videoData).subscribe(
         (data) => {
-          this.getVideo();
           this.toastr.info(
             'El video fue actualizado con éxito',
             'Video actualizado!'
           );
-          this.router.navigate([' ']);
+          this.router.navigate(['/video']);
         },
         (error) => {
           this.toastr.error('Oops, ocurrió un error', 'Error');

@@ -1,3 +1,4 @@
+/* Head */
 .container {
   display: flex;
   justify-content: center;
@@ -7,15 +8,17 @@
   margin: 0;
   padding: 0;
 }
-body{
-  background-color: rgb(21, 21, 21);
-
-  bottom: 0;
-}
+/* Head*/
 .container > * {
   width: 80%;
 }
-.main{
+/* Cuerpo */
+body {
+  background-color: rgb(21, 21, 21);
+  bottom: 0;
+}
+/* Main */
+.main {
   margin: auto;
   width: 40%;
   justify-content: center;
@@ -29,32 +32,35 @@ body{
   margin-bottom: 10px;
   border-radius: 10px;
 }
-h1{
+/* title */
+h1 {
   color: #000000;
   font-size: 40px;
 }
-
-.form{
-  border-top: .2px solid #17171757;
-  border-bottom: .2px solid #17171757;
+/* Formulario*/
+.form {
+  border-top: 0.2px solid #17171757;
+  border-bottom: 0.2px solid #17171757;
   padding-top: 50px;
   padding-bottom: 50px;
   padding-left: 100px;
   padding-right: 100px;
 }
-.roww{
+/* Contenedor label input*/
+.roww {
   display: block;
   text-align: center;
 }
-
-.roww label{
+/* label */
+.roww label {
   color: #000000;
   text-align: left;
   font-size: 18px;
 }
-.roww input{
+/*Input*/
+.roww input {
   background-color: hsl(0, 0%, 100%);
-  border: .5px solid #3a393986;
+  border: 0.5px solid #3a393986;
   border-radius: 5px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -65,10 +71,12 @@ h1{
   margin-bottom: 15px;
   font-size: 16px;
 }
-.roww input:hover{
-  border: .5px solid #2d2b2b;
+/* input hover*/
+.roww input:hover {
+  border: 0.5px solid #2d2b2b;
 }
-.btn{
+/* boton */
+.btn {
   background-color: #1fdf64;
   width: 85%;
   padding: 15px;
@@ -79,31 +87,37 @@ h1{
   font-size: 17px;
   transition: transform 0.3s;
 }
-.btn:hover{
+/* boton hover*/
+.btn:hover {
   transform: scale(1.1);
   cursor: pointer;
-  }
-
-.l{
+}
+/* label margin*/
+.l {
   text-align: left;
   margin-left: 30px;
 }
-.a{
+/*enlaces*/
+.a {
   text-decoration: none;
   margin-top: 30px;
 }
-a{
+/* enlaces*/
+a {
   color: #1fdf64;
   border-bottom: 1px solid rgb(255, 255, 255);
   font-size: 17px;
 }
-span{
+/* span inciar sesion*/
+span {
   color: #000000;
 }
-a:hover{
-  color:  rgba(11, 96, 42, 0.984);
+/* enlaces hover*/
+a:hover {
+  color: rgba(11, 96, 42, 0.984);
 }
-.rbt{
+/* tamaño boton*/
+.rbt {
   margin-left: 100px;
   margin-right: 100px;
 }

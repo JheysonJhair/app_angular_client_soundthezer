@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="item">
+  <div>
     <app-aside></app-aside>
   </div>
-  <div class="item">
+  <div>
     <app-head></app-head>
-    <div routerLink="/music" class="cont">
+    <div class="cont">
       <div class="c1">
         <div class="img">
           <img
@@ -80,7 +80,12 @@
             Aceptar
           </button>
           <div *ngIf="edit == true">
-            <button class="cance"  [routerLink]="['/video']" type="button"type="submit">
+            <button
+              class="cance"
+              [routerLink]="['/video']"
+              type="button"
+              type="submit"
+            >
               Cancelar
             </button>
           </div>
@@ -108,28 +113,32 @@
                   <td>{{ video.description }}</td>
                   <td>{{ video.url }}</td>
                   <td>
-                    <i (click)="descargar(video.url)"
-                     [ngClass]="{'disabled-icon': edit}"
-                     class="fa-solid fa-download text-amarillo"></i>
-                  </td>
-                  <td>
                     <i
-                      (click)="ver(video.url)"
-                      class="fa-solid fa-play text-verde"
-                      [ngClass]="{'disabled-icon': edit}"
+                      (click)="descargarVideo(video.url)"
+                      [ngClass]="{ 'disabled-icon': edit }"
+                      class="fa-solid fa-download text-amarillo"
                     ></i>
                   </td>
                   <td>
-                    <i [routerLink]="['/update', video.id]"
-                       class="far fa-solid fa-pen-to-square text-info"
-                       [ngClass]="{'disabled-icon': edit}">
+                    <i
+                      (click)="verVideo(video.url)"
+                      class="fa-solid fa-play text-verde"
+                      [ngClass]="{ 'disabled-icon': edit }"
+                    ></i>
+                  </td>
+                  <td>
+                    <i
+                      [routerLink]="['/update', video.id]"
+                      class="far fa-solid fa-pen-to-square text-info"
+                      [ngClass]="{ 'disabled-icon': edit }"
+                    >
                     </i>
                   </td>
                   <td>
                     <i
                       (click)="deleteVideo(video.id)"
                       class="far fa-solid fa-trash-can text-danger"
-                      [ngClass]="{'disabled-icon': edit}"
+                      [ngClass]="{ 'disabled-icon': edit }"
                     ></i>
                   </td>
                 </tr>

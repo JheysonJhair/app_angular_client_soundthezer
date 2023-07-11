@@ -12,7 +12,6 @@ import { VideoService } from 'src/app/services/video.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 
-import { map } from 'rxjs/operators';
 import { MusicService } from 'src/app/services/music.service';
 @Component({
   selector: 'app-video-player',
@@ -25,10 +24,9 @@ export class VideoPlayerComponent implements OnInit {
   safeVideoUrl: SafeResourceUrl; // URL segura del video
 
   edit: boolean = false;
-  //Listar videos
+
   listVideo: dtoVideo[] = [];
 
-  //ADD - EDIT Videos
   addVideo: FormGroup;
   accion = 'Registrar';
   id: string;
@@ -36,15 +34,13 @@ export class VideoPlayerComponent implements OnInit {
   dtoVideo: dtoVideo | undefined;
 
   constructor(
-    private formBuilder: FormBuilder,
     private sanitizer: DomSanitizer,
     private fb: FormBuilder,
     private router: Router,
     private _videoService: VideoService,
     private _musicService: MusicService,
     private aRoute: ActivatedRoute,
-    private toastr: ToastrService,
-    private http: HttpClient
+    private toastr: ToastrService
   ) {
     this.addVideo = this.fb.group({
       name: ['', Validators.required],
@@ -52,11 +48,10 @@ export class VideoPlayerComponent implements OnInit {
       url: ['', [Validators.required]],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id')!;
-    console.log('ID:' + this.id);
   }
 
   ngOnInit(): void {
-    this.ver(this.defaultVideoUrl);
+    this.verVideo(this.defaultVideoUrl);
     this.getVideo();
     this.esEdit();
   }
@@ -66,7 +61,7 @@ export class VideoPlayerComponent implements OnInit {
       (response) => {
         const result = response.result;
         this.listVideo = result;
-        console.log()
+        console.log();
       },
       (error) => {
         this.toastr.error('Opss ocurrio un error', 'Error');
@@ -74,7 +69,7 @@ export class VideoPlayerComponent implements OnInit {
       }
     );
   }
-
+  //---------------------------------------------------------------ELIMINAR VIDEO
   deleteVideo(id: any) {
     this._videoService.deleteVideo(id).subscribe(
       (data) => {
@@ -91,7 +86,7 @@ export class VideoPlayerComponent implements OnInit {
       }
     );
   }
-  //---------------------------------------------------------------AGREGAR - EDITAR VIDEO
+  //--------------------------------------------------------------- ES EDIT? REGISTRAR - EDITAR
   esEdit() {
     if (this.id !== null) {
       this.accion = 'Editar';
@@ -113,20 +108,7 @@ export class VideoPlayerComponent implements OnInit {
       );
     }
   }
-
-  ver(url: string) {
-    const videoId = this.extraerVideoId(url);
-    this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube.com/embed/${videoId}`
-    );
-  }
-
-  extraerVideoId(url: string): string {
-    // Extraer el identificador del video de la URL abreviada
-    const videoId = url.replace('https://youtu.be/', '');
-    return videoId;
-  }
-
+  //---------------------------------------------------------------AGREGAR - EDITAR VIDEO
   addEditVideo() {
     if (this.dtoVideo == undefined) {
       const videoData = {
@@ -172,8 +154,20 @@ export class VideoPlayerComponent implements OnInit {
       );
     }
   }
+  //------------------------------------------------------------------------REPRODUCIR VIDEO
 
-  //
+  verVideo(url: string) {
+    const videoId = this.extraerVideoId(url);
+    this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+      `https://www.youtube.com/embed/${videoId}`
+    );
+  }
+
+  extraerVideoId(url: string): string {
+    const videoId = url.replace('https://youtu.be/', '');
+    return videoId;
+  }
+  //------------------------------------------------------------------VALIDACIONES URL VIDEO
   validateYouTubeUrl(control: AbstractControl): { [key: string]: any } | null {
     const urlPattern = /^https:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}$/;
     const validUrl = urlPattern.test(control.value);
@@ -181,16 +175,17 @@ export class VideoPlayerComponent implements OnInit {
     return validUrl ? null : { invalidUrl: true };
   }
 
-  /*descargar*/
-  descargar(url: any) {
+  //-------------------------------------------------------------------------DESCARGAR VIDEO
+  descargarVideo(url: any) {
     this._videoService.descargarVideo(url).subscribe(
       () => {
-        console.log('Descarga completada');
+        this.toastr.success('Descarga completada!', 'Enhorabuena!');
       },
       (error) => {
-        console.error('Ocurrió un error al descargar el video:', error);
+        this.toastr.error('No se pudo descargar tu video', 'Error!');
       }
     );
+    /////
     const musicData = {
       id: this.addVideo?.get('id'),
       name: this.addVideo?.get('name')?.value,
@@ -198,14 +193,9 @@ export class VideoPlayerComponent implements OnInit {
       url: this.addVideo?.get('url')?.value,
     };
 
-    console.log(musicData);
     this._musicService.saveMusic(musicData).subscribe(
       (data) => {
-        this.getVideo();
-        this.toastr.success(
-          'Agregando a tu PlayList',
-          'Enhorabuena!'
-        );
+        this.toastr.success('Agregando a tu PlayList', 'Enhorabuena!');
         this.addVideo.reset();
       },
       (error) => {
@@ -213,9 +203,6 @@ export class VideoPlayerComponent implements OnInit {
         console.log(error);
       }
     );
+    /////
   }
-
-
-
-
 }

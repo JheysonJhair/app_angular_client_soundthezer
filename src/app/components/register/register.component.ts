@@ -3,10 +3,8 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  AbstractControl,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { User } from 'src/app/interfaces/User';
 import { LoginService } from 'src/app/services/login.service';
 @Component({
@@ -30,9 +28,7 @@ export class RegisterComponent {
       password: ['', Validators.required],
     });
   }
-
-  ngOnInit(): void {}
-
+  // Registrar usuario
   addUsuario() {
     const user = {
       name: this.addUser?.get('name')?.value,

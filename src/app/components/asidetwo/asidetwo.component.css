@@ -1,9 +1,9 @@
+/* Contendor*/
 .contenedor {
   background-color: black;
 }
-
+/* Home */
 .home {
-
   padding: 10px 10px 10px 10px;
   background-color: rgb(21, 21, 21);
   margin-bottom: 8px;
@@ -12,44 +12,44 @@
   flex-direction: column;
   align-items: flex-start;
 }
-
+/* contendor*/
 .c1 {
   padding: 5px;
 }
-
+/* icono */
 i {
   color: #e7e7e7b4;
 }
-i:hover{
-color: #fff;
-cursor: pointer;
+/* icono hover*/
+i:hover {
+  color: #fff;
+  cursor: pointer;
 }
+/* informacion*/
 .informacion {
   padding: 10px;
   background-color: rgb(18, 18, 18);
   height: auto;
   border-radius: 5px;
 }
-
+/* enlaces */
 a {
   font-size: 13px;
   margin-left: 10px;
   padding-bottom: 4px;
   color: #e7e7e78f;
 }
-a:hover{
-color: #fff;
+/* enlace hover*/
+a:hover {
+  color: #fff;
 }
+/* fila biblioteca*/
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-.c1 {
-  margin-right: auto;
-}
-
+/* item1*/
 .item1 {
   margin-top: 20px;
   padding-left: 15px;
@@ -58,8 +58,9 @@ color: #fff;
   border-radius: 5px;
   margin-bottom: 20px;
 }
-.pl{
-  background-color:rgb(33, 33, 33);
+/* playlist*/
+.pl {
+  background-color: rgb(33, 33, 33);
   width: 70px;
   border-radius: 23px;
   text-align: center;
@@ -71,80 +72,54 @@ color: #fff;
   padding-right: 1px;
   margin: 0;
 }
+/* contenedor playlist*/
 .ply {
   display: flex;
 }
-.cuad{
-  background-color:rgb(33, 33, 33);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 15px;
-    padding-left: 15px;
-    height: 35px;
-    margin-top: 10px;
-  }p span {
+/* icono cuadrado*/
+.cuad {
+  background-color: rgb(33, 33, 33);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  height: 35px;
+  margin-top: 10px;
+}
+/* parrafo span*/
+p span {
   font-weight: 550;
   color: #fff;
   font-size: 12px;
 }
-.cuad2{
+/* cuadrado letras*/
+.cuad2 {
   margin-left: 12px;
 }
-.ps{
+/* title playlist */
+.ps {
   color: #ccc;
 }
+/* parrafo*/
 p {
   font-size: 11px;
   color: #fff;
   font-weight: 100;
 }
-
-.bn {
-  background-color: #fff;
-  border-radius: 40px;
-  width: 90px;
-  text-align: center;
-  margin-top: 18px;
-  margin-bottom: 10px;
-  transition: transform 0.3s;
-}
-.bn:hover{
-transform: scale(1.1);
-cursor: pointer;
-}
-
-.bn p,
-.m p {
-  color: black;
-  font-size: 11px;
-  font-weight: 400;
-  margin: 9px;
-  padding: 8px;
-}
-
-.m {
-  background-color: #fff;
-  border-radius: 40px;
-  width: 130px;
-  text-align: center;
-  margin-top: 18px;
-  transition: transform 0.3s;
-}
-.m:hover{
-transform: scale(1.1);
-cursor: pointer;
-}
-.copi{
+/* copirigth */
+.copi {
   margin-top: 366px;
   text-align: justify;
 }
-.copi p{
-  color:#e7e7e78f;
+/* parrafo copirigth*/
+.copi p {
+  color: #e7e7e78f;
 }
-.idioma{
+/* contenedor idioma*/
+.idioma {
   border: 1px solid #e7e7e78f;
   border-radius: 40px;
   padding: 6px;
@@ -154,11 +129,12 @@ cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.idioma a{
+/* enlace idioma*/
+.idioma a {
   color: #fff;
   font-size: 11px;
 }
-.idioma i{
+/* icono idioma*/
+.idioma i {
   color: #fff;
-
 }

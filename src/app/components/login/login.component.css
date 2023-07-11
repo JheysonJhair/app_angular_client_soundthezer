@@ -1,3 +1,5 @@
+/* Header*/
+/*Contenedor */
 .container {
   display: flex;
   justify-content: center;
@@ -7,15 +9,17 @@
   margin: 0;
   padding: 0;
 }
-body{
-  background-color: rgb(21, 21, 21);
-
-  bottom: 0;
-}
+/* Header*/
 .container > * {
   width: 80%;
 }
-.main{
+/* Cuerpo*/
+body {
+  background-color: rgb(21, 21, 21);
+  bottom: 0;
+}
+/* Contenedor form*/
+.main {
   margin: auto;
   width: 40%;
   justify-content: center;
@@ -29,31 +33,35 @@ body{
   margin-bottom: 10px;
   border-radius: 10px;
 }
-h1{
+/* Title */
+h1 {
   color: #fff;
   font-size: 40px;
 }
-
-.form{
-  border-top: .2px solid #ffffff57;
-  border-bottom: .2px solid #ffffff57;
+/* Formulario*/
+.form {
+  border-top: 0.2px solid #ffffff57;
+  border-bottom: 0.2px solid #ffffff57;
   padding-top: 50px;
   padding-bottom: 50px;
   padding-left: 100px;
   padding-right: 100px;
 }
-.roww{
+/* Input - label*/
+.roww {
   display: block;
   text-align: center;
 }
-.roww label{
+/* Label */
+.roww label {
   color: #fff;
   text-align: left;
   font-size: 18px;
 }
-.roww input{
+/* Input */
+.roww input {
   background-color: hsl(0, 0%, 7%);
-  border: .5px solid #cccccc86;
+  border: 0.5px solid #cccccc86;
   border-radius: 5px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -65,10 +73,12 @@ h1{
   font-size: 16px;
   color: #fff;
 }
-.roww input:hover{
-  border: .5px solid #cccccc;
+/* Hover input*/
+.roww input:hover {
+  border: 0.5px solid #cccccc;
 }
-.btn{
+/* Boton */
+.btn {
   background-color: #1fdf64;
   width: 85%;
   padding: 15px;
@@ -79,27 +89,32 @@ h1{
   font-size: 17px;
   transition: transform 0.3s;
 }
-.btn:hover{
+/* Hover boton*/
+.btn:hover {
   transform: scale(1.1);
   cursor: pointer;
-  }
-
-.l{
+}
+/* Posicion label*/
+.l {
   text-align: left;
   margin-left: 30px;
 }
-.a{
+/* enlaces top */
+.a {
   text-decoration: none;
   margin-top: 30px;
 }
-a{
+/*enlaces*/
+a {
   color: #fff;
   border-bottom: 1px solid rgb(255, 255, 255);
   font-size: 17px;
 }
-span{
+/* span no tienes cuenta*/
+span {
   color: #ccc;
 }
-a:hover{
-  color:  #1fdf64;
+/* Hover enlaces*/
+a:hover {
+  color: #1fdf64;
 }

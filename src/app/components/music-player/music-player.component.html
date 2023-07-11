@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="item">
     <app-asidetwo></app-asidetwo>
@@ -7,32 +6,33 @@
     <div class="contenedor">
       <div class="izquierda">
         <div class="l">
-          <img src="../../../assets/Logo.png" alt="10px" width="130" height="50">
+          <img
+            src="../../../assets/Logo.png"
+            alt="10px"
+            width="130"
+            height="50"
+          />
         </div>
-          <div class="cr">
-              <i class="fa-solid fa-angle-left"></i>
-          </div>
-          <div class="cr">
-              <i class="fa-solid fa-chevron-right"></i>
-          </div>
+        <div class="cr">
+          <i class="fa-solid fa-angle-left"></i>
+        </div>
+        <div class="cr">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
       </div>
       <div class="derecha">
-          <ul>
-              <button class="dd" routerLink="/video">Video</button>
-              <button class="dd" routerLink="/music">Música</button>
-          </ul>
+        <ul>
+          <button class="dd" routerLink="/video">Video</button>
+          <button class="dd" routerLink="/music">Música</button>
+        </ul>
 
-              <p routerLink="" class="bl">Iniciar sesión</p>
-
+        <p routerLink="" class="bl">Iniciar sesión</p>
       </div>
     </div>
     <div class="cont">
       <div class="c1">
         <div class="img">
-          <img
-            src="../../../assets/img/Logo2.jpg"
-            alt=""
-          />
+          <img src="../../../assets/img/Logo2.jpg" alt="" />
         </div>
         <div>
           <p class="mr">Play List</p>
@@ -49,9 +49,9 @@
       </div>
       <div class="audio-container">
         <audio controls>
-          <source [src]="src" type="audio/webm">
-          <source [src]="src" type="audio/ogg">
-          <source [src]="src" type="audio/mp3">
+          <source [src]="src" type="audio/webm" />
+          <source [src]="src" type="audio/ogg" />
+          <source [src]="src" type="audio/mp3" />
           Tu navegador no admite la reproducción de audio.
         </audio>
       </div>
@@ -77,12 +77,14 @@
                   <td>{{ music.description }}</td>
                   <td>{{ music.url }}</td>
                   <td>
-                    <i (click)="descargar(music.url)"
-                     class="fa-solid fa-download text-verde"></i>
+                    <i
+                      (click)="descargar(music.url)"
+                      class="fa-solid fa-download text-info"
+                    ></i>
                   </td>
                   <td>
                     <i
-                    (click)="escuchar(music.url)"
+                      (click)="escuchar()"
                       class="fa-solid fa-play text-verde"
                     ></i>
                   </td>

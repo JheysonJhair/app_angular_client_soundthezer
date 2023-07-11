@@ -1,13 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators,
-  AbstractControl,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -17,7 +15,6 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  //ACCES - USER
   accesUser: FormGroup;
   User: User | undefined;
 
@@ -32,9 +29,7 @@ export class LoginComponent {
       password: ['', Validators.required],
     });
   }
-
-  ngOnInit(): void {}
-
+  // Accesos al usuario
   accesUsuario() {
     const user = {
       email: this.accesUser?.get('email')?.value,
@@ -47,7 +42,7 @@ export class LoginComponent {
         this.router.navigate(['/video']);
       },
       (error) => {
-        this.toastr.error('Oops, ocurrió un error', 'Error');
+        this.toastr.error('Registrate ya!', 'No tienes cuenta');
         console.log(error);
       }
     );

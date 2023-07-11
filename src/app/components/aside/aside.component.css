@@ -1,9 +1,9 @@
+/* Contenedor*/
 .contenedor {
   background-color: black;
 }
-
+/* contenedor home*/
 .home {
-
   padding: 10px 10px 10px 10px;
   background-color: rgb(21, 21, 21);
   margin-bottom: 8px;
@@ -12,44 +12,44 @@
   flex-direction: column;
   align-items: flex-start;
 }
-
+/* contendor icono y enlace*/
 .c1 {
   padding: 5px;
 }
-
+/* Enlace */
 i {
   color: #e7e7e7b4;
 }
-i:hover{
-color: #fff;
-cursor: pointer;
+/* icono hover*/
+i:hover {
+  color: #fff;
+  cursor: pointer;
 }
+/* informacion*/
 .informacion {
   padding: 10px;
   background-color: rgb(18, 18, 18);
   height: auto;
   border-radius: 5px;
 }
-
+/* enlace */
 a {
   font-size: 13px;
   margin-left: 10px;
   padding-bottom: 4px;
   color: #e7e7e78f;
 }
-a:hover{
-color: #fff;
+/*hover enlace*/
+a:hover {
+  color: #fff;
 }
+/* biblioteca icono*/
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-.c1 {
-  margin-right: auto;
-}
-
+/* contenedor biblioteca*/
 .item1 {
   margin-top: 10px;
   background-color: rgb(36, 36, 36);
@@ -59,19 +59,19 @@ color: #fff;
   border-radius: 5px;
   margin-bottom: 20px;
 }
-
+/* Crea tu primera lista span*/
 p span {
   font-weight: 550;
   color: #fff;
   font-size: 12px;
 }
-
+/* parrafo */
 p {
   font-size: 10px;
   color: #fff;
   font-weight: 100;
 }
-
+/* boton 1*/
 .bn {
   background-color: #fff;
   border-radius: 40px;
@@ -81,11 +81,12 @@ p {
   margin-bottom: 10px;
   transition: transform 0.3s;
 }
-.bn:hover{
-transform: scale(1.1);
-cursor: pointer;
+/*hover boton 1*/
+.bn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
-
+/* texto boton*/
 .bn p,
 .m p {
   color: black;
@@ -94,7 +95,7 @@ cursor: pointer;
   margin: 9px;
   padding: 8px;
 }
-
+/* boton 2*/
 .m {
   background-color: #fff;
   border-radius: 40px;
@@ -103,18 +104,22 @@ cursor: pointer;
   margin-top: 18px;
   transition: transform 0.3s;
 }
-.m:hover{
-transform: scale(1.1);
-cursor: pointer;
+/* boton 2 hover*/
+.m:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
-.copi{
+/* copiright*/
+.copi {
   margin-top: 242px;
   text-align: justify;
 }
-.copi p{
-  color:#e7e7e78f;
+/* parrafo */
+.copi p {
+  color: #e7e7e78f;
 }
-.idioma{
+/* contendor idioma */
+.idioma {
   border: 1px solid #e7e7e78f;
   border-radius: 40px;
   padding: 6px;
@@ -124,11 +129,12 @@ cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.idioma a{
+/* idioma enlace*/
+.idioma a {
   color: #fff;
   font-size: 11px;
 }
-.idioma i{
+/* idioma icono*/
+.idioma i {
   color: #fff;
-
 }

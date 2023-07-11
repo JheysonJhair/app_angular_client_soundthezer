@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { dtoVideo } from 'src/app/interfaces/Video';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VideoService } from 'src/app/services/video.service';
-import { HttpClient } from '@angular/common/http';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { dtoMusic } from 'src/app/interfaces/Music';
 import { MusicService } from 'src/app/services/music.service';
 
@@ -15,26 +11,20 @@ import { MusicService } from 'src/app/services/music.service';
   styleUrls: ['./music-player.component.css'],
 })
 export class MusicPlayerComponent implements OnInit {
-  defaultVideoUrl: string =
-  'https://www.youtube.com/watch?v=eOyNWshrOJQ&list=RDeOyNWshrOJQ&start_radio=1';
-  safeVideoUrl: SafeResourceUrl; // URL segura del video
-  //Listar videos
-  src:String;
+  src: String;
   listMusic: dtoMusic[] = [
     {
       name: 'Video 1',
       description: 'Descripción del video 1',
-      url: '../../assets/audio.webm'
+      url: '../../assets/audio.webm',
     },
     {
       name: 'Video 2',
       description: 'Descripción del video 2',
-      url: '../../assets/music/Moderatto.mp3'
-    }
-
+      url: '../../assets/music/Moderatto.mp3',
+    },
   ];
 
-  //ADD - EDIT Videos
   addMusic: FormGroup;
   dtoMusic: dtoMusic | undefined;
 
@@ -42,23 +32,19 @@ export class MusicPlayerComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private _musicService: MusicService,
-    private aRoute: ActivatedRoute,
     private toastr: ToastrService
   ) {
     this.addMusic = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      url: ['', [Validators.required, ]]
+      url: ['', [Validators.required]],
     });
   }
 
   ngOnInit(): void {
-    if (this.listMusic.length > 0) {
-      this.src = this.listMusic[0].url; // Asigna la URL del primer archivo de música
-    }
     this.getMusic();
   }
-  //---------------------------------------------------------------LISTAR VIDEO
+  //-------------------------------------------------------------------------LISTAR MUSICA
   getMusic() {
     this._musicService.getListMusic().subscribe(
       (data) => {
@@ -70,6 +56,7 @@ export class MusicPlayerComponent implements OnInit {
       }
     );
   }
+  //-------------------------------------------------------------------------ELIMINAR MUSICA
   deleteMusic(id: any) {
     this._musicService.deleteMusic(id).subscribe(
       (data) => {
@@ -86,11 +73,7 @@ export class MusicPlayerComponent implements OnInit {
       }
     );
   }
-  escuchar(url: string) {
-    this.src = "../../assets/audio.webm"
-  }
-
-
+  //-------------------------------------------------------------------------DESCARGAR MUSICA
   descargar(url: any) {
     this._musicService.descargarAudio(url).subscribe(
       () => {
@@ -101,4 +84,6 @@ export class MusicPlayerComponent implements OnInit {
       }
     );
   }
+  //-------------------------------------------------------------------------REPRODUCIR VIDEO
+  escuchar() {}
 }

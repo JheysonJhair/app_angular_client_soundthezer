@@ -114,10 +114,10 @@
                   <td>{{ video.url }}</td>
                   <td>
                     <i
-                      (click)="descargarVideo(video.url)"
-                      [ngClass]="{ 'disabled-icon': edit }"
-                      class="fa-solid fa-download text-amarillo"
-                    ></i>
+                    (click)="descargarVideo(video.url, video.id)"
+                    [ngClass]="{ 'disabled-icon': edit }"
+                    class="fa-solid fa-download text-amarillo"
+                  ></i>
                   </td>
                   <td>
                     <i

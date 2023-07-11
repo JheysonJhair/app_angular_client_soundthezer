@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { dtoMusic } from 'src/app/interfaces/Music';
 import { MusicService } from 'src/app/services/music.service';
-
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-music-player',
   templateUrl: './music-player.component.html',
@@ -12,18 +12,7 @@ import { MusicService } from 'src/app/services/music.service';
 })
 export class MusicPlayerComponent implements OnInit {
   src: String;
-  listMusic: dtoMusic[] = [
-    {
-      name: 'Video 1',
-      description: 'Descripción del video 1',
-      url: '../../assets/audio.webm',
-    },
-    {
-      name: 'Video 2',
-      description: 'Descripción del video 2',
-      url: '../../assets/music/Moderatto.mp3',
-    },
-  ];
+  listMusic: dtoMusic[] = [];
 
   addMusic: FormGroup;
   dtoMusic: dtoMusic | undefined;
@@ -46,9 +35,11 @@ export class MusicPlayerComponent implements OnInit {
   }
   //-------------------------------------------------------------------------LISTAR MUSICA
   getMusic() {
+    console.log("askjxhsaijdhsajdk");
     this._musicService.getListMusic().subscribe(
       (data) => {
-        this.listMusic = data.listDtoVideo;
+        this.listMusic = data.result;
+        console.log(this.listMusic)
       },
       (error) => {
         this.toastr.error('Opss ocurrio un error', 'Error');
@@ -65,7 +56,6 @@ export class MusicPlayerComponent implements OnInit {
           'La música fue eliminado con exito',
           'Registro eliminado!'
         );
-        this.router.navigate([' ']);
       },
       (error) => {
         this.toastr.error('Opss ocurrio un error', 'Error');
@@ -75,15 +65,11 @@ export class MusicPlayerComponent implements OnInit {
   }
   //-------------------------------------------------------------------------DESCARGAR MUSICA
   descargar(url: any) {
-    this._musicService.descargarAudio(url).subscribe(
-      () => {
-        console.log('Descarga completada');
-      },
-      (error) => {
-        console.error('Ocurrió un error al descargar el audio:', error);
-      }
-    );
+    this._musicService.descargarAudio(url);
   }
+
+
+
   //-------------------------------------------------------------------------REPRODUCIR VIDEO
   escuchar() {}
 }

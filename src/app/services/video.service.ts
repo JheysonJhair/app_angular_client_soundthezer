@@ -1,56 +1,53 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class VideoService {
   private myAppUrl = 'http://localhost:3030/';
   private myUrlGet = 'video/getall/';
   private myApiInsert = 'video/insert/';
   private myUrlDelete = 'video/delete/';
-  private myUrlDeleteCache = 'video/eliminarcache/';
   private myUrlPut = 'video/update/';
   private myUrlGetId = 'video/getbyid/';
-  private myUrlGetDescargar = 'video/descargar/';
-  private myUrlGetDescargar2 = 'video/descargarvideo/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getListVideo(): Observable<any> {
     return this.http.get<any>(this.myAppUrl + this.myUrlGet);
   }
-  deleteVideo(id: any): Observable<any>{
-    return this.http.delete(this.myAppUrl + this.myUrlDelete + id)
+  deleteVideo(id: any): Observable<any> {
+    return this.http.delete(this.myAppUrl + this.myUrlDelete + id);
   }
-  saveVideo(video:any): Observable<any>{
-    return this.http.post(this.myAppUrl + this.myApiInsert,video);
+  saveVideo(video: any): Observable<any> {
+    return this.http.post(this.myAppUrl + this.myApiInsert, video);
   }
-  getVideo(id: any): Observable<any>{
+  getVideo(id: any): Observable<any> {
     return this.http.get(this.myAppUrl + this.myUrlGetId + id);
   }
-  updateVideo(id:any,video: any ): Observable<any>{
+  updateVideo(id: any, video: any): Observable<any> {
     return this.http.put(this.myAppUrl + this.myUrlPut + id, video);
   }
-
-  /* DESCARGAR */
 
   descargarVideo(url: string): Observable<void> {
     const body = { url };
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      responseType: 'blob' as 'json'
+      responseType: 'blob' as 'json',
     };
 
-    return this.http.post<Blob>('http://localhost:3030/video/descargar', body, httpOptions).pipe(
-      map((blob: Blob) => {
-        this.guardarArchivo(blob);
-      })
-    );
+    return this.http
+      .post<Blob>('http://localhost:3030/video/downloadById/:id', body, httpOptions)
+      .pipe(
+        map((blob: Blob) => {
+          this.guardarArchivo(blob);
+        })
+      );
   }
 
-  private guardarArchivo(blob: Blob): void {
+  guardarArchivo(blob: Blob): void {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -58,5 +55,4 @@ export class VideoService {
     link.click();
     window.URL.revokeObjectURL(url);
   }
-
 }

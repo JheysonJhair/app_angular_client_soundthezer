@@ -49,8 +49,9 @@
       </div>
       <div class="audio-container">
         <audio controls>
-          <source src="../../../assets/music/Aaron Smith.mp3" type="audio/mpeg">
-          <source src="../../../assets/music/Aaron Smith.ogg" type="audio/ogg">
+          <source [src]="src" type="audio/webm">
+          <source [src]="src" type="audio/ogg">
+          <source [src]="src" type="audio/mp3">
           Tu navegador no admite la reproducción de audio.
         </audio>
       </div>
@@ -77,6 +78,7 @@
                   <td>{{ music.url }}</td>
                   <td>
                     <i
+                    (click)="escuchar(music.url)"
                       class="fa-solid fa-play text-verde"
                     ></i>
                   </td>

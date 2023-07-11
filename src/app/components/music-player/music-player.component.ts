@@ -15,17 +15,21 @@ import { MusicService } from 'src/app/services/music.service';
   styleUrls: ['./music-player.component.css'],
 })
 export class MusicPlayerComponent implements OnInit {
+  defaultVideoUrl: string =
+  'https://www.youtube.com/watch?v=eOyNWshrOJQ&list=RDeOyNWshrOJQ&start_radio=1';
+  safeVideoUrl: SafeResourceUrl; // URL segura del video
   //Listar videos
+  src:String;
   listMusic: dtoMusic[] = [
     {
       name: 'Video 1',
       description: 'Descripción del video 1',
-      url: 'https://example.com/video1.mp4'
+      url: '../../assets/audio.webm'
     },
     {
       name: 'Video 2',
       description: 'Descripción del video 2',
-      url: 'https://example.com/video2.mp4'
+      url: '../../assets/music/Moderatto.mp3'
     }
 
   ];
@@ -49,6 +53,9 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.listMusic.length > 0) {
+      this.src = this.listMusic[0].url; // Asigna la URL del primer archivo de música
+    }
     this.getMusic();
   }
   //---------------------------------------------------------------LISTAR VIDEO
@@ -78,5 +85,8 @@ export class MusicPlayerComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  escuchar(url: string) {
+    this.src = "../../assets/audio.webm"
   }
 }

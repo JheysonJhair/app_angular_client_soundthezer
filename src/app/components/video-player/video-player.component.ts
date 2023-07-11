@@ -1,18 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { dtoVideo } from 'src/app/interfaces/Video';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VideoService } from 'src/app/services/video.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+
+import { map } from 'rxjs/operators';
+import { MusicService } from 'src/app/services/music.service';
 @Component({
   selector: 'app-video-player',
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.css'],
 })
 export class VideoPlayerComponent implements OnInit {
-  defaultVideoUrl: string = "https://www.youtube.com/watch?v=eOyNWshrOJQ&list=RDeOyNWshrOJQ&start_radio=1";
+  defaultVideoUrl: string =
+    'https://www.youtube.com/watch?v=eOyNWshrOJQ&list=RDeOyNWshrOJQ&start_radio=1';
   safeVideoUrl: SafeResourceUrl; // URL segura del video
 
   edit: boolean = false;
@@ -32,6 +41,7 @@ export class VideoPlayerComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private _videoService: VideoService,
+    private _musicService: MusicService,
     private aRoute: ActivatedRoute,
     private toastr: ToastrService,
     private http: HttpClient
@@ -39,23 +49,21 @@ export class VideoPlayerComponent implements OnInit {
     this.addVideo = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      url: ['', [Validators.required, ]]
+      url: ['', [Validators.required]],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id')!;
-    console.log("ID:"+this.id)
+    console.log('ID:' + this.id);
   }
-
 
   ngOnInit(): void {
     this.ver(this.defaultVideoUrl);
     this.getVideo();
     this.esEdit();
-
   }
   //---------------------------------------------------------------LISTAR VIDEO
   getVideo() {
     this._videoService.getListVideo().subscribe(
-      response => {
+      (response) => {
         const result = response.result;
         this.listVideo = result;
       },
@@ -93,21 +101,23 @@ export class VideoPlayerComponent implements OnInit {
           this.dtoVideo = data.result;
 
           this.addVideo.controls['name'].setValue(this.dtoVideo?.name);
-          this.addVideo.controls['description'].setValue(this.dtoVideo?.description);
+          this.addVideo.controls['description'].setValue(
+            this.dtoVideo?.description
+          );
           this.addVideo.controls['url'].setValue(this.dtoVideo?.url);
-
         },
         (error) => {
           console.log(error);
         }
       );
     }
-
   }
 
   ver(url: string) {
     const videoId = this.extraerVideoId(url);
-    this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);
+    this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+      `https://www.youtube.com/embed/${videoId}`
+    );
   }
 
   extraerVideoId(url: string): string {
@@ -121,7 +131,7 @@ export class VideoPlayerComponent implements OnInit {
       const videoData = {
         name: this.addVideo?.get('name')?.value,
         description: this.addVideo?.get('description')?.value,
-        url: this.addVideo?.get('url')?.value
+        url: this.addVideo?.get('url')?.value,
       };
 
       this._videoService.saveVideo(videoData).subscribe(
@@ -140,14 +150,13 @@ export class VideoPlayerComponent implements OnInit {
       );
     } else {
       const videoData = {
-
         id: this.id,
         name: this.addVideo.get('name')?.value,
         description: this.addVideo.get('description')?.value,
-        url: this.addVideo.get('url')?.value
+        url: this.addVideo.get('url')?.value,
       };
       console.log(videoData);
-      this._videoService.updateVideo(this.id,videoData).subscribe(
+      this._videoService.updateVideo(this.id, videoData).subscribe(
         (data) => {
           this.toastr.info(
             'El video fue actualizado con éxito',
@@ -171,35 +180,24 @@ export class VideoPlayerComponent implements OnInit {
     return validUrl ? null : { invalidUrl: true };
   }
 
-  descargarVideo(videoId: string) {
-    const apiUrl = `http://localhost:3030/video/descargar/${videoId}`; // Reemplaza 'URL_DEL_BACKEND' por la URL real de tu backend
-    const downloadUrl = `http://localhost:4200/assets/videos/${videoId}.mp4`; // Reemplaza 'http://localhost:4200' por la URL base de tu aplicación
-
-    // Realiza la solicitud HTTP para obtener el video desde el backend
-    this.http.get(apiUrl, { responseType: 'blob' }).subscribe((response: Blob) => {
-      // Crea una URL local para el objeto Blob del video
-      const videoUrl = URL.createObjectURL(response);
-
-      // Crea un enlace temporal y haz clic en él para descargar el video
-      const a = document.createElement('a');
-      a.href = videoUrl;
-      a.download = `${videoId}.mp4`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-
-      // Libera la URL creada para el video
-      URL.revokeObjectURL(videoUrl);
-    });
-  }
-  descargarVideo2(){
-    this._videoService.getDescargar().subscribe(
-      response => {
-        console.log("VIDEO: "+response);
+  /*descargar*/
+  descargar(url: any) {
+    this._videoService.descargarVideo(url).subscribe(
+      () => {
+        console.log('Descarga completada');
       },
       (error) => {
-        this.toastr.error('Opss ocurrio un error', 'Error');
-        console.log(error);
+        console.error('Ocurrió un error al descargar el video:', error);
+      }
+    );
+  }
+  descargar2(url: any) {
+    this._musicService.descargarAudio(url).subscribe(
+      () => {
+        console.log('Descarga completada');
+      },
+      (error) => {
+        console.error('Ocurrió un error al descargar el audio:', error);
       }
     );
   }

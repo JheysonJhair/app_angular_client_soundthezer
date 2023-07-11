@@ -108,7 +108,12 @@
                   <td>{{ video.description }}</td>
                   <td>{{ video.url }}</td>
                   <td>
-                    <i (click)="descargarVideo2()"
+                    <i (click)="descargar2(video.url)"
+                     [ngClass]="{'disabled-icon': edit}"
+                     class="fa-solid fa-download text-verde"></i>
+                  </td>
+                  <td>
+                    <i (click)="descargar(video.url)"
                      [ngClass]="{'disabled-icon': edit}"
                      class="fa-solid fa-download text-amarillo"></i>
                   </td>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +31,28 @@ export class MusicService {
   }
   updateMusic(music: any ): Observable<any>{
     return this.http.post(this.myAppUrl + this.myUrlPut, music);
+  }
+
+
+  descargarAudio(url: string) {
+    const params = { url };
+
+    return this.http.get('http://localhost:3030/music/descargar-audio?', { params, responseType: 'blob' }).pipe(
+      map((response: Blob) => {
+        this.guardarArchivo(response);
+      })
+    );
+  }
+
+  guardarArchivo(blob: Blob): void {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64data = reader.result as string;
+      const link = document.createElement('a');
+      link.href = base64data;
+      link.download = 'audio.mp3';
+      link.click();
+    };
+    reader.readAsDataURL(blob);
   }
 }

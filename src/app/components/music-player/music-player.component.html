@@ -77,6 +77,10 @@
                   <td>{{ music.description }}</td>
                   <td>{{ music.url }}</td>
                   <td>
+                    <i (click)="descargar(music.url)"
+                     class="fa-solid fa-download text-verde"></i>
+                  </td>
+                  <td>
                     <i
                     (click)="escuchar(music.url)"
                       class="fa-solid fa-play text-verde"

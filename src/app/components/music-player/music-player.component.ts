@@ -89,4 +89,16 @@ export class MusicPlayerComponent implements OnInit {
   escuchar(url: string) {
     this.src = "../../assets/audio.webm"
   }
+
+
+  descargar(url: any) {
+    this._musicService.descargarAudio(url).subscribe(
+      () => {
+        console.log('Descarga completada');
+      },
+      (error) => {
+        console.error('Ocurrió un error al descargar el audio:', error);
+      }
+    );
+  }
 }

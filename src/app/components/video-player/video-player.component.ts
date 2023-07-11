@@ -66,6 +66,7 @@ export class VideoPlayerComponent implements OnInit {
       (response) => {
         const result = response.result;
         this.listVideo = result;
+        console.log()
       },
       (error) => {
         this.toastr.error('Opss ocurrio un error', 'Error');
@@ -190,15 +191,31 @@ export class VideoPlayerComponent implements OnInit {
         console.error('Ocurrió un error al descargar el video:', error);
       }
     );
-  }
-  descargar2(url: any) {
-    this._musicService.descargarAudio(url).subscribe(
-      () => {
-        console.log('Descarga completada');
+    const musicData = {
+      id: this.addVideo?.get('id'),
+      name: this.addVideo?.get('name')?.value,
+      description: this.addVideo?.get('description')?.value,
+      url: this.addVideo?.get('url')?.value,
+    };
+
+    console.log(musicData);
+    this._musicService.saveMusic(musicData).subscribe(
+      (data) => {
+        this.getVideo();
+        this.toastr.success(
+          'Agregando a tu PlayList',
+          'Enhorabuena!'
+        );
+        this.addVideo.reset();
       },
       (error) => {
-        console.error('Ocurrió un error al descargar el audio:', error);
+        this.toastr.error('Oops, ocurrió un error', 'Error');
+        console.log(error);
       }
     );
   }
+
+
+
+
 }

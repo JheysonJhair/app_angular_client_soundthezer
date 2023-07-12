@@ -78,13 +78,13 @@
                   <td>{{ music.url }}</td>
                   <td>
                     <i
-                      (click)="descargar(music.url)"
+                      (click)="descargarAudioUsuario(music.id)"
                       class="fa-solid fa-download text-info"
                     ></i>
                   </td>
                   <td>
                     <i
-                      (click)="escuchar()"
+                      (click)="escuchar(music.url)"
                       class="fa-solid fa-play text-verde"
                     ></i>
                   </td>

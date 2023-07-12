@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { dtoMusic } from 'src/app/interfaces/Music';
+
 import { MusicService } from 'src/app/services/music.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { VideoService } from 'src/app/services/video.service';
 @Component({
   selector: 'app-music-player',
@@ -22,6 +24,7 @@ export class MusicPlayerComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private http: HttpClient,
     private _videoService: VideoService,
     private _musicService: MusicService,
     private toastr: ToastrService
@@ -87,6 +90,33 @@ export class MusicPlayerComponent implements OnInit {
     this._musicService.descargarAudio(url);
   }
 
+  descargarAudioUsuario(id: any) {
+    // Realizar la solicitud GET al endpoint
+    this.http
+      .get('http://localhost:3030/music/downloadById/' + id, {
+        responseType: 'blob',
+      })
+      .subscribe(
+        (response) => {
+          // Crear una URL para el blob de respuesta
+          const url = window.URL.createObjectURL(response);
+          console.log('Descargando...');
+          // Crear un enlace temporal para descargar el archivo
+          this.toastr.success('Descarga completada!', 'Enhorabuena!');
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'audio.mp3';
+          link.click();
+
+          // Liberar los recursos
+          window.URL.revokeObjectURL(url);
+        },
+        (error) => {
+          // Manejar el error
+          this.toastr.error('No se pudo descargar tu video', 'Error!');
+        }
+      );
+  }
   //-------------------------------------------------------------------------REPRODUCIR VIDEO
-  escuchar() {}
+  escuchar(url:any) {}
 }

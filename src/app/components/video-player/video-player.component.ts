@@ -209,46 +209,35 @@ export class VideoPlayerComponent implements OnInit {
   }
   //-----------------------------------------------------------------------AGREGAR PLAY LIST
   addPlayMusic(videoId: any | undefined) {
-      if (videoId) {
-        this.selectedVideoId = videoId;
-      }
-      // Traer video
-      this._videoService.getVideo(this.selectedVideoId).subscribe((data) => {
-        this.listMusic = data.result;
-        const videoJSON = {
-          id: data.result.id,
-          name: data.result.name,
-          description: data.result.description,
-          url: data.result.url,
-          state: true
-        };
-        // Enviar el resultado al servicio de música
-        this._videoService.updateVideo(videoId, videoJSON).subscribe(
-          (data) => {
-            this.toastr.info(
-              'El video fue actualizado con éxito',
-              'Video actualizado!'
-            );
-            this.router.navigate(['/video']);
-          },
-          (error) => {
-            this.toastr.error('Oops, ocurrió un error', 'Error');
-            console.log(error);
-          }
-        );
+    if (videoId) {
+      this.selectedVideoId = videoId;
+    }
+    // Traer video
+    this._videoService.getVideo(this.selectedVideoId).subscribe((data) => {
+      this.listMusic = data.result;
+      const videoJSON = {
+        id: data.result.id,
+        name: data.result.name,
+        description: data.result.description,
+        url: data.result.url,
+        state: true,
+      };
+      // Enviar el resultado al servicio de música
+      this._videoService.updateVideo(videoId, videoJSON).subscribe();
 
-        this._musicService.saveMusic(this.listMusic).subscribe(
-          (data) => {
-            this.toastr.success('Agregando a tu Playlist', 'Enhorabuena!');
-            this.addVideo.reset();
+      this._musicService.saveMusic(this.listMusic).subscribe(
+        (data) => {
+          this.toastr.success('Agregando a tu Playlist', 'Enhorabuena!');
+          setTimeout(function () {
             location.reload();
-          },
-          (error) => {
-            this.toastr.error('Oops, ocurrió un error', 'Error');
-            console.log(error);
-          }
-        );
-      });
+          }, 2000);
+        },
+        (error) => {
+          this.toastr.error('Oops, ocurrió un error', 'Error');
+          console.log(error);
+        }
+      );
+    });
   }
   //-------------------------------------------------------------------------DESCARGAR VIDEO
   descargarVideo(url: any) {

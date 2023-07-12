@@ -28,7 +28,7 @@ export class VideoPlayerComponent implements OnInit {
   selectedVideoId: string;
 
   listVideo: dtoVideo[] = [];
-  listMusic : dtoMusic[] = [];
+  listMusic: dtoMusic[] = [];
 
   addVideo: FormGroup;
   accion = 'Registrar';
@@ -39,6 +39,7 @@ export class VideoPlayerComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private fb: FormBuilder,
+    private http: HttpClient,
     private router: Router,
     private _videoService: VideoService,
     private _musicService: MusicService,
@@ -51,7 +52,7 @@ export class VideoPlayerComponent implements OnInit {
       url: ['', [Validators.required]],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id')!;
-    console.log("ID: "+this.id);
+    console.log('ID: ' + this.id);
   }
 
   ngOnInit(): void {
@@ -178,12 +179,79 @@ export class VideoPlayerComponent implements OnInit {
 
     return validUrl ? null : { invalidUrl: true };
   }
+  //-----------------------------------------------------------------DESCARGAR VIDEO USUARIO
+  descargarVideoUsuario(id: any) {
+    // Realizar la solicitud GET al endpoint
+    this.http
+      .get('http://localhost:3030/video/downloadById/' + id, {
+        responseType: 'blob',
+      })
+      .subscribe(
+        (response) => {
+          // Crear una URL para el blob de respuesta
+          const url = window.URL.createObjectURL(response);
+          console.log('Descargando...');
+          // Crear un enlace temporal para descargar el archivo
+          this.toastr.success('Descarga completada!', 'Enhorabuena!');
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'video.mp4';
+          link.click();
 
+          // Liberar los recursos
+          window.URL.revokeObjectURL(url);
+        },
+        (error) => {
+          // Manejar el error
+          this.toastr.error('No se pudo descargar tu video', 'Error!');
+        }
+      );
+  }
+  //-----------------------------------------------------------------------AGREGAR PLAY LIST
+  addPlayMusic(videoId: any | undefined) {
+      if (videoId) {
+        this.selectedVideoId = videoId;
+      }
+      // Traer video
+      this._videoService.getVideo(this.selectedVideoId).subscribe((data) => {
+        this.listMusic = data.result;
+        const videoJSON = {
+          id: data.result.id,
+          name: data.result.name,
+          description: data.result.description,
+          url: data.result.url,
+          state: true
+        };
+        // Enviar el resultado al servicio de música
+        this._videoService.updateVideo(videoId, videoJSON).subscribe(
+          (data) => {
+            this.toastr.info(
+              'El video fue actualizado con éxito',
+              'Video actualizado!'
+            );
+            this.router.navigate(['/video']);
+          },
+          (error) => {
+            this.toastr.error('Oops, ocurrió un error', 'Error');
+            console.log(error);
+          }
+        );
+
+        this._musicService.saveMusic(this.listMusic).subscribe(
+          (data) => {
+            this.toastr.success('Agregando a tu Playlist', 'Enhorabuena!');
+            this.addVideo.reset();
+            location.reload();
+          },
+          (error) => {
+            this.toastr.error('Oops, ocurrió un error', 'Error');
+            console.log(error);
+          }
+        );
+      });
+  }
   //-------------------------------------------------------------------------DESCARGAR VIDEO
-  descargarVideo(url: string, videoId: string | undefined) {
-    if (videoId) {
-      this.selectedVideoId = videoId;
-    }
+  descargarVideo(url: any) {
     this._videoService.descargarVideo(url).subscribe(
       () => {
         this.toastr.success('Descarga completada!', 'Enhorabuena!');
@@ -192,24 +260,5 @@ export class VideoPlayerComponent implements OnInit {
         this.toastr.error('No se pudo descargar tu video', 'Error!');
       }
     );
-    // Traer video
-    this._videoService
-    .getVideo(this.selectedVideoId)
-    .subscribe((data) => {
-      this.listMusic = data.result;
-      console.log("AQUÍ ESTÁ EL VIDEO: ", JSON.stringify(this.listMusic));
-
-      // Enviar el resultado al servicio de música
-      this._musicService.saveMusic(this.listMusic).subscribe(
-        (data) => {
-          this.toastr.success('Agregando a tu Playlist', 'Enhorabuena!');
-          this.addVideo.reset();
-        },
-        (error) => {
-          this.toastr.error('Oops, ocurrió un error', 'Error');
-          console.log(error);
-        }
-      );
-    });
   }
 }

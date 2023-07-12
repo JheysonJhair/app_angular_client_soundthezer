@@ -151,6 +151,9 @@ h3 {
 .text-amarillo {
   color: hsl(51, 76%, 48%);
 }
+.text-verdeA {
+  color: hsl(172, 100%, 50%);
+}
 /* scroll */
 .cn {
   max-height: 150px;

@@ -105,6 +105,8 @@
                   <th class="bol">Link</th>
                   <th></th>
                   <th></th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -114,10 +116,17 @@
                   <td>{{ video.url }}</td>
                   <td>
                     <i
-                    (click)="descargarVideo(video.url, video.id)"
+                    (click)="descargarVideoUsuario(video.id)"
                     [ngClass]="{ 'disabled-icon': edit }"
                     class="fa-solid fa-download text-amarillo"
                   ></i>
+                  </td>
+                  <td>
+                    <i
+                      (click)="addPlayMusic(video.id)"
+                      [ngClass]="{ 'disabled-icon': edit || video.state }"
+                      class="fa-sharp fa-solid fa-headphones text-verdeA"
+                    ></i>
                   </td>
                   <td>
                     <i

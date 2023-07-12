@@ -39,7 +39,7 @@ export class VideoService {
     };
 
     return this.http
-      .post<Blob>('http://localhost:3030/video/downloadById/:id', body, httpOptions)
+      .post<Blob>('http://localhost:3030/video/download', body, httpOptions)
       .pipe(
         map((blob: Blob) => {
           this.guardarArchivo(blob);

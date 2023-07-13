@@ -32,22 +32,23 @@ export class MusicService {
     return this.http.post(this.myAppUrl + this.myUrlPut, music);
   }
 
-
   descargarAudio(url: string) {
     const musicData = { url };
 
-    this.http.post('http://localhost:3030/music/download', musicData, {
-      responseType: 'blob' as 'json', // Especificar que se espera una respuesta Blob
-    })
-    .subscribe(
-      (response: any) => { // Ajustar el tipo del parámetro response a any
-        this.guardarArchivo(response);
-        console.log('¡Audio descargado y guardado en la carpeta assets!');
-      },
-      (error) => {
-        console.error('Ocurrió un error al descargar el audio:', error);
-      }
-    );
+    this.http
+      .post('http://localhost:3030/music/download', musicData, {
+        responseType: 'blob' as 'json', // Especificar que se espera una respuesta Blob
+      })
+      .subscribe(
+        (response: any) => {
+          // Ajustar el tipo del parámetro response a any
+          this.guardarArchivo(response);
+          console.log('¡Audio descargado y guardado en la carpeta assets!');
+        },
+        (error) => {
+          console.error('Ocurrió un error al descargar el audio:', error);
+        }
+      );
   }
 
   guardarArchivo(blob: Blob) {
@@ -63,19 +64,26 @@ export class MusicService {
         method: 'PUT',
         body: base64data,
       })
-      .then((response) => {
-        if (response.ok) {
-          console.log('¡Archivo guardado exitosamente en la carpeta assets!');
-        } else {
-          console.error('Ocurrió un error al guardar el archivo:', response.status);
-        }
-      })
-      .catch((error) => {
-        console.error('Ocurrió un error al guardar el archivo:', error);
-      });
+        .then((response) => {
+          if (response.ok) {
+            console.log('¡Archivo guardado exitosamente en la carpeta assets!');
+          } else {
+            console.error(
+              'Ocurrió un error al guardar el archivo:',
+              response.status
+            );
+          }
+        })
+        .catch((error) => {
+          console.error('Ocurrió un error al guardar el archivo:', error);
+        });
     };
 
     reader.readAsDataURL(file);
   }
 
+  playMusicById(id: number): Observable<Blob> {
+    const url = `http://localhost:3030/music/downloadById/${id}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
 }

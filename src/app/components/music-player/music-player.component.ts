@@ -7,6 +7,8 @@ import { dtoMusic } from 'src/app/interfaces/Music';
 import { MusicService } from 'src/app/services/music.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+
+import { saveAs } from 'file-saver';
 import { VideoService } from 'src/app/services/video.service';
 @Component({
   selector: 'app-music-player',
@@ -14,6 +16,7 @@ import { VideoService } from 'src/app/services/video.service';
   styleUrls: ['./music-player.component.css'],
 })
 export class MusicPlayerComponent implements OnInit {
+  visible : boolean = true;
   src: String;
   listMusic: dtoMusic[] = [];
 
@@ -41,11 +44,9 @@ export class MusicPlayerComponent implements OnInit {
   }
   //-------------------------------------------------------------------------LISTAR MUSICA
   getMusic() {
-    console.log('askjxhsaijdhsajdk');
     this._musicService.getListMusic().subscribe(
       (data) => {
         this.listMusic = data.result;
-        console.log(this.listMusic);
       },
       (error) => {
         this.toastr.error('Opss ocurrio un error', 'Error');
@@ -67,8 +68,6 @@ export class MusicPlayerComponent implements OnInit {
         url: data.result.url,
         state: false,
       };
-      console.log(videoJSON);
-      // Enviar el resultado al servicio de música
       this._videoService.updateVideo(videoId, videoJSON).subscribe();
     });
     this._musicService.deleteMusic(videoId).subscribe(
@@ -86,12 +85,7 @@ export class MusicPlayerComponent implements OnInit {
     );
   }
   //-------------------------------------------------------------------------DESCARGAR MUSICA
-  descargar(url: any) {
-    this._musicService.descargarAudio(url);
-  }
-
   descargarAudioUsuario(id: any) {
-    // Realizar la solicitud GET al endpoint
     this.http
       .get('http://localhost:3030/music/downloadById/' + id, {
         responseType: 'blob',
@@ -101,22 +95,32 @@ export class MusicPlayerComponent implements OnInit {
           // Crear una URL para el blob de respuesta
           const url = window.URL.createObjectURL(response);
           console.log('Descargando...');
-          // Crear un enlace temporal para descargar el archivo
           this.toastr.success('Descarga completada!', 'Enhorabuena!');
           const link = document.createElement('a');
           link.href = url;
           link.download = 'audio.mp3';
           link.click();
 
-          // Liberar los recursos
           window.URL.revokeObjectURL(url);
         },
         (error) => {
-          // Manejar el error
           this.toastr.error('No se pudo descargar tu video', 'Error!');
         }
       );
   }
   //-------------------------------------------------------------------------REPRODUCIR VIDEO
-  escuchar(url:any) {}
+  playMusic(id: any): void {
+
+    console.log("entrando")
+    this._musicService.playMusicById(id).subscribe(
+      (blob: Blob) => {
+        this.visible = false;
+        this.src = URL.createObjectURL(blob);
+        console.log("LISTO");
+      },
+      (error) => {
+        console.error('Error al descargar la música:', error);
+      }
+    );
+  }
 }

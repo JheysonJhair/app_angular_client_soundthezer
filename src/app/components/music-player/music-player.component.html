@@ -48,11 +48,12 @@
         </div>
       </div>
       <div class="audio-container">
-        <audio controls>
-          <source [src]="src" type="audio/webm" />
-          <source [src]="src" type="audio/ogg" />
+        <audio controls *ngIf="src">
           <source [src]="src" type="audio/mp3" />
           Tu navegador no admite la reproducción de audio.
+        </audio>
+        <audio controls *ngIf="visible">
+          <source/>
         </audio>
       </div>
     </div>
@@ -84,7 +85,7 @@
                   </td>
                   <td>
                     <i
-                      (click)="escuchar(music.url)"
+                      (click)="playMusic(music.id)"
                       class="fa-solid fa-play text-verde"
                     ></i>
                   </td>

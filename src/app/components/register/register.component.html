@@ -19,6 +19,13 @@
               formControlName="name"
               type="name"
               placeholder="Crea tu nombre de usuario."
+              [ngClass]="{
+                valid: addUser.get('name')!.valid,
+                invalid:
+                  addUser.get('name')!.invalid &&
+                  (addUser.get('name')!.dirty ||
+                    addUser.get('name')!.touched)
+              }"
             />
           </div>
         </div>
@@ -31,6 +38,12 @@
               formControlName="email"
               type="email"
               placeholder="Introduce tu email."
+              [ngClass]="{
+                valid: addUser.get('email')!.valid,
+                invalid:
+                  addUser.get('email')!.invalid &&
+                  (addUser.get('email')!.dirty || addUser.get('email')!.touched)
+              }"
             />
           </div>
         </div>
@@ -43,6 +56,13 @@
               formControlName="password"
               type="password"
               placeholder="Crea una contraseña"
+              [ngClass]="{
+                valid: addUser.get('password')!.valid,
+                invalid:
+                  addUser.get('password')!.invalid &&
+                  (addUser.get('password')!.dirty ||
+                    addUser.get('password')!.touched)
+              }"
             />
           </div>
         </div>
@@ -51,6 +71,7 @@
             type="submit"
             [disabled]="addUser.invalid"
             routerLinkActive="router-link-active"
+            [ngClass]="{ disabled: addUser.get('email')!.invalid || addUser.get('password')!.invalid|| addUser.get('name')!.invalid }"
             class="btn btn-primary"
           >
             Registrarse

@@ -30,7 +30,7 @@
       <div class="c2">
         <i class="fa-brands fa-youtube"></i><a href="">YouTube</a>
       </div>
-      <button class="con" (click)="openDialog()">CONVERTIDOR DE VIDEO</button>
+      <button [disabled]="isButtonDisabled" class="con" (click)="openDialog()" [ngClass]="{'disabled': isButtonDisabled}">CONVERTIDOR DE VIDEO</button>
     </div>
     <div class="copi">
       <p>

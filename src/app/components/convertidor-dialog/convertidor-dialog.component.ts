@@ -22,7 +22,7 @@ export class ConvertidorDialogComponent {
     public dialogRef: MatDialogRef<ConvertidorDialogComponent>
   ) {
     this.addVideo = this.fb.group({
-      url: ['', [Validators.required]],
+      url: ['', [Validators.required, Validators.pattern(/^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/)]],
     });
   }
   //--------------------------------------------------------------------ABRIR Y CERRAR DIALOG

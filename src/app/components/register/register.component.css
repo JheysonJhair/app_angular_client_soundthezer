@@ -121,3 +121,27 @@ a:hover {
   margin-left: 100px;
   margin-right: 100px;
 }
+/* validaciones */
+input.valid {
+  border: 0.5px solid #12d15286;
+  border-color: green;
+}
+
+input.invalid {
+  border: 0.5px solid #d1121286;
+  border-color: red;
+}
+
+input.valid:focus {
+  border: 0.5px solid #12d15286;
+  outline-color: green;
+}
+
+input.invalid:focus {
+  border: 0.5px solid #d1121286;
+  outline-color: red;
+}
+button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

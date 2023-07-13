@@ -25,8 +25,8 @@ export class LoginComponent {
     private toastr: ToastrService
   ) {
     this.accesUser = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
+      password: ['', [Validators.required, Validators.pattern(/.{8,}/)]],
     });
   }
   // Accesos al usuario

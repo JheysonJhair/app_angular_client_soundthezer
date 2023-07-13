@@ -18,8 +18,8 @@
             <div>
               <i class="fa-brands fa-spotify"></i>
             </div>
-            <div>
-              <p>Peaceful piano to help you slow down, brethe adn relax.</p>
+            <div class="ppp">
+              <p >Peaceful piano to help you slow down, brethe and relax.</p>
             </div>
           </div>
         </div>
@@ -70,6 +70,12 @@
             placeholder="https://youtu.be/16vYufC54wc"
           />
           <span
+            style="
+              color: red;
+              display: block;
+              text-align: left;
+              font-weight: 600;
+            "
             *ngIf="addVideo.get('url')?.dirty && addVideo.get('url')?.invalid"
           >
             Invalido

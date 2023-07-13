@@ -116,5 +116,30 @@ span {
 }
 /* Hover enlaces*/
 a:hover {
+  border: 0.5px solid #12d15286;
   color: #1fdf64;
+}
+/* validaciones */
+input.valid {
+  border: 0.5px solid #12d15286;
+  border-color: green;
+}
+
+input.invalid {
+  border: 0.5px solid #d1121286;
+  border-color: red;
+}
+
+input.valid:focus {
+  border: 0.5px solid #12d15286;
+  outline-color: green;
+}
+
+input.invalid:focus {
+  border: 0.5px solid #d1121286;
+  outline-color: red;
+}
+button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

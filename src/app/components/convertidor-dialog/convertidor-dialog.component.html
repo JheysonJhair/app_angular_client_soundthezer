@@ -1,7 +1,7 @@
 <div class="dialog-container">
   <h1>Descargar videos de Youtube en línea</h1>
   <h2>Descargar video de Youtube 1080p, 4k, 8k en iPhone Android</h2>
-  <form [formGroup]="addVideo" (ngSubmit)="submitForm()" #form="ngForm">
+  <form [formGroup]="addVideo" #form="ngForm">
     <div class="row">
       <label for="url">Url: </label>
       <input
@@ -24,7 +24,14 @@
       </span>
     </div>
     <div class="row2">
-      <button class="aceptar" mat-raised-button color="primary" type="submit">
+      <button
+        (click)="submitForm()"
+        [disabled]="addVideo.invalid"
+        [ngClass]="{ disabled: addVideo.get('url')!.invalid }"
+        class="aceptar"
+        mat-raised-button
+        color="primary"
+      >
         Descargar
       </button>
       <button

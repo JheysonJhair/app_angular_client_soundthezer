@@ -58,6 +58,8 @@ h2 {
   border-radius: 5px;
   margin-right: 10px;
   cursor: pointer;
+  color: #fff;
+  font-weight: 600;
 }
 /* boton cancelar */
 .cancelar {
@@ -67,4 +69,10 @@ h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+}
+button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

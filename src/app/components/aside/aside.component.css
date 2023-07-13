@@ -111,7 +111,7 @@ p {
 }
 /* copiright*/
 .copi {
-  margin-top: 238px;
+  margin-top: 170px;
   text-align: justify;
 }
 /* parrafo */
@@ -163,4 +163,9 @@ p {
   color: #ffffff;
   font-weight: 600;
   cursor: pointer;
+}
+/* desabilitar boton*/
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

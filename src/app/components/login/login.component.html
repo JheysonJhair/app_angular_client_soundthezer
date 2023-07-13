@@ -19,6 +19,13 @@
               formControlName="email"
               type="email"
               placeholder="Email o nombre de usuario"
+              [ngClass]="{
+                valid: accesUser.get('email')!.valid,
+                invalid:
+                  accesUser.get('email')!.invalid &&
+                  (accesUser.get('email')!.dirty ||
+                    accesUser.get('email')!.touched)
+              }"
             />
           </div>
         </div>
@@ -31,6 +38,13 @@
               formControlName="password"
               type="password"
               placeholder="Contraseña"
+              [ngClass]="{
+                valid: accesUser.get('password')!.valid,
+                invalid:
+                accesUser.get('password')!.invalid &&
+                  (accesUser.get('password')!.dirty ||
+                  accesUser.get('password')!.touched)
+              }"
             />
           </div>
         </div>
@@ -39,6 +53,7 @@
             type="submit"
             [disabled]="accesUser.invalid"
             routerLinkActive="router-link-active"
+            [ngClass]="{ disabled: accesUser.get('email')!.invalid || accesUser.get('password')!.invalid }"
             class="btn btn-primary"
           >
             Iniciar sesión

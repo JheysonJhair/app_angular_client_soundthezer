@@ -48,7 +48,7 @@ export class VideoPlayerComponent implements OnInit {
     this.addVideo = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      url: ['', [Validators.required]],
+      url: ['', [Validators.required, Validators.pattern(/^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/)]],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id')!;
   }

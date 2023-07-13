@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
 import { dtoMusic } from 'src/app/interfaces/Music';
 
 import { MusicService } from 'src/app/services/music.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 
-import { saveAs } from 'file-saver';
 import { VideoService } from 'src/app/services/video.service';
 @Component({
   selector: 'app-music-player',
@@ -16,7 +13,7 @@ import { VideoService } from 'src/app/services/video.service';
   styleUrls: ['./music-player.component.css'],
 })
 export class MusicPlayerComponent implements OnInit {
-  visible : boolean = true;
+  visible: boolean = true;
   src: String;
   listMusic: dtoMusic[] = [];
 
@@ -28,7 +25,6 @@ export class MusicPlayerComponent implements OnInit {
   selectedVideoId: string;
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private http: HttpClient,
     private _videoService: VideoService,
     private _musicService: MusicService,
@@ -88,19 +84,19 @@ export class MusicPlayerComponent implements OnInit {
   }
   //-------------------------------------------------------------------------DESCARGAR MUSICA
   descargarAudioUsuario(id: any) {
+    console.log('Descargando..');
     this.http
       .get('http://localhost:3030/music/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(
         (response) => {
-          // Crear una URL para el blob de respuesta
           const url = window.URL.createObjectURL(response);
           console.log('Descargando...');
           this.toastr.success('Descarga completada!', 'Enhorabuena!');
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'audio.mp3';
+          link.download = 'SpotyAudioDownload.mp3';
           link.click();
 
           window.URL.revokeObjectURL(url);
@@ -110,45 +106,48 @@ export class MusicPlayerComponent implements OnInit {
         }
       );
   }
-  //-------------------------------------------------------------------------REPRODUCIR MUSICA
+  //------------------------------------------------------------------------------REPRODUCIR MUSICA
   playMusic(id: any): void {
-
-    console.log("entrando")
+    console.log('Traendo música');
     this._musicService.playMusicById(id).subscribe(
       (blob: Blob) => {
         this.visible = false;
         this.src = URL.createObjectURL(blob);
-        console.log("LISTO");
       },
       (error) => {
-        console.error('Error al descargar la música:', error);
+        console.error('Error al traer la música:', error);
       }
     );
   }
 
+  //-------------------------------------------------------------------------REPRODUCIR MUSICA LOCAL
 
-//-------------------------------------------------------------------------REPRODUCIR MUSICA LOCAL
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    this.visible = true;
+    this.src = URL.createObjectURL(file);
+    this.visible = false;
+  }
 
-onFileSelected(event: any): void {
-  const file = event.target.files[0];
-  this.visible = true;
-  this.src = URL.createObjectURL(file);
-  this.visible = false;
-}
+  playAudio(): void {
+    const audioElement = document.getElementById(
+      'custom-audio'
+    ) as HTMLAudioElement;
+    audioElement.play();
+  }
 
-playAudio(): void {
-  const audioElement = document.getElementById('custom-audio') as HTMLAudioElement;
-  audioElement.play();
-}
+  pauseAudio(): void {
+    const audioElement = document.getElementById(
+      'custom-audio'
+    ) as HTMLAudioElement;
+    audioElement.pause();
+  }
 
-pauseAudio(): void {
-  const audioElement = document.getElementById('custom-audio') as HTMLAudioElement;
-  audioElement.pause();
-}
-
-stopAudio(): void {
-  const audioElement = document.getElementById('custom-audio') as HTMLAudioElement;
-  audioElement.pause();
-  audioElement.currentTime = 0;
-}
+  stopAudio(): void {
+    const audioElement = document.getElementById(
+      'custom-audio'
+    ) as HTMLAudioElement;
+    audioElement.pause();
+    audioElement.currentTime = 0;
+  }
 }

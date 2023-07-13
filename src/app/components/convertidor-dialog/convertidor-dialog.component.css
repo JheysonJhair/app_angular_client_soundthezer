@@ -1,10 +1,10 @@
+/* dialog*/
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
-
 .dialog-container {
   position: fixed;
   top: 10%;
@@ -16,35 +16,41 @@
   background-color: hsl(218, 11%, 15%);
   text-align: center;
 }
-h1{
+/* title */
+h1 {
   color: #00b887;
   margin: 0;
   margin-top: 10px;
 }
-h2{
+/* subtitle */
+h2 {
   color: #ccc;
   font-size: 14px;
-  color: #00b887;
 }
+/* label - input*/
 .row label {
   width: 80%;
-  color: #fff;
+  color: #00b887;
+  font-weight: 600;
   text-transform: uppercase;
 }
-
+/* input */
 .row input {
   width: 80%;
   padding: 14px;
-  border: 1px solid #00b887;
+  flex-grow: 1;
+  border: 1px solid #00b887 !important;
   border-radius: 4px;
   margin: 4px;
 }
-.row2{
+/* botones */
+.row2 {
   margin-top: 20px;
   text-align: left;
   margin-left: 40px;
 }
-.aceptar{
+/* boton aceptar */
+.aceptar {
   background-color: #00b887;
   padding: 7px;
   width: 150px;
@@ -53,7 +59,8 @@ h2{
   margin-right: 10px;
   cursor: pointer;
 }
-.cancelar{
+/* boton cancelar */
+.cancelar {
   background-color: #008db8;
   padding: 7px;
   width: 150px;

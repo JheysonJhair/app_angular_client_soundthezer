@@ -6,7 +6,6 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  AbstractControl,
 } from '@angular/forms';
 @Component({
   selector: 'app-convertidor-dialog',
@@ -14,6 +13,8 @@ import {
   styleUrls: ['./convertidor-dialog.component.css'],
 })
 export class ConvertidorDialogComponent {
+  addVideo: FormGroup;
+
   constructor(
     private fb: FormBuilder,
     private toastr: ToastrService,
@@ -24,21 +25,21 @@ export class ConvertidorDialogComponent {
       url: ['', [Validators.required]],
     });
   }
-  addVideo: FormGroup;
+  //--------------------------------------------------------------------ABRIR Y CERRAR DIALOG
   closeDialog(): void {
     this.dialogRef.close();
   }
 
   submitForm(): void {
-      const videoData = {
-        url: this.addVideo?.get('url')?.value,
-      };
+    const videoData = {
+      url: this.addVideo?.get('url')?.value,
+    };
     this.descargarVideo(videoData.url);
     this.dialogRef.close();
   }
   //-------------------------------------------------------------------------DESCARGAR VIDEO
   descargarVideo(url: any) {
-    console.log("Descargando");
+    console.log('Descargando');
     this._videoService.descargarVideo(url).subscribe(
       () => {
         this.toastr.success('Descarga completada!', 'Enhorabuena!');

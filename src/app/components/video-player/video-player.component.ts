@@ -33,7 +33,6 @@ export class VideoPlayerComponent implements OnInit {
   addVideo: FormGroup;
   accion = 'Registrar';
   id: string;
-  str2 = null;
   dtoVideo: dtoVideo | undefined;
 
   constructor(
@@ -52,7 +51,6 @@ export class VideoPlayerComponent implements OnInit {
       url: ['', [Validators.required]],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id')!;
-    console.log('ID: ' + this.id);
   }
 
   ngOnInit(): void {
@@ -60,13 +58,12 @@ export class VideoPlayerComponent implements OnInit {
     this.getVideo();
     this.esEdit();
   }
-  //---------------------------------------------------------------LISTAR VIDEO
+  //------------------------------------------------------------------------LISTAR VIDEO
   getVideo() {
     this._videoService.getListVideo().subscribe(
       (response) => {
         const result = response.result;
         this.listVideo = result;
-        console.log();
       },
       (error) => {
         this.toastr.error('Opss ocurrio un error', 'Error');
@@ -74,7 +71,7 @@ export class VideoPlayerComponent implements OnInit {
       }
     );
   }
-  //---------------------------------------------------------------ELIMINAR VIDEO
+  //-----------------------------------------------------------------------ELIMINAR VIDEO
   deleteVideo(id: any) {
     this._videoService.deleteVideo(id).subscribe(
       (data) => {
@@ -172,6 +169,7 @@ export class VideoPlayerComponent implements OnInit {
     const videoId = url.replace('https://youtu.be/', '');
     return videoId;
   }
+
   //------------------------------------------------------------------VALIDACIONES URL VIDEO
   validateYouTubeUrl(control: AbstractControl): { [key: string]: any } | null {
     const urlPattern = /^https:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}$/;
@@ -181,29 +179,26 @@ export class VideoPlayerComponent implements OnInit {
   }
   //-----------------------------------------------------------------DESCARGAR VIDEO USUARIO
   descargarVideoUsuario(id: any) {
-    // Realizar la solicitud GET al endpoint
+    console.log("Descargando...");
     this.http
       .get('http://localhost:3030/video/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(
         (response) => {
-          // Crear una URL para el blob de respuesta
           const url = window.URL.createObjectURL(response);
           console.log('Descargando...');
-          // Crear un enlace temporal para descargar el archivo
           this.toastr.success('Descarga completada!', 'Enhorabuena!');
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'video.mp4';
+          link.download = 'SpotyVideoDownload.mp4';
           link.click();
 
-          // Liberar los recursos
           window.URL.revokeObjectURL(url);
         },
         (error) => {
-          // Manejar el error
           this.toastr.error('No se pudo descargar tu video', 'Error!');
+          console.log(error);
         }
       );
   }

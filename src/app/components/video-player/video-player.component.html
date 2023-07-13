@@ -117,8 +117,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let video of listVideo">
-                  <td>{{ video.name }}</td>
-                  <td>{{ video.description }}</td>
+                  <td>{{ video.name | titlecase }}</td>
+                  <td>{{ video.description | titlecase }}</td>
                   <td>{{ video.url }}</td>
                   <td>
                     <i

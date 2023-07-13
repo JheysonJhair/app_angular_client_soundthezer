@@ -85,8 +85,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let music of listMusic">
-                  <td>{{ music.name }}</td>
-                  <td>{{ music.description }}</td>
+                  <td>{{ music.name | titlecase }}</td>
+                  <td>{{ music.description | titlecase }}</td>
                   <td>{{ music.url }}</td>
                   <td>
                     <i

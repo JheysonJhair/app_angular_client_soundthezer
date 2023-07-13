@@ -20,6 +20,8 @@ export class MusicPlayerComponent implements OnInit {
   src: String;
   listMusic: dtoMusic[] = [];
 
+  selectedFile: File;
+
   addMusic: FormGroup;
   dtoMusic: dtoMusic | undefined;
 
@@ -108,7 +110,7 @@ export class MusicPlayerComponent implements OnInit {
         }
       );
   }
-  //-------------------------------------------------------------------------REPRODUCIR VIDEO
+  //-------------------------------------------------------------------------REPRODUCIR MUSICA
   playMusic(id: any): void {
 
     console.log("entrando")
@@ -123,4 +125,30 @@ export class MusicPlayerComponent implements OnInit {
       }
     );
   }
+
+
+//-------------------------------------------------------------------------REPRODUCIR MUSICA LOCAL
+
+onFileSelected(event: any): void {
+  const file = event.target.files[0];
+  this.visible = true;
+  this.src = URL.createObjectURL(file);
+  this.visible = false;
+}
+
+playAudio(): void {
+  const audioElement = document.getElementById('custom-audio') as HTMLAudioElement;
+  audioElement.play();
+}
+
+pauseAudio(): void {
+  const audioElement = document.getElementById('custom-audio') as HTMLAudioElement;
+  audioElement.pause();
+}
+
+stopAudio(): void {
+  const audioElement = document.getElementById('custom-audio') as HTMLAudioElement;
+  audioElement.pause();
+  audioElement.currentTime = 0;
+}
 }

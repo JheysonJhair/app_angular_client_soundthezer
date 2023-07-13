@@ -111,7 +111,7 @@ p {
 }
 /* copiright*/
 .copi {
-  margin-top: 242px;
+  margin-top: 238px;
   text-align: justify;
 }
 /* parrafo */
@@ -137,4 +137,28 @@ p {
 /* idioma icono*/
 .idioma i {
   color: #fff;
+}
+.des{
+  position: absolute;
+  margin-left: 10px;
+}
+.c2 a{
+
+  font-size: 30px;
+  color: #ffffff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.c2 i{
+  color: #cf2726;
+  font-size: 30px
+}
+.con{
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  background-color: hsl(198.26, 14.29%, 31.57%);
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
 }

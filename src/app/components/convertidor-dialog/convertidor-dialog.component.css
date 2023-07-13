@@ -1,0 +1,63 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.dialog-container {
+  position: fixed;
+  top: 10%;
+  left: 28%;
+  margin-top: 100px;
+  padding: 20px;
+  border-radius: 7px;
+  width: 800px;
+  background-color: hsl(218, 11%, 15%);
+  text-align: center;
+}
+h1{
+  color: #00b887;
+  margin: 0;
+  margin-top: 10px;
+}
+h2{
+  color: #ccc;
+  font-size: 14px;
+  color: #00b887;
+}
+.row label {
+  width: 80%;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.row input {
+  width: 80%;
+  padding: 14px;
+  border: 1px solid #00b887;
+  border-radius: 4px;
+  margin: 4px;
+}
+.row2{
+  margin-top: 20px;
+  text-align: left;
+  margin-left: 40px;
+}
+.aceptar{
+  background-color: #00b887;
+  padding: 7px;
+  width: 150px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.cancelar{
+  background-color: #008db8;
+  padding: 7px;
+  width: 150px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

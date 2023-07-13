@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AsideComponent } from './components/aside/aside.component';
@@ -21,6 +23,7 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { LoginComponent } from './components/login/login.component';
 import { AsidetwoComponent } from './components/asidetwo/asidetwo.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ConvertidorDialogComponent } from './components/convertidor-dialog/convertidor-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,10 +33,14 @@ import { RegisterComponent } from './components/register/register.component';
     HeadComponent,
     LoginComponent,
     AsidetwoComponent,
-    RegisterComponent
+    RegisterComponent,
+    ConvertidorDialogComponent
   ],
   imports: [
     BrowserModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,

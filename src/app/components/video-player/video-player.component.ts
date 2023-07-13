@@ -239,15 +239,4 @@ export class VideoPlayerComponent implements OnInit {
       );
     });
   }
-  //-------------------------------------------------------------------------DESCARGAR VIDEO
-  descargarVideo(url: any) {
-    this._videoService.descargarVideo(url).subscribe(
-      () => {
-        this.toastr.success('Descarga completada!', 'Enhorabuena!');
-      },
-      (error) => {
-        this.toastr.error('No se pudo descargar tu video', 'Error!');
-      }
-    );
-  }
 }

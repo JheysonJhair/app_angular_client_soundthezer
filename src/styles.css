@@ -13,3 +13,12 @@ a{
 	text-decoration: none;
 
 }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.center-dialog .mat-dialog-container {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

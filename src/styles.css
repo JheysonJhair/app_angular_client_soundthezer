@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  padding: 5.5px;
   font-family: "Belanosima", sans-serif;
   font-family: "Kanit", sans-serif;
   font-family: "Krub", sans-serif;
@@ -16,7 +15,7 @@ a {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  height: 100vh;
+  height: 89vh;
 }
 
 .center-dialog .mat-dialog-container {

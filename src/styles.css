@@ -1,20 +1,23 @@
 body {
-	margin: 0;
-	padding: 5.5px;
-	font-family: 'Belanosima', sans-serif;
-	font-family: 'Kanit', sans-serif;
-	font-family: 'Krub', sans-serif;
-	font-family: 'Mulish', sans-serif;
-	font-family: 'Oswald', sans-serif;
-	font-family: 'Ubuntu', sans-serif;
-	background-color: black;
+  margin: 0;
+  padding: 5.5px;
+  font-family: "Belanosima", sans-serif;
+  font-family: "Kanit", sans-serif;
+  font-family: "Krub", sans-serif;
+  font-family: "Mulish", sans-serif;
+  font-family: "Oswald", sans-serif;
+  font-family: "Ubuntu", sans-serif;
+  background-color: black;
 }
-a{
-	text-decoration: none;
-
+a {
+  text-decoration: none;
 }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100vh;
+}
 
 .center-dialog .mat-dialog-container {
   display: flex !important;

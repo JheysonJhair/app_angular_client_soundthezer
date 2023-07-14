@@ -1,8 +1,15 @@
-/* contendor general head- video*/
+/* contenedor*/
 .container {
+  min-height: 100%;
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 10px;
+}
+/* contenedor realative*/
+.cv {
+  min-height: 100%;
+  position: relative;
 }
 /*-------------------------------*/
 /* contenedor video*/
@@ -71,11 +78,15 @@ p {
 /*form*/
 form {
   padding: 20px;
-  width: 96.7%;
+
+  width: 90%;
   background-color: hsl(197.14, 12.07%, 22.75%);
   display: grid;
   grid-template-columns: 1fr 2fr 2fr 0.3fr;
   grid-gap: 10px;
+}
+.form {
+  background-color: hsl(197.14, 12.07%, 22.75%);
 }
 /* title cont*/
 .form .h {
@@ -125,10 +136,14 @@ button {
 /*content lista*/
 .lista {
   background-color: rgb(63, 73, 75);
-  min-height: 233px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   width: 100%;
+  height: calc(100% - 502px);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 /* title lista*/
 h3 {

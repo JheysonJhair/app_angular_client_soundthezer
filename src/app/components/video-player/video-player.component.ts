@@ -20,9 +20,8 @@ import { dtoMusic } from 'src/app/interfaces/Music';
   styleUrls: ['./video-player.component.css'],
 })
 export class VideoPlayerComponent implements OnInit {
-  defaultVideoUrl: string =
-    'https://www.youtube.com/watch?v=eOyNWshrOJQ&list=RDeOyNWshrOJQ&start_radio=1';
-  safeVideoUrl: SafeResourceUrl; // URL segura del video
+  defaultVideoUrl: string = 'https://youtu.be/DXV79KHSftc';
+  safeVideoUrl: SafeResourceUrl;
 
   edit: boolean = false;
   selectedVideoId: string;
@@ -48,7 +47,13 @@ export class VideoPlayerComponent implements OnInit {
     this.addVideo = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      url: ['', [Validators.required, Validators.pattern(/^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/)]],
+      url: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/),
+        ],
+      ],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id')!;
   }
@@ -179,7 +184,7 @@ export class VideoPlayerComponent implements OnInit {
   }
   //-----------------------------------------------------------------DESCARGAR VIDEO USUARIO
   descargarVideoUsuario(id: any) {
-    console.log("Descargando...");
+    console.log('Descargando...');
     this.http
       .get('http://localhost:3030/video/downloadById/' + id, {
         responseType: 'blob',

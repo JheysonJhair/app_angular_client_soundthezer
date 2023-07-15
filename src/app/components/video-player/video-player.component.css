@@ -215,18 +215,55 @@ h5 {
 .cance {
   background-color: #2a75d2;
 }
+i{
+  color: #ffffff93;
+}
 
 .btn {
   position: absolute;
-  width: 40px;
   border-radius: none;
   padding: 1px;
-  color: #ffffff;
-  background-color: #0e5555;
+  color: #000000a4;
+
   display: none;
 }
 @media screen and (max-width: 760px) {
   .btn {
     display: block;
   }
+  .container {
+    position: relative;
+    display: inline-block;
+    grid-template-columns: 1fr 1fr;
+  }
+  .c1 .img{
+    display: none;
+  }
+  .cont{
+    display: block;
+  }
+  .cv{
+    height: 100vh;
+  }
+  iframe{
+    width: 370px;
+    height:200;
+  }
+  h1{
+    margin-top: 20px;
+    font-size: 40px;
+  }
+  p{
+    color: #262525;
+  }
+  .lista {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  width: 100%;
+  height: calc(100% - 502px);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 }

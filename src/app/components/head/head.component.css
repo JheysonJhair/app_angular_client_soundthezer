@@ -78,3 +78,18 @@ button:hover {
   font-weight: bolder;
   cursor: pointer;
 }
+@media screen and (max-width: 760px) {
+  .cr {
+    display: none;
+  }
+  ul{
+    padding: 0;
+  }
+  .bl{
+    padding: 2px;
+  }
+  .contenedor {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+}

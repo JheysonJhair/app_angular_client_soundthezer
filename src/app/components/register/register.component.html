@@ -1,7 +1,7 @@
 <div class="header">
   <div class="head">
     <div>
-      <img  width="100px" src="../../../assets/Logo2.png" alt="" />
+      <img width="100px" src="../../../assets/Logo2.png" alt="" />
     </div>
   </div>
 </div>
@@ -23,8 +23,7 @@
                 valid: addUser.get('name')!.valid,
                 invalid:
                   addUser.get('name')!.invalid &&
-                  (addUser.get('name')!.dirty ||
-                    addUser.get('name')!.touched)
+                  (addUser.get('name')!.dirty || addUser.get('name')!.touched)
               }"
             />
           </div>
@@ -71,7 +70,12 @@
             type="submit"
             [disabled]="addUser.invalid"
             routerLinkActive="router-link-active"
-            [ngClass]="{ disabled: addUser.get('email')!.invalid || addUser.get('password')!.invalid|| addUser.get('name')!.invalid }"
+            [ngClass]="{
+              disabled:
+                addUser.get('email')!.invalid ||
+                addUser.get('password')!.invalid ||
+                addUser.get('name')!.invalid
+            }"
             class="boton"
           >
             Registrarse

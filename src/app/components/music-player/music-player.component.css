@@ -248,15 +248,16 @@ thead {
 h5 {
   margin: 15px;
 }
+/* boton resposive*/
 .btn {
   position: absolute;
   border-radius: none;
   padding: 1px;
   color: #000000a4;
-
   display: none;
 }
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 1025px) {
+
   .btn {
     display: block;
   }
@@ -265,50 +266,50 @@ h5 {
     display: inline-block;
     grid-template-columns: 1fr 1fr;
   }
-  .c1 .img{
+  .c1 .img {
     width: 190%;
   }
-  .cont{
+  .cont {
     display: block;
   }
-  .cv{
+  .cv {
     height: 100vh;
   }
-  iframe{
+  iframe {
     width: 370px;
-    height:200;
+    height: 200;
   }
-  h1{
+  h1 {
     margin-top: 20px;
     font-size: 40px;
   }
-  .borra p{
+  .borra p {
     display: none;
   }
-  .borra i{
+  .borra i {
     display: none;
   }
   .lista {
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  width: 100%;
-  height: calc(100% - 1000px);
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.cr {
-  display: none;
-}
-ul{
-  padding: 0;
-}
-.bl{
-  padding: 2px;
-}
-.contenedor {
-border-top-left-radius: 0px;
-border-top-right-radius: 0px;
-}
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 100%;
+    height: calc(100% - 1000px);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .cr {
+    display: none;
+  }
+  ul {
+    padding: 0;
+  }
+  .bl {
+    padding: 2px;
+  }
+  .contenedor {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
 }

@@ -59,12 +59,12 @@ h1 {
   width: 50%;
   text-align: center;
 }
-.google i{
+.google i {
   color: #fff;
   font-size: 20px;
   margin-right: 17px;
 }
-.google a{
+.google a {
   text-decoration: none;
   border: none;
 }
@@ -174,24 +174,24 @@ button.disabled {
   cursor: not-allowed;
 }
 /* MENOR A 760px*/
-@media screen and (max-width: 760px){
-  body{
+@media screen and (max-width: 1025px) {
+  body {
     display: inline;
     height: 100vh;
     background-color: rgb(21, 21, 21);
     bottom: 0;
   }
-  .main{
+  .main {
     margin-top: 40px;
     position: absolute;
     width: 100%;
     padding: 0px;
   }
-  h1{
+  h1 {
     font-size: 30px;
     margin-bottom: 20px;
   }
-  .form{
+  .form {
     padding: 0px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -206,7 +206,7 @@ button.disabled {
   .google {
     width: 90%;
   }
-  .label{
+  .label {
     margin-top: 10px;
   }
 }

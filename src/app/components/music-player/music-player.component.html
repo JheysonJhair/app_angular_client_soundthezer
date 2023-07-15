@@ -58,14 +58,24 @@
           Tu navegador no admite la reproducción de audio.
         </audio>
         <!--<input type="file" (change)="onFileSelected($event)" accept="audio/*" />-->
-        <label style="padding-left: 5px; padding-right: 5px; padding-top: 1px;padding-bottom: 1px; margin: 0;" for="upload-btn" class="upload-btn-label">
+        <label
+          style="
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            margin: 0;
+          "
+          for="upload-btn"
+          class="upload-btn-label"
+        >
           <input
             type="file"
             id="upload-btn"
             accept="audio/*"
             (change)="onFileSelected($event)"
           />
-          <i  class="fa-sharp fa-solid fa-upload"></i>
+          <i class="fa-sharp fa-solid fa-upload"></i>
         </label>
       </div>
     </div>

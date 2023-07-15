@@ -142,22 +142,18 @@ p {
 .idioma i {
   color: #fff;
 }
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 1025px) {
   .cnt {
     height: 100%;
   }
   .btn {
     display: block;
   }
-  .contenedor {
-  }
   .c1 {
     width: 90%;
   }
-  /* copiright*/
   .copi {
     padding-top: 200px;
     position: relative;
   }
-
 }

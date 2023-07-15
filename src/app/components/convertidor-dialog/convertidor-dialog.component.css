@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  z-index: 1;
 }
 .dialog-container {
   position: fixed;
@@ -15,6 +16,7 @@
   width: 800px;
   background-color: hsl(218, 11%, 15%);
   text-align: center;
+  z-index: 1;
 }
 /* title */
 h1 {
@@ -75,4 +77,8 @@ h2 {
 button.disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+/* MENOR A 760px*/
+@media screen and (max-width: 1025px) {
+
 }

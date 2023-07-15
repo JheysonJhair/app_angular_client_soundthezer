@@ -10,6 +10,7 @@ export class LoginService {
   private myUrlGet = 'user/getall/';
   private myUrlLogin = 'user/login/';
   private myApiInsert = 'user/insert/';
+  private myUrlGoogle = 'api/ggogle';
   constructor(private http: HttpClient) { }
 
   getListUser(): Observable<any> {
@@ -20,5 +21,8 @@ export class LoginService {
   }
   insertUser(user: any): Observable<any>{
     return this.http.post(this.myAppUrl + this.myApiInsert,user);
+  }
+  insertLoginGoogle(): Observable<any>{
+    return this.http.get(this.myAppUrl + this.myUrlGoogle);
   }
 }

@@ -58,6 +58,7 @@ h1 {
   padding: 13px;
   width: 50%;
   text-align: center;
+  cursor: pointer;
 }
 .google i {
   color: #fff;

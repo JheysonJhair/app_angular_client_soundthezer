@@ -29,7 +29,7 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.pattern(/.{8,}/)]],
     });
   }
-  // Accesos al usuario
+  //-----------------------------------------------------------------------ACCESO USUARIO
   accesUsuario() {
     const user = {
       email: this.accesUser?.get('email')?.value,
@@ -40,6 +40,23 @@ export class LoginComponent {
       (data) => {
         this.toastr.success('Acceso', 'Bienvenido!');
         this.router.navigate(['/video']);
+      },
+      (error) => {
+        this.toastr.error('Registrate ya!', 'No tienes cuenta');
+        console.log(error);
+      }
+    );
+  }
+  accesUserGoogle(){
+    this._loginService.insertLoginGoogle().subscribe(
+      (data) => {
+        if(data.result == 'ok'){
+          this.toastr.success('Acceso', 'Bienvenido!');
+          this.router.navigate(['/video']);
+        }else{
+          this.toastr.error('Oppss, algo salio mal!', 'Error');
+        }
+
       },
       (error) => {
         this.toastr.error('Registrate ya!', 'No tienes cuenta');

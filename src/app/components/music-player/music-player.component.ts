@@ -150,4 +150,9 @@ export class MusicPlayerComponent implements OnInit {
     audioElement.pause();
     audioElement.currentTime = 0;
   }
+  mostrarComponente = true;
+
+  toggleComponente() {
+    this.mostrarComponente = !this.mostrarComponente;
+  }
 }

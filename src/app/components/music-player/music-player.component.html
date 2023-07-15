@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="item">
+  <div *ngIf="mostrarComponente" class="item">
     <app-asidetwo></app-asidetwo>
   </div>
   <div class="item">
@@ -29,6 +29,7 @@
         <p routerLink="" class="bl">Iniciar sesión</p>
       </div>
     </div>
+    <i (click)="toggleComponente()" class="btn fa-solid fa-house"></i>
     <div class="cont">
       <div class="c1">
         <div class="img">
@@ -38,10 +39,10 @@
           <p class="mr">Play List</p>
           <h1>Peaceful Piano</h1>
           <div class="row">
-            <div>
+            <div class="borra">
               <i class="fa-brands fa-spotify mr"></i>
             </div>
-            <div>
+            <div class="borra">
               <p>Peaceful piano to help you slow down, brethe adn relax.</p>
             </div>
           </div>

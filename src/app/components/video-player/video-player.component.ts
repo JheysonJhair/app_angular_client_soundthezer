@@ -239,4 +239,9 @@ export class VideoPlayerComponent implements OnInit {
       );
     });
   }
+  mostrarComponente = true;
+
+  toggleComponente() {
+    this.mostrarComponente = !this.mostrarComponente;
+  }
 }

@@ -1,27 +1,30 @@
-/* Header*/
 /*Contenedor */
-.container {
+.header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65px;
+  height: 75px;
   background-color: black;
   margin: 0;
   padding: 0;
 }
 /* Header*/
-.container > * {
+.header > * {
   width: 80%;
 }
-/* Cuerpo*/
+/* body*/
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   background-color: rgb(21, 21, 21);
   bottom: 0;
 }
 /* Contenedor form*/
 .main {
   margin: auto;
-  width: 40%;
+  width: 38%;
   justify-content: center;
   text-align: center;
   padding-top: 50px;
@@ -37,6 +40,33 @@ body {
 h1 {
   color: #fff;
   font-size: 40px;
+  font-weight: 600;
+}
+/* Input - label*/
+.cont-google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
+/* google */
+.google {
+  text-align: center;
+  border: 1px solid #e7e7e78f;
+  border-radius: 40px;
+  padding: 13px;
+  width: 50%;
+  text-align: center;
+}
+.google i{
+  color: #fff;
+  font-size: 20px;
+  margin-right: 17px;
+}
+.google a{
+  text-decoration: none;
+  border: none;
 }
 /* Formulario*/
 .form {
@@ -47,19 +77,15 @@ h1 {
   padding-left: 100px;
   padding-right: 100px;
 }
-/* Input - label*/
-.roww {
-  display: block;
-  text-align: center;
-}
+
 /* Label */
-.roww label {
+.roww-input-label label {
   color: #fff;
   text-align: left;
   font-size: 18px;
 }
 /* Input */
-.roww input {
+.roww-input-label input {
   background-color: hsl(0, 0%, 7%);
   border: 0.5px solid #cccccc86;
   border-radius: 5px;
@@ -74,9 +100,16 @@ h1 {
   color: #fff;
 }
 /* Hover input*/
-.roww input:hover {
+.roww-input-label input:hover {
   border: 0.5px solid #cccccc;
 }
+
+/* Posicion label*/
+.label {
+  text-align: left;
+  margin-left: 30px;
+}
+
 /* Boton */
 .btn {
   background-color: #1fdf64;
@@ -94,21 +127,18 @@ h1 {
   transform: scale(1.1);
   cursor: pointer;
 }
-/* Posicion label*/
-.l {
-  text-align: left;
-  margin-left: 30px;
-}
-/* enlaces top */
-.a {
-  text-decoration: none;
-  margin-top: 30px;
-}
+
 /*enlaces*/
 a {
   color: #fff;
   border-bottom: 1px solid rgb(255, 255, 255);
   font-size: 17px;
+}
+
+/* enlaces top */
+.a {
+  text-decoration: none;
+  margin-top: 30px;
 }
 /* span no tienes cuenta*/
 span {
@@ -116,7 +146,7 @@ span {
 }
 /* Hover enlaces*/
 a:hover {
-  border: 0.5px solid #12d15286;
+  border-bottom: 2px solid #12d15286;
   color: #1fdf64;
 }
 /* validaciones */
@@ -142,4 +172,41 @@ input.invalid:focus {
 button.disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+/* MENOR A 760px*/
+@media screen and (max-width: 760px){
+  body{
+    display: inline;
+    height: 100vh;
+    background-color: rgb(21, 21, 21);
+    bottom: 0;
+  }
+  .main{
+    margin-top: 40px;
+    position: absolute;
+    width: 100%;
+    padding: 0px;
+  }
+  h1{
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .form{
+    padding: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .cont-google {
+    padding: 0px;
+    margin: auto;
+    width: 90%;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .google {
+    width: 90%;
+  }
+  .label{
+    margin-top: 10px;
+  }
 }

@@ -215,3 +215,18 @@ h5 {
 .cance {
   background-color: #2a75d2;
 }
+
+.btn {
+  position: absolute;
+  width: 40px;
+  border-radius: none;
+  padding: 1px;
+  color: #ffffff;
+  background-color: #0e5555;
+  display: none;
+}
+@media screen and (max-width: 760px) {
+  .btn {
+    display: block;
+  }
+}

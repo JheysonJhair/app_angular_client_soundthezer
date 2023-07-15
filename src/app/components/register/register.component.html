@@ -1,7 +1,7 @@
-<div class="container">
+<div class="header">
   <div class="head">
-    <div class="log">
-      <img width="100px" src="../../../assets/Logo2.png" alt="" />
+    <div>
+      <img  width="100px" src="../../../assets/Logo2.png" alt="" />
     </div>
   </div>
 </div>
@@ -10,8 +10,8 @@
     <h1>Regístrate gratis para escuchar</h1>
     <div class="form">
       <form [formGroup]="addUser" (ngSubmit)="addUsuario()" action="">
-        <div class="roww">
-          <div class="l">
+        <div class="row-input-label">
+          <div class="label">
             <label for="name">Nombre de usuario</label>
           </div>
           <div>
@@ -29,8 +29,8 @@
             />
           </div>
         </div>
-        <div class="roww">
-          <div class="l">
+        <div class="row-input-label">
+          <div class="label">
             <label for="Email">¿Cuál es tu email?</label>
           </div>
           <div>
@@ -47,8 +47,8 @@
             />
           </div>
         </div>
-        <div class="roww">
-          <div class="l">
+        <div class="row-input-label">
+          <div class="label">
             <label for="password">Crea una contraseña</label>
           </div>
           <div>
@@ -66,13 +66,13 @@
             />
           </div>
         </div>
-        <div class="roww rbt">
+        <div class="row-input-label boton_register">
           <button
             type="submit"
             [disabled]="addUser.invalid"
             routerLinkActive="router-link-active"
             [ngClass]="{ disabled: addUser.get('email')!.invalid || addUser.get('password')!.invalid|| addUser.get('name')!.invalid }"
-            class="btn btn-primary"
+            class="boton"
           >
             Registrarse
           </button>

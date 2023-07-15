@@ -1,18 +1,23 @@
-<div class="container">
-  <div class="head">
+<div class="header">
+  <div>
     <div class="log">
-      <img width="100px" src="../../../assets/Logo2.png" alt="" />
+      <img width="120px" src="../../../assets/Logo2.png" alt="" />
     </div>
   </div>
 </div>
 <body>
   <div class="main">
     <h1>Inicia sesión en Spotify</h1>
+    <div class="cont-google">
+      <div class="google">
+        <i class="fa-brands fa-google"></i><a href="">Continuar con Google</a>
+      </div>
+    </div>
     <div class="form">
       <form [formGroup]="accesUser" (ngSubmit)="accesUsuario()" action="">
-        <div class="roww">
-          <div class="l">
-            <label for="Email">Email</label>
+        <div class="roww-input-label">
+          <div class="label">
+            <label for="email">Email</label>
           </div>
           <div>
             <input
@@ -29,9 +34,9 @@
             />
           </div>
         </div>
-        <div class="roww">
-          <div class="l">
-            <label for="pass">Contraseña</label>
+        <div class="roww-input-label">
+          <div class="label">
+            <label for="password">Contraseña</label>
           </div>
           <div>
             <input
@@ -41,20 +46,24 @@
               [ngClass]="{
                 valid: accesUser.get('password')!.valid,
                 invalid:
-                accesUser.get('password')!.invalid &&
+                  accesUser.get('password')!.invalid &&
                   (accesUser.get('password')!.dirty ||
-                  accesUser.get('password')!.touched)
+                    accesUser.get('password')!.touched)
               }"
             />
           </div>
         </div>
-        <div class="roww">
+        <div class="roww-input-label">
           <button
             type="submit"
             [disabled]="accesUser.invalid"
             routerLinkActive="router-link-active"
-            [ngClass]="{ disabled: accesUser.get('email')!.invalid || accesUser.get('password')!.invalid }"
-            class="btn btn-primary"
+            [ngClass]="{
+              disabled:
+                accesUser.get('email')!.invalid ||
+                accesUser.get('password')!.invalid
+            }"
+            class="btn"
           >
             Iniciar sesión
           </button>

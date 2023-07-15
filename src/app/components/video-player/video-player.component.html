@@ -1,9 +1,10 @@
 <div class="container">
-  <div>
+  <div  *ngIf="mostrarComponente">
     <app-aside></app-aside>
   </div>
   <div class="cv">
     <app-head></app-head>
+    <button class="btn" (click)="toggleComponente()"> Ver</button>
     <div class="cont">
       <div class="c1">
         <div class="img">

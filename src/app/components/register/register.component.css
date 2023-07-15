@@ -1,5 +1,5 @@
 /* Head */
-.container {
+.header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@
   padding: 0;
 }
 /* Head*/
-.container > * {
+.header > * {
   width: 80%;
 }
 /* Cuerpo */
@@ -47,18 +47,18 @@ h1 {
   padding-right: 100px;
 }
 /* Contenedor label input*/
-.roww {
+.row-input-label {
   display: block;
   text-align: center;
 }
 /* label */
-.roww label {
+.row-input-label label {
   color: #000000;
   text-align: left;
   font-size: 18px;
 }
 /*Input*/
-.roww input {
+.row-input-label input {
   background-color: hsl(0, 0%, 100%);
   border: 0.5px solid #3a393986;
   border-radius: 5px;
@@ -72,11 +72,11 @@ h1 {
   font-size: 16px;
 }
 /* input hover*/
-.roww input:hover {
+.row-input-label input:hover {
   border: 0.5px solid #2d2b2b;
 }
 /* boton */
-.btn {
+.boton {
   background-color: #1fdf64;
   width: 85%;
   padding: 15px;
@@ -88,12 +88,12 @@ h1 {
   transition: transform 0.3s;
 }
 /* boton hover*/
-.btn:hover {
+.boton:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
 /* label margin*/
-.l {
+.label {
   text-align: left;
   margin-left: 30px;
 }
@@ -117,7 +117,7 @@ a:hover {
   color: rgba(11, 96, 42, 0.984);
 }
 /* tamaño boton*/
-.rbt {
+.boton_register {
   margin-left: 100px;
   margin-right: 100px;
 }
@@ -144,4 +144,54 @@ input.invalid:focus {
 button.disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+/* MENOR A 500PX*/
+@media screen and (max-width: 760px){
+  img {
+
+    content: url('../../../assets/Logoblack.png');
+  }
+  .header{
+    background-color: #ffffff;
+  }
+  body{
+    display: inline;
+
+    background-color: #ffffff;
+    bottom: 0;
+  }
+  .main{
+    background-color: #ffffff;
+    margin: 0;
+    height: 92vh;
+    padding-top: 40px;
+    position: absolute;
+    border-radius: 0px;
+    width: 100%;
+    padding: 0px;
+  }
+  h1{
+    font-weight: 600;
+    margin-top: 30px;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .form{
+    padding: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .cont-google {
+    padding: 0px;
+    margin: auto;
+    width: 90%;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .google {
+    width: 90%;
+  }
+  .label{
+    margin-top: 10px;
+  }
 }

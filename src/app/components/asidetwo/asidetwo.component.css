@@ -142,6 +142,38 @@ p {
 .idioma i {
   color: #fff;
 }
+/* contenedor descargar*/
+.des {
+  margin-top: 20px;
+  position: absolute;
+  margin-left: 10px;
+}
+/* enlace descarga*/
+.c2 a {
+  font-size: 30px;
+  color: #ffffff;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+/* icono youtube */
+.c2 i {
+  color: #cf2726;
+  font-size: 30px;
+}
+/* boton descarga*/
+.con {
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  background-color: hsl(180, 17%, 21%);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* desabilitar boton*/
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 @media screen and (max-width: 1025px) {
   .cnt {
     height: 100%;

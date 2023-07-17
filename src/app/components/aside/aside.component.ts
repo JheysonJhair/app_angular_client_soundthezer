@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConvertidorDialogComponent } from '../convertidor-dialog/convertidor-dialog.component';
 
@@ -23,5 +23,4 @@ export class AsideComponent {
       console.log('Diálogo cerrado');
     });
   }
-
 }

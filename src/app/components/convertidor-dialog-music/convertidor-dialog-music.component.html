@@ -1,7 +1,7 @@
 <div class="dialog-container">
-  <h1>Descargar videos de Youtube en línea</h1>
-  <h2>Descargar video de Youtube 1080p, 4k, en Android</h2>
-  <form [formGroup]="addVideo" #form="ngForm">
+  <h1>Descargar músicas de Youtube en línea</h1>
+  <h2>Descargar música de Youtube 320 kbps, en Android</h2>
+  <form [formGroup]="addMusica" #form="ngForm">
     <div class="row">
       <label for="url">Url: </label>
       <input
@@ -18,7 +18,7 @@
           margin-left: 82px;
           font-weight: 600;
         "
-        *ngIf="addVideo.get('url')?.dirty && addVideo.get('url')?.invalid"
+        *ngIf="addMusica.get('url')?.dirty && addMusica.get('url')?.invalid"
       >
         Invalido
       </span>
@@ -26,8 +26,8 @@
     <div class="row2">
       <button
         (click)="submitForm()"
-        [disabled]="addVideo.invalid"
-        [ngClass]="{ disabled: addVideo.get('url')!.invalid }"
+        [disabled]="addMusica.invalid"
+        [ngClass]="{ disabled: addMusica.get('url')!.invalid }"
         class="aceptar"
         mat-raised-button
         color="primary"

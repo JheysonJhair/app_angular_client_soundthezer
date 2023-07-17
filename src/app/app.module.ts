@@ -24,6 +24,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AsidetwoComponent } from './components/asidetwo/asidetwo.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ConvertidorDialogComponent } from './components/convertidor-dialog/convertidor-dialog.component';
+import { ConvertidorDialogMusicComponent } from './components/convertidor-dialog-music/convertidor-dialog-music.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { ConvertidorDialogComponent } from './components/convertidor-dialog/conv
     LoginComponent,
     AsidetwoComponent,
     RegisterComponent,
-    ConvertidorDialogComponent
+    ConvertidorDialogComponent,
+    ConvertidorDialogMusicComponent
   ],
   imports: [
     BrowserModule,

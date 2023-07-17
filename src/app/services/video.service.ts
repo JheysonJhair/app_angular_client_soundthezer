@@ -7,11 +7,12 @@ import { map } from 'rxjs/operators';
 })
 export class VideoService {
   private myAppUrl = 'http://localhost:3030/';
-  private myUrlGet = 'video/getall/';
-  private myApiInsert = 'video/insert/';
-  private myUrlDelete = 'video/delete/';
-  private myUrlPut = 'video/update/';
-  private myUrlGetId = 'video/getbyid/';
+
+  private myApiInsert = 'api/videos/insert/';
+  private myUrlGet = 'api/videos/getall/';
+  private myUrlDelete = 'api/videos/delete/';
+  private myUrlPut = 'api/videos/update/';
+  private myUrlGetId = 'api/videos/getbyid/';
 
   constructor(private http: HttpClient) {}
 
@@ -39,7 +40,7 @@ export class VideoService {
     };
 
     return this.http
-      .post<Blob>('http://localhost:3030/video/download', body, httpOptions)
+      .post<Blob>('http://localhost:3030/api/videos/download', body, httpOptions)
       .pipe(
         map((blob: Blob) => {
           this.guardarArchivo(blob);

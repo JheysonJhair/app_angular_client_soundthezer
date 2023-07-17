@@ -8,11 +8,12 @@ import { map } from 'rxjs/operators';
 })
 export class MusicService {
   private myAppUrl = 'http://localhost:3030/';
-  private myUrlGet = 'music/getall/';
-  private myApiInsert = 'music/insert/';
-  private myUrlDelete = 'music/delete/';
-  private myUrlPut = 'music/update/';
-  private myUrlGetId = 'music/getbyid/';
+
+  private myUrlGet = 'api/musics/getall/';
+  private myApiInsert = 'api/musics/insert/';
+  private myUrlDelete = 'api/musics/delete/';
+  private myUrlPut = 'api/musics/update/';
+  private myUrlGetId = 'api/musics/getbyid/';
 
   constructor(private http: HttpClient) {}
 
@@ -32,25 +33,34 @@ export class MusicService {
     return this.http.post(this.myAppUrl + this.myUrlPut, music);
   }
 
-  descargarAudio(url: string) {
-    const musicData = { url };
+  descargarMusica(url: string): Observable<void> {
+    const body = { url };
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      responseType: 'blob' as 'json',
+    };
 
-    this.http
-      .post('http://localhost:3030/music/download', musicData, {
-        responseType: 'blob' as 'json',
-      })
-      .subscribe(
-        (response: any) => {
-          console.log('¡Audio descargado y guardado en la carpeta assets!');
-        },
-        (error) => {
-          console.error('Ocurrió un error al descargar el audio:', error);
-        }
+    return this.http
+      .post<Blob>('http://localhost:3030/api/musics/download', body, httpOptions)
+      .pipe(
+        map((blob: Blob) => {
+          this.guardarArchivo(blob);
+        })
       );
   }
 
+  private guardarArchivo(blob: Blob) {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'musica.mp3';
+    link.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+
   playMusicById(id: number): Observable<Blob> {
-    const url = `http://localhost:3030/music/downloadById/${id}`;
+    const url = `http://localhost:3030/api/musics/downloadbyId/${id}`;
     return this.http.get(url, { responseType: 'blob' });
   }
 }

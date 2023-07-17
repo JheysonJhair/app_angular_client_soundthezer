@@ -86,7 +86,7 @@ export class MusicPlayerComponent implements OnInit {
   descargarAudioUsuario(id: any) {
     console.log('Descargando..');
     this.http
-      .get('http://localhost:3030/music/downloadById/' + id, {
+      .get('http://localhost:3030/api/musics/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(

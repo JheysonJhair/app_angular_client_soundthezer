@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -12,32 +15,19 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  idPasar: any;
   accesUser: FormGroup;
   User: User | undefined;
 
   constructor(
-    private http: HttpClient,
     private fb: FormBuilder,
     private _loginService: LoginService,
     private router: Router,
-    private aRoute: ActivatedRoute,
     private toastr: ToastrService
   ) {
     this.accesUser = this.fb.group({
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-          ),
-        ],
-      ],
+      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
       password: ['', [Validators.required, Validators.pattern(/.{8,}/)]],
     });
-    this.aRoute.snapshot.paramMap.get('id');
-    this.idPasar = this.aRoute.snapshot.paramMap.get('id')!;
   }
   //-----------------------------------------------------------------------ACCESO USUARIO
   accesUsuario() {
@@ -48,7 +38,6 @@ export class LoginComponent {
 
     this._loginService.getLogin(user.email,user.password).subscribe(
       (result) => {
-        this.idPasar = result.data.id;
 
         this.toastr.success('Acceso', 'Bienvenido!');
         this.router.navigate(['/video']);
@@ -59,37 +48,39 @@ export class LoginComponent {
       }
     );
   }
-  accesUserGoogle() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:4200', // Reemplaza con el origen correcto de tu aplicación frontend
-      }),
-    };
-
-    this.http
-      .get<any>('/api/users/auth/google', httpOptions)
-      .subscribe(
-        (data) => {
-          const name = data.name;
-          const email = data.email;
-          console.log('GOOGLE');
-          console.log('Nombre:', name);
-          console.log('Email:', email);
-        },
-        (error) => {
-          console.error('Error:', error);
-        }
-      );
-  }
-  accesUserFacebook() {
-    this.http.get<any>('/api/users/auth/facebook').subscribe(
+  //-----------------------------------------------------------------------ACCESO GOOGLE
+  accesUserGoogle(){
+    this._loginService.insertLoginGoogle().subscribe(
       (data) => {
-        // Aquí puedes redirigir al usuario a la URL recibida del servidor backend
-        window.location.href = data;
+        if(data.result == 'ok'){
+          this.toastr.success('Acceso', 'Bienvenido!');
+          this.router.navigate(['/video']);
+        }else{
+          this.toastr.error('Oppss, algo salio mal!', 'Error');
+        }
+
       },
       (error) => {
-        console.error('Error al iniciar la autenticación de Facebook:', error);
+        this.toastr.error('Registrate ya!', 'No tienes cuenta');
+        console.log(error);
+      }
+    );
+  }
+  //-----------------------------------------------------------------------ACCESO FACEBOOK
+  accesUserFacebook(){
+    this._loginService.insertLoginGoogle().subscribe(
+      (data) => {
+        if(data.result == 'ok'){
+          this.toastr.success('Acceso', 'Bienvenido!');
+          this.router.navigate(['/video']);
+        }else{
+          this.toastr.error('Oppss, algo salio mal!', 'Error');
+        }
+
+      },
+      (error) => {
+        this.toastr.error('Registrate ya!', 'No tienes cuenta');
+        console.log(error);
       }
     );
   }

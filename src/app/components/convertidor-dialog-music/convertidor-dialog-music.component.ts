@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { VideoService } from 'src/app/services/video.service';
 import { ToastrService } from 'ngx-toastr';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   FormBuilder,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { MusicService } from 'src/app/services/music.service';
-
 @Component({
   selector: 'app-convertidor-dialog-music',
   templateUrl: './convertidor-dialog-music.component.html',
@@ -15,9 +17,11 @@ import { MusicService } from 'src/app/services/music.service';
 })
 export class ConvertidorDialogMusicComponent {
   addMusica: FormGroup;
+  private downloadUrl = 'http://localhost:3030/api/musics/download';
 
   constructor(
     private fb: FormBuilder,
+    private http: HttpClient,
     private toastr: ToastrService,
     private _musicService: MusicService,
     public dialogRef: MatDialogRef<ConvertidorDialogMusicComponent>
@@ -32,23 +36,33 @@ export class ConvertidorDialogMusicComponent {
   }
 
   submitForm(): void {
-    const MusicData = {
+    const videoData = {
       url: this.addMusica?.get('url')?.value,
     };
-    this.descargarMusica(MusicData.url);
+    this.descargarMusica(videoData.url);
     this.dialogRef.close();
   }
-  //-------------------------------------------------------------------------DESCARGAR MÚSICA
-  descargarMusica(url: any) {
-    console.log('Descargando');
-    this._musicService.descargarMusica(url).subscribe(
-      () => {
-        this.toastr.success('Descarga completada!', 'Enhorabuena!');
-      },
-      (error) => {
-        this.toastr.error('No se pudo descargar tu música', 'Error!');
-      }
-    );
+  //-------------------------------------------------------------------------DESCARGAR VIDEO
+  descargarMusica(url: string): void {
+    console.log("Descargando...");
+    const headers = new HttpHeaders({
+      'Content-Type': 'audio/mpeg',
+      'Accept': 'audio/mpeg',
+    });
+
+    this.http.get(this.downloadUrl, { params: { url }, headers, responseType: 'arraybuffer' })
+      .subscribe((response: ArrayBuffer) => {
+        const blob = new Blob([response], { type: 'audio/mpeg' });
+
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+
+        const filename = url.substring(url.lastIndexOf('/') + 1) + '.mp3';
+        downloadLink.download = filename;
+        downloadLink.click();
+        URL.revokeObjectURL(downloadLink.href);
+      }, (error) => {
+        console.error('Hubo un error al descargar la música:', error);
+      });
   }
 }
-

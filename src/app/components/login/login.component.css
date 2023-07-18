@@ -20,7 +20,8 @@ body {
   height: 100vh;
   background-color: rgb(21, 21, 21);
   bottom: 0;
-  padding: 60px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 /* Contenedor form*/
 .main {
@@ -43,12 +44,11 @@ h1 {
   font-size: 40px;
   font-weight: 600;
 }
-/* redes */
-.cont-redes{
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
 /* Input - label*/
+.redes{
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
 .cont-google {
   display: flex;
   justify-content: center;
@@ -62,7 +62,7 @@ h1 {
   border: 1px solid #e7e7e78f;
   border-radius: 40px;
   padding: 13px;
-  width: 60%;
+  width: 50%;
   text-align: center;
   cursor: pointer;
 }
@@ -187,7 +187,6 @@ button.disabled {
     height: 100vh;
     background-color: rgb(21, 21, 21);
     bottom: 0;
-    padding: 0px;
   }
   .main {
     margin-top: 40px;

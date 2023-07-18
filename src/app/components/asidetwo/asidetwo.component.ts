@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConvertidorDialogMusicComponent } from '../convertidor-dialog-music/convertidor-dialog-music.component';
+
 @Component({
   selector: 'app-asidetwo',
   templateUrl: './asidetwo.component.html',
@@ -22,4 +23,5 @@ export class AsidetwoComponent {
       console.log('Diálogo cerrado');
     });
   }
+
 }

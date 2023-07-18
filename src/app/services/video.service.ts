@@ -7,9 +7,8 @@ import { map } from 'rxjs/operators';
 })
 export class VideoService {
   private myAppUrl = 'http://localhost:3030/';
-
-  private myApiInsert = 'api/videos/insert/';
   private myUrlGet = 'api/videos/getall/';
+  private myApiInsert = 'api/videos/insert/';
   private myUrlDelete = 'api/videos/delete/';
   private myUrlPut = 'api/videos/update/';
   private myUrlGetId = 'api/videos/getbyid/';

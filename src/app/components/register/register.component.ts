@@ -13,7 +13,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  //ADD - USER
+
   addUser: FormGroup;
   User: User | undefined;
 
@@ -28,7 +28,7 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.pattern(/.{8,}/)]],
     });
   }
-  // Registrar usuario
+  //-----------------------------------------------------------------------REGISTRAR USUARIO
   addUsuario() {
     const user = {
       name: this.addUser?.get('name')?.value,
@@ -42,7 +42,7 @@ export class RegisterComponent {
         this.addUser?.reset();
       },
       (error) => {
-        this.toastr.error('Oops, ocurrió un error', 'Error');
+        this.toastr.error('Oopss, ocurrió un error', 'Error');
         console.log(error);
       }
     );

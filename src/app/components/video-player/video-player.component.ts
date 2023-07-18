@@ -14,7 +14,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { MusicService } from 'src/app/services/music.service';
 import { dtoMusic } from 'src/app/interfaces/Music';
-import { User } from 'src/app/interfaces/User';
 @Component({
   selector: 'app-video-player',
   templateUrl: './video-player.component.html',
@@ -29,12 +28,10 @@ export class VideoPlayerComponent implements OnInit {
 
   listVideo: dtoVideo[] = [];
   listMusic: dtoMusic[] = [];
-  usuario: User[] | undefined;
 
   addVideo: FormGroup;
   accion = 'Registrar';
   id: string;
-  idPasar: any;
   dtoVideo: dtoVideo | undefined;
 
   constructor(
@@ -58,8 +55,7 @@ export class VideoPlayerComponent implements OnInit {
         ],
       ],
     });
-    this.aRoute.snapshot.paramMap.get('id');
-    this.idPasar = this.aRoute.snapshot.paramMap.get('id')!;
+    this.id = this.aRoute.snapshot.paramMap.get('id')!;
   }
 
   ngOnInit(): void {
@@ -179,6 +175,13 @@ export class VideoPlayerComponent implements OnInit {
     return videoId;
   }
 
+  //------------------------------------------------------------------VALIDACIONES URL VIDEO
+  validateYouTubeUrl(control: AbstractControl): { [key: string]: any } | null {
+    const urlPattern = /^https:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}$/;
+    const validUrl = urlPattern.test(control.value);
+
+    return validUrl ? null : { invalidUrl: true };
+  }
   //-----------------------------------------------------------------DESCARGAR VIDEO USUARIO
   descargarVideoUsuario(id: any) {
     console.log('Descargando...');

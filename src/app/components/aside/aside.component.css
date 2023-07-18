@@ -175,6 +175,31 @@ p {
   opacity: 0.5;
   cursor: not-allowed;
 }
+/* contenedor playlist*/
+.ply {
+  display: flex;
+}
+/* icono cuadrado*/
+.cuad {
+  background-color: rgb(33, 33, 33);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  height: 35px;
+  margin-top: 10px;
+}
+/* cuadrado letras*/
+.cuad2 {
+  margin-left: 12px;
+}
+/* title playlist */
+.ps {
+  color: #ccc;
+}
 @media screen and (max-width: 1025px) {
   .cnt {
     height: 100%;

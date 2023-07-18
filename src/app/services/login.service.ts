@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
   private myAppUrl = 'http://localhost:3030/';
-
   private myUrlGet = 'api/users/getall/';
+  private myApiInsert = 'api/users/insert/';
+  private myUrlGoogle = 'api/users/google';
   private myUrlLoginMail = 'api/users/login?email=';
   private myUrlLoginPass = '&password=';
-  private myApiInsert = 'api/users/insert/';
   constructor(private http: HttpClient) { }
 
   getListUser(): Observable<any> {
@@ -22,5 +22,8 @@ export class LoginService {
   }
   insertUser(user: any): Observable<any>{
     return this.http.post(this.myAppUrl + this.myApiInsert,user);
+  }
+  insertLoginGoogle(): Observable<any>{
+    return this.http.get(this.myAppUrl + this.myUrlGoogle);
   }
 }

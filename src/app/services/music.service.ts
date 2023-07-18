@@ -8,7 +8,6 @@ import { map } from 'rxjs/operators';
 })
 export class MusicService {
   private myAppUrl = 'http://localhost:3030/';
-
   private myUrlGet = 'api/musics/getall/';
   private myApiInsert = 'api/musics/insert/';
   private myUrlDelete = 'api/musics/delete/';
@@ -33,34 +32,25 @@ export class MusicService {
     return this.http.post(this.myAppUrl + this.myUrlPut, music);
   }
 
-  descargarMusica(url: string): Observable<void> {
-    const body = { url };
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      responseType: 'blob' as 'json',
-    };
+  descargarAudio(url: string) {
+    const musicData = { url };
 
-    return this.http
-      .post<Blob>('http://localhost:3030/api/musics/download', body, httpOptions)
-      .pipe(
-        map((blob: Blob) => {
-          this.guardarArchivo(blob);
-        })
+    this.http
+      .post('http://localhost:3030/api/musics/download?url=',url, {
+        responseType: 'blob' as 'json',
+      })
+      .subscribe(
+        (response: any) => {
+          console.log('¡Audio descargado y guardado en la carpeta assets!');
+        },
+        (error) => {
+          console.error('Ocurrió un error al descargar el audio:', error);
+        }
       );
   }
 
-  private guardarArchivo(blob: Blob) {
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'musica.mp3';
-    link.click();
-    window.URL.revokeObjectURL(url);
-  }
-
-
   playMusicById(id: number): Observable<Blob> {
-    const url = `http://localhost:3030/api/musics/downloadbyId/${id}`;
+    const url = `http://localhost:3030/api/musics/downloadById/${id}`;
     return this.http.get(url, { responseType: 'blob' });
   }
 }

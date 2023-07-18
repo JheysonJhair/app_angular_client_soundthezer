@@ -169,11 +169,6 @@ p {
   font-weight: 600;
   cursor: pointer;
 }
-/* desabilitar boton*/
-.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
 @media screen and (max-width: 1025px) {
   .cnt {
     height: 100%;

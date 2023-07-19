@@ -30,24 +30,28 @@ export class LoginComponent {
     });
   }
   //-----------------------------------------------------------------------ACCESO USUARIO
-  accesUsuario() {
-    const user = {
-      email: this.accesUser?.get('email')?.value,
-      password: this.accesUser?.get('password')?.value,
-    };
+accesUsuario() {
+  const user = {
+    email: this.accesUser?.get('email')?.value,
+    password: this.accesUser?.get('password')?.value,
+  };
 
-    this._loginService.getLogin(user.email,user.password).subscribe(
-      (result) => {
+  this._loginService.getLogin(user.email, user.password).subscribe(
+    (result) => {
+      const name = result.data.name;
+      console.log(name);
 
-        this.toastr.success('Acceso', 'Bienvenido!');
-        this.router.navigate(['/video']);
-      },
-      (error) => {
-        this.toastr.error('Registrate ya!', 'No tienes cuenta');
-        console.log(error);
-      }
-    );
-  }
+      this.toastr.success('Acceso', 'Bienvenido!');
+      this.router.navigate(['/video']);
+    },
+    (error) => {
+      this.toastr.error('Registrate ya!', 'No tienes cuenta');
+      console.log(error);
+    }
+  );
+}
+
+
   //-----------------------------------------------------------------------ACCESO GOOGLE
   accesUserGoogle(){
     this._loginService.insertLoginGoogle().subscribe(

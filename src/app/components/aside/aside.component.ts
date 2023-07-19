@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConvertidorDialogComponent } from '../convertidor-dialog/convertidor-dialog.component';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-aside',
@@ -9,7 +10,11 @@ import { ConvertidorDialogComponent } from '../convertidor-dialog/convertidor-di
 })
 export class AsideComponent {
   isButtonDisabled = false;
-  constructor(public dialog: MatDialog) {}
+  name: string;
+
+  constructor(public dialog: MatDialog, private _sharedService: SharedService) {
+    this.name = this._sharedService.getName(); // Obtiene el nombre del servicio compartido
+  }
 
   openDialog(): void {
     this.isButtonDisabled = true;

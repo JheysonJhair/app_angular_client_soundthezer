@@ -58,6 +58,7 @@
 /* boton iniciar sesion*/
 .bl {
   background-color: #fff;
+  margin: 0;
   margin-left: 10px;
   border-radius: 35px;
   font-size: 14px;

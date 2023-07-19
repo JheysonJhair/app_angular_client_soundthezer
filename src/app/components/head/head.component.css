@@ -38,12 +38,13 @@
 /* boton iniciar sesion*/
 .bl {
   background-color: #fff;
-  margin-left: 10px;
   border-radius: 35px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   padding: 8px 18px;
+  margin: 0;
+  margin-left: 10px;
   transition: transform 0.3s;
 }
 /* boton hover*/

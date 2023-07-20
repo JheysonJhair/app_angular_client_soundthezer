@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -39,6 +40,7 @@ import { ConvertidorDialogMusicComponent } from './components/convertidor-dialog
     ConvertidorDialogMusicComponent
   ],
   imports: [
+    MatProgressBarModule,
     BrowserModule,
     MatDialogModule,
     FormsModule,

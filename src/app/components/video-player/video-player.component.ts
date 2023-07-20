@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import {
   FormBuilder,
   FormGroup,
@@ -10,7 +11,6 @@ import { dtoVideo } from 'src/app/interfaces/Video';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VideoService } from 'src/app/services/video.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
 
 import { MusicService } from 'src/app/services/music.service';
 import { dtoMusic } from 'src/app/interfaces/Music';
@@ -22,7 +22,7 @@ import { dtoMusic } from 'src/app/interfaces/Music';
 export class VideoPlayerComponent implements OnInit {
   defaultVideoUrl: string = 'https://youtu.be/DXV79KHSftc';
   safeVideoUrl: SafeResourceUrl;
-
+  progresoDescarga = 0;
   edit: boolean = false;
   selectedVideoId: string;
 
@@ -183,8 +183,15 @@ export class VideoPlayerComponent implements OnInit {
     return validUrl ? null : { invalidUrl: true };
   }
   //-----------------------------------------------------------------DESCARGAR VIDEO USUARIO
+
   descargarVideoUsuario(id: any) {
-    console.log('Descargando...');
+    this.progresoDescarga = 10;
+    setTimeout(() => {
+      this.progresoDescarga = 50;
+    }, 1000);
+    setTimeout(() => {
+      this.progresoDescarga = 70;
+    }, 2000);
     this.http
       .get('http://localhost:3030/api/videos/downloadById/' + id, {
         responseType: 'blob',
@@ -194,16 +201,18 @@ export class VideoPlayerComponent implements OnInit {
           const url = window.URL.createObjectURL(response);
           console.log('Descargando...');
           this.toastr.success('Descarga completada!', 'Enhorabuena!');
+          this.progresoDescarga = 90;
           const link = document.createElement('a');
           link.href = url;
           link.download = 'MiVideo.mp4';
           link.click();
-
           window.URL.revokeObjectURL(url);
+          this.progresoDescarga = 100;
         },
         (error) => {
           this.toastr.error('No se pudo descargar tu video', 'Error!');
           console.log(error);
+          this.progresoDescarga = 0;
         }
       );
   }

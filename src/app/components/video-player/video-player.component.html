@@ -24,6 +24,11 @@
             </div>
           </div>
         </div>
+        <mat-progress-bar
+        *ngIf="progresoDescarga > 0 && progresoDescarga < 100"
+        mode="determinate"
+        [value]="progresoDescarga"
+      ></mat-progress-bar>
       </div>
       <div class="contenedor">
         <div class="video-player-wrapper">

@@ -196,7 +196,7 @@ export class VideoPlayerComponent implements OnInit {
           this.toastr.success('Descarga completada!', 'Enhorabuena!');
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'SpotyVideoDownload.mp4';
+          link.download = 'MiVideo.mp4';
           link.click();
 
           window.URL.revokeObjectURL(url);

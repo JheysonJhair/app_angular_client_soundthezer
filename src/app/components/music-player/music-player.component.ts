@@ -86,7 +86,7 @@ export class MusicPlayerComponent implements OnInit {
   descargarAudioUsuario(id: any) {
     console.log('Descargando..');
     this.http
-      .get('http://localhost:3030/music/downloadById/' + id, {
+      .get('http://localhost:3030/api/musics/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(
@@ -96,13 +96,13 @@ export class MusicPlayerComponent implements OnInit {
           this.toastr.success('Descarga completada!', 'Enhorabuena!');
           const link = document.createElement('a');
           link.href = url;
-          link.download = 'SpotyAudioDownload.mp3';
+          link.download = 'MiMusica.mp3';
           link.click();
 
           window.URL.revokeObjectURL(url);
         },
         (error) => {
-          this.toastr.error('No se pudo descargar tu video', 'Error!');
+          this.toastr.error('No se pudo descargar tu musica', 'Error!');
         }
       );
   }

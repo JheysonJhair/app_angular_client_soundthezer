@@ -51,7 +51,7 @@ export class VideoService {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'video.mp4';
+    link.download = 'SoundTheserVideo.mp4';
     link.click();
     window.URL.revokeObjectURL(url);
   }

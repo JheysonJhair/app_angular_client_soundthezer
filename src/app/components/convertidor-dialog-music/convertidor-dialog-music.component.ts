@@ -57,7 +57,7 @@ export class ConvertidorDialogMusicComponent {
         const downloadLink = document.createElement('a');
         downloadLink.href = URL.createObjectURL(blob);
 
-        const filename = url.substring(url.lastIndexOf('/') + 1) + '.mp3';
+        const filename = 'SoundTheserMusic.mp3';
         downloadLink.download = filename;
         downloadLink.click();
         URL.revokeObjectURL(downloadLink.href);

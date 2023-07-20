@@ -26,7 +26,16 @@
           <button class="dd" routerLink="/music">Música</button>
         </ul>
 
-        <p routerLink="" class="bl">Iniciar sesión</p>
+        <div *ngIf="usuario" class="login-menu">
+          <button (click)="toggleMenu()">
+            <i class="fas fa-user"></i>
+            <p>{{ usuario.name | uppercase }}</p>
+          </button>
+          <div class="menu" *ngIf="isMenuOpen">
+            <div class="menu-item">Mi perfil</div>
+            <div routerLink=" " class="menu-item">Cerrar sesión</div>
+          </div>
+        </div>
       </div>
     </div>
     <i (click)="toggleComponente()" class="btn fa-solid fa-house"></i>
@@ -37,7 +46,8 @@
         </div>
         <div>
           <p class="mr">Play List</p>
-          <h1>Sound Theser</h1>
+          <h1>{{ title}}</h1>
+          <h5>{{ subtitle}}</h5>
           <div class="row">
             <div class="borra">
               <i class="fa-brands fa-soundcloud"></i>
@@ -95,13 +105,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let music of listMusic">
+                <tr *ngFor="let music of listMusic" (click)="traerMusica(music.id)">
                   <td>{{ music.name | titlecase }}</td>
                   <td>{{ music.description | titlecase }}</td>
                   <td>{{ music.url }}</td>
                   <td>
                     <i
                       (click)="descargarAudioUsuario(music.id)"
+                      [ngClass]="{ 'disabled-icon':  des }"
                       class="fa-solid fa-download text-info"
                     ></i>
                   </td>

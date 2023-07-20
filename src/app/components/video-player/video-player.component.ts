@@ -24,15 +24,20 @@ export class VideoPlayerComponent implements OnInit {
   safeVideoUrl: SafeResourceUrl;
   progresoDescarga = 0;
   edit: boolean = false;
+  des: boolean = false;
   selectedVideoId: string;
 
   listVideo: dtoVideo[] = [];
+  searchTerm = '';
   listMusic: dtoMusic[] = [];
 
   addVideo: FormGroup;
   accion = 'Registrar';
   id: string;
   dtoVideo: dtoVideo | undefined;
+
+  title:string = "Sound Thezer";
+  subtitle:string = "";
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -59,7 +64,7 @@ export class VideoPlayerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.verVideo(this.defaultVideoUrl);
+    this.verVideo(this.defaultVideoUrl,0);
     this.getVideo();
     this.esEdit();
   }
@@ -163,11 +168,15 @@ export class VideoPlayerComponent implements OnInit {
   }
   //------------------------------------------------------------------------REPRODUCIR VIDEO
 
-  verVideo(url: string) {
+  verVideo(url: string, id:any) {
     const videoId = this.extraerVideoId(url);
     this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       `https://www.youtube.com/embed/${videoId}`
     );
+    this._videoService.getVideo(id).subscribe(data =>{
+      this.title = data.result.name;
+      this.subtitle = data.result.description;
+    })
   }
 
   extraerVideoId(url: string): string {
@@ -185,6 +194,7 @@ export class VideoPlayerComponent implements OnInit {
   //-----------------------------------------------------------------DESCARGAR VIDEO USUARIO
 
   descargarVideoUsuario(id: any) {
+    this.des= true;
     this.progresoDescarga = 10;
     setTimeout(() => {
       this.progresoDescarga = 50;
@@ -208,6 +218,7 @@ export class VideoPlayerComponent implements OnInit {
           link.click();
           window.URL.revokeObjectURL(url);
           this.progresoDescarga = 100;
+          this.des= false;
         },
         (error) => {
           this.toastr.error('No se pudo descargar tu video', 'Error!');
@@ -252,5 +263,12 @@ export class VideoPlayerComponent implements OnInit {
 
   toggleComponente() {
     this.mostrarComponente = !this.mostrarComponente;
+  }
+  //--------------------------------------------------------------BUSCAR VIDEO
+  get filteredListVideo(): any[] {
+    return this.listVideo.filter(video =>
+      video.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      video.description.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }

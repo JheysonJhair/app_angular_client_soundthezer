@@ -16,6 +16,16 @@
       <button routerLink="/music">Música</button>
     </ul>
 
-    <p routerLink="" class="bl">Iniciar sesión</p>
+    <div *ngIf="usuario" class="login-menu">
+      <button (click)="toggleMenu()">
+        <i class="fas fa-user"></i>
+        <p>{{ usuario.name | uppercase }}</p>
+      </button>
+      <div class="menu" *ngIf="isMenuOpen">
+        <div class="menu-item">Mi perfil</div>
+        <div routerLink=" " class="menu-item">Cerrar sesión</div>
+      </div>
+    </div>
+
   </div>
 </div>

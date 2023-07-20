@@ -10,10 +10,10 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class AsidetwoComponent {
   isButtonDisabled = false;
-  name: string;
+  usuario: any;
 
   constructor(public dialog: MatDialog, private _sharedService: SharedService) {
-    this.name = this._sharedService.getName(); // Obtiene el nombre del servicio compartido
+    this.usuario = this._sharedService.getUsuario();
   }
 
   openDialog(): void {

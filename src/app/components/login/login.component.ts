@@ -40,8 +40,13 @@ export class LoginComponent {
 
     this._loginService.getLogin(user.email,user.password).subscribe(
       (result) => {
-        const name = result.data.name;
-        this._sharedService.setName(name);
+        const Usuario = {
+          id: result.data.id,
+          name: result.data.name,
+          email:result.data.email,
+          state: true,
+        };
+        this._sharedService.setUsuario(Usuario);
         this.toastr.success('Acceso', 'Bienvenido!');
         this.router.navigate(['/video']);
       },

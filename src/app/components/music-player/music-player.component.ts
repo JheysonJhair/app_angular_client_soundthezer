@@ -7,6 +7,7 @@ import { MusicService } from 'src/app/services/music.service';
 import { HttpClient } from '@angular/common/http';
 
 import { VideoService } from 'src/app/services/video.service';
+import { SharedService } from 'src/app/services/shared.service';
 @Component({
   selector: 'app-music-player',
   templateUrl: './music-player.component.html',
@@ -17,14 +18,24 @@ export class MusicPlayerComponent implements OnInit {
   src: String;
   listMusic: dtoMusic[] = [];
 
+  des: boolean = false;
+
   selectedFile: File;
+
+  usuario: any;
+  isMenuOpen = false;
+
+  title:string = "Sound Thezer";
+  subtitle:string = "";
 
   addMusic: FormGroup;
   dtoMusic: dtoMusic | undefined;
 
   selectedVideoId: string;
+
   constructor(
     private fb: FormBuilder,
+    private _sharedService: SharedService,
     private http: HttpClient,
     private _videoService: VideoService,
     private _musicService: MusicService,
@@ -35,6 +46,7 @@ export class MusicPlayerComponent implements OnInit {
       description: ['', Validators.required],
       url: ['', [Validators.required]],
     });
+    this.usuario = this._sharedService.getUsuario();
   }
 
   ngOnInit(): void {
@@ -84,6 +96,7 @@ export class MusicPlayerComponent implements OnInit {
   }
   //-------------------------------------------------------------------------DESCARGAR MUSICA
   descargarAudioUsuario(id: any) {
+    this.des= true;
     console.log('Descargando..');
     this.http
       .get('http://localhost:3030/api/musics/downloadById/' + id, {
@@ -100,6 +113,7 @@ export class MusicPlayerComponent implements OnInit {
           link.click();
 
           window.URL.revokeObjectURL(url);
+          this.des= false;
         },
         (error) => {
           this.toastr.error('No se pudo descargar tu musica', 'Error!');
@@ -119,6 +133,13 @@ export class MusicPlayerComponent implements OnInit {
       }
     );
   }
+  traerMusica(id:any){
+    this._musicService.getMusic(id).subscribe(data =>{
+      this.title = data.result.name;
+      this.subtitle = data.result.description;
+    })
+  }
+
 
   //-------------------------------------------------------------------------REPRODUCIR MUSICA LOCAL
 
@@ -154,5 +175,10 @@ export class MusicPlayerComponent implements OnInit {
 
   toggleComponente() {
     this.mostrarComponente = !this.mostrarComponente;
+  }
+
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

@@ -4,13 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class SharedService {
-  private name: string = '';
+  private usuario: any;
 
-  setName(name: string) {
-    this.name = name;
+  setUsuario(usuario: any) {
+    this.usuario = usuario;
   }
 
-  getName(): string {
-    return this.name;
+  getUsuario() {
+    return this.usuario;
   }
 }

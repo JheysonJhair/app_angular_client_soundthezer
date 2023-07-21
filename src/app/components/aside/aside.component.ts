@@ -11,7 +11,7 @@ import { SharedService } from 'src/app/services/shared.service';
 export class AsideComponent {
   isButtonDisabled = false;
   usuario: any;
-
+  progresoDescarga = 0;
   constructor(public dialog: MatDialog, private _sharedService: SharedService) {
     this.usuario = this._sharedService.getUsuario();
   }
@@ -28,5 +28,4 @@ export class AsideComponent {
       console.log('Diálogo cerrado');
     });
   }
-  //------------------------------------------------BUSCAR
 }

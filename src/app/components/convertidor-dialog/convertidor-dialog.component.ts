@@ -2,11 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { VideoService } from 'src/app/services/video.service';
 import { ToastrService } from 'ngx-toastr';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-convertidor-dialog',
   templateUrl: './convertidor-dialog.component.html',
@@ -22,7 +18,13 @@ export class ConvertidorDialogComponent {
     public dialogRef: MatDialogRef<ConvertidorDialogComponent>
   ) {
     this.addVideo = this.fb.group({
-      url: ['', [Validators.required, Validators.pattern(/^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/)]],
+      url: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/),
+        ],
+      ],
     });
   }
   //--------------------------------------------------------------------ABRIR Y CERRAR DIALOG
@@ -39,7 +41,7 @@ export class ConvertidorDialogComponent {
   }
   //-------------------------------------------------------------------------DESCARGAR VIDEO
   descargarVideo(url: any) {
-    console.log('Descargando');
+    console.log('Descargando video...');
     this._videoService.descargarVideo(url).subscribe(
       () => {
         this.toastr.success('Descarga completada!', 'Enhorabuena!');

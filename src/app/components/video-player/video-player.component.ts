@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {
   FormBuilder,
   FormGroup,
@@ -26,6 +26,7 @@ export class VideoPlayerComponent implements OnInit {
   edit: boolean = false;
   des: boolean = false;
   selectedVideoId: string;
+  static idUsar: any;
 
   listVideo: dtoVideo[] = [];
   searchTerm = '';
@@ -34,10 +35,11 @@ export class VideoPlayerComponent implements OnInit {
   addVideo: FormGroup;
   accion = 'Registrar';
   id: string;
+  idUser: string;
   dtoVideo: dtoVideo | undefined;
 
-  title:string = "Sound Thezer";
-  subtitle:string = "";
+  title: string = 'Sound Thezer';
+  subtitle: string = '';
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -60,11 +62,12 @@ export class VideoPlayerComponent implements OnInit {
         ],
       ],
     });
-    this.id = this.aRoute.snapshot.paramMap.get('id')!;
+    this.idUser = this.aRoute.snapshot.paramMap.get('id')!;
+    this.id = this.aRoute.snapshot.paramMap.get('idvideo')!;
   }
 
   ngOnInit(): void {
-    this.verVideo(this.defaultVideoUrl,0);
+    this.verVideo(this.defaultVideoUrl, 0);
     this.getVideo();
     this.esEdit();
   }
@@ -99,8 +102,10 @@ export class VideoPlayerComponent implements OnInit {
     );
   }
   //--------------------------------------------------------------- ES EDIT? REGISTRAR - EDITAR
+  //--------------------------------------------------------------- ES EDIT? REGISTRAR - EDITAR
   esEdit() {
-    if (this.id !== null) {
+    console.log('ENTRAMOS');
+    if (this.id) {
       this.accion = 'Editar';
       this.edit = true;
       this._videoService.getVideo(this.id).subscribe(
@@ -119,6 +124,12 @@ export class VideoPlayerComponent implements OnInit {
         }
       );
     }
+  }
+  irAVideoPlayerUpdate(idvideo: any) {
+    this.router.navigate(['login', this.idUser, 'update', idvideo]);
+  }
+  actualizarPagina() {
+    this.router.navigate(['login', this.idUser, 'video']);
   }
   //---------------------------------------------------------------AGREGAR - EDITAR VIDEO
   addEditVideo() {
@@ -157,7 +168,7 @@ export class VideoPlayerComponent implements OnInit {
             'El video fue actualizado con éxito',
             'Video actualizado!'
           );
-          this.router.navigate(['/video']);
+          this.actualizarPagina();
         },
         (error) => {
           this.toastr.error('Oops, ocurrió un error', 'Error');
@@ -168,15 +179,15 @@ export class VideoPlayerComponent implements OnInit {
   }
   //------------------------------------------------------------------------REPRODUCIR VIDEO
 
-  verVideo(url: string, id:any) {
+  verVideo(url: string, id: any) {
     const videoId = this.extraerVideoId(url);
     this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       `https://www.youtube.com/embed/${videoId}`
     );
-    this._videoService.getVideo(id).subscribe(data =>{
+    this._videoService.getVideo(id).subscribe((data) => {
       this.title = data.result.name;
       this.subtitle = data.result.description;
-    })
+    });
   }
 
   extraerVideoId(url: string): string {
@@ -194,7 +205,7 @@ export class VideoPlayerComponent implements OnInit {
   //-----------------------------------------------------------------DESCARGAR VIDEO USUARIO
 
   descargarVideoUsuario(id: any) {
-    this.des= true;
+    this.des = true;
     this.progresoDescarga = 10;
     setTimeout(() => {
       this.progresoDescarga = 50;
@@ -203,7 +214,7 @@ export class VideoPlayerComponent implements OnInit {
       this.progresoDescarga = 70;
     }, 2000);
     this.http
-      .get('http://localhost:3030/api/videos/downloadById/' + id, {
+      .get('http://soundthezerb.ccontrolz.com/api/videos/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(
@@ -218,7 +229,7 @@ export class VideoPlayerComponent implements OnInit {
           link.click();
           window.URL.revokeObjectURL(url);
           this.progresoDescarga = 100;
-          this.des= false;
+          this.des = false;
         },
         (error) => {
           this.toastr.error('No se pudo descargar tu video', 'Error!');
@@ -229,7 +240,7 @@ export class VideoPlayerComponent implements OnInit {
   }
   //-----------------------------------------------------------------------AGREGAR PLAY LIST
   addPlayMusic(videoId: any | undefined) {
-    if (videoId) {
+    if (videoId !== null) {
       this.selectedVideoId = videoId;
     }
     // Traer video
@@ -266,9 +277,10 @@ export class VideoPlayerComponent implements OnInit {
   }
   //--------------------------------------------------------------BUSCAR VIDEO
   get filteredListVideo(): any[] {
-    return this.listVideo.filter(video =>
-      video.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      video.description.toLowerCase().includes(this.searchTerm.toLowerCase())
+    return this.listVideo.filter(
+      (video) =>
+        video.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        video.description.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 }

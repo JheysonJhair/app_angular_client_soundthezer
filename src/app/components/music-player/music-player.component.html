@@ -6,12 +6,8 @@
     <div class="contenedor">
       <div class="izquierda">
         <div class="l">
-          <img
-            src="../../../assets/Logo.png"
-            alt="10px"
-            width="130"
-            height="50"
-          />
+          <img src="../../../assets/ll.png" alt="10px" class="img-fluid" />
+          <span class="text">Sound <strong>Thezer</strong></span>
         </div>
         <div class="cr">
           <i class="fa-solid fa-angle-left"></i>
@@ -22,14 +18,14 @@
       </div>
       <div class="derecha">
         <ul>
-          <button class="dd" routerLink="/video">Video</button>
-          <button class="dd" routerLink="/music">Música</button>
+          <button [routerLink]="'/login/' + idUser + '/video/'">Video</button>
+          <button [routerLink]="'/login/' + idUser + '/music/'">Música</button>
         </ul>
 
-        <div *ngIf="usuario" class="login-menu">
+        <div *ngIf="usuario2 !== undefined" class="login-menu">
           <button (click)="toggleMenu()">
             <i class="fas fa-user"></i>
-            <p>{{ usuario.name | uppercase }}</p>
+            <p>{{ usuario2.name | uppercase }}</p>
           </button>
           <div class="menu" *ngIf="isMenuOpen">
             <div class="menu-item">Mi perfil</div>
@@ -46,14 +42,17 @@
         </div>
         <div>
           <p class="mr">Play List</p>
-          <h1>{{ title}}</h1>
-          <h5>{{ subtitle}}</h5>
+          <h1>{{ title }}</h1>
+          <h5>{{ subtitle }}</h5>
           <div class="row">
             <div class="borra">
               <i class="fa-brands fa-soundcloud"></i>
             </div>
             <div class="borra">
-              <p>Escucha con Sound Thezer, para ayudar a reducir la velocidad y relajarse.</p>
+              <p>
+                Escucha con Sound Thezer, para ayudar a reducir la velocidad y
+                relajarse.
+              </p>
             </div>
           </div>
         </div>
@@ -105,14 +104,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let music of listMusic" (click)="traerMusica(music.id)">
+                <tr
+                  *ngFor="let music of listMusic"
+                  (click)="traerMusica(music.id)"
+                >
                   <td>{{ music.name | titlecase }}</td>
                   <td>{{ music.description | titlecase }}</td>
                   <td>{{ music.url }}</td>
                   <td>
                     <i
                       (click)="descargarAudioUsuario(music.id)"
-                      [ngClass]="{ 'disabled-icon':  des }"
+                      [ngClass]="{ 'disabled-icon': des }"
                       class="fa-solid fa-download text-info"
                     ></i>
                   </td>

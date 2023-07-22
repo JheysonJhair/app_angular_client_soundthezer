@@ -1,19 +1,14 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/interfaces/User';
 import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-
   addUser: FormGroup;
   User: User | undefined;
 
@@ -24,7 +19,15 @@ export class RegisterComponent {
   ) {
     this.addUser = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+          ),
+        ],
+      ],
       password: ['', [Validators.required, Validators.pattern(/.{8,}/)]],
     });
   }
@@ -33,7 +36,7 @@ export class RegisterComponent {
     const user = {
       name: this.addUser?.get('name')?.value,
       email: this.addUser?.get('email')?.value,
-      password: this.addUser?.get('password')?.value
+      password: this.addUser?.get('password')?.value,
     };
 
     this._loginService.insertUser(user).subscribe(

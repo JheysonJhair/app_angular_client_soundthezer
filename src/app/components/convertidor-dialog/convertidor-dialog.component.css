@@ -78,7 +78,6 @@ button.disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-/* MENOR A 760px*/
+/* RESPONDIVE*/
 @media screen and (max-width: 1025px) {
-
 }

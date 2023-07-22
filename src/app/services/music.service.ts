@@ -36,7 +36,7 @@ export class MusicService {
     const musicData = { url };
 
     this.http
-      .post('http://localhost:3030/api/musics/download?url=',url, {
+      .post('http://soundthezerb.ccontrolz.com/api/musics/download?url=',url, {
         responseType: 'blob' as 'json',
       })
       .subscribe(
@@ -50,7 +50,7 @@ export class MusicService {
   }
 
   playMusicById(id: number): Observable<Blob> {
-    const url = `http://localhost:3030/api/musics/downloadById/${id}`;
+    const url = `http://soundthezerb.ccontrolz.com/api/musics/downloadById/${id}`;
     return this.http.get(url, { responseType: 'blob' });
   }
 }

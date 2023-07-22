@@ -59,7 +59,6 @@ a {
   margin-right: 5px;
 }
 /* content img*/
-
 .l {
   display: flex;
   align-items: center;
@@ -67,17 +66,16 @@ a {
   width: 200px; /* Puedes ajustar el ancho del div según tus necesidades */
   height: 60px; /* Puedes ajustar la altura del div según tus necesidades */
 }
-
 .img-fluid {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
+  padding-right: 8px;
 }
-
 .text {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
 }
 
 .text strong {
@@ -101,7 +99,7 @@ button:hover {
   cursor: pointer;
 }
 
-/*---------------------*/
+/* MENU*/
 .login-menu {
   position: relative;
 }
@@ -128,6 +126,7 @@ button:hover {
 .menu-item:hover {
   background-color: #f5f5f5;
 }
+/* RESPONSIVE */
 @media screen and (max-width: 1025px) {
   .cr {
     display: none;

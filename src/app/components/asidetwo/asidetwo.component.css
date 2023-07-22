@@ -169,6 +169,7 @@ p {
   font-weight: 600;
   cursor: pointer;
 }
+/* RESPONSIVE */
 @media screen and (max-width: 1025px) {
   .cnt {
     height: 100%;

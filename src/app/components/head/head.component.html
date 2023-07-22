@@ -1,7 +1,7 @@
 <div class="contenedor">
   <div class="izquierda">
     <div class="l">
-      <img src="../../../assets/cc.png" alt="10px" class="img-fluid" />
+      <img src="../../../assets/ll.png" alt="10px" class="img-fluid" />
       <span class="text">Sound <strong>Thezer</strong></span>
     </div>
     <div class="cr">
@@ -13,11 +13,11 @@
   </div>
   <div class="derecha">
     <ul>
-      <button routerLink="/video">Video</button>
-      <button routerLink="/music">Música</button>
+      <button [routerLink]="'/login/' + idUser + '/video/'">Video</button>
+      <button [routerLink]="'/login/' + idUser + '/music/'">Música</button>
     </ul>
 
-    <div *ngIf="usuario" class="login-menu">
+    <div *ngIf="usuario !== undefined" class="login-menu">
       <button (click)="toggleMenu()">
         <i class="fas fa-user"></i>
         <p>{{ usuario.name | uppercase }}</p>
@@ -27,6 +27,5 @@
         <div routerLink=" " class="menu-item">Cerrar sesión</div>
       </div>
     </div>
-
   </div>
 </div>

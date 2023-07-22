@@ -39,7 +39,7 @@ export class VideoService {
     };
 
     return this.http
-      .post<Blob>('http://localhost:3030/api/videos/download', body, httpOptions)
+      .post<Blob>('http://soundthezerb.ccontrolz.com/api/videos/download', body, httpOptions)
       .pipe(
         map((blob: Blob) => {
           this.guardarArchivo(blob);

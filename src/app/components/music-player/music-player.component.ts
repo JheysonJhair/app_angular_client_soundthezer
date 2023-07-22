@@ -7,7 +7,10 @@ import { MusicService } from 'src/app/services/music.service';
 import { HttpClient } from '@angular/common/http';
 
 import { VideoService } from 'src/app/services/video.service';
-import { SharedService } from 'src/app/services/shared.service';
+
+import { LoginService } from 'src/app/services/login.service';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/interfaces/User';
 @Component({
   selector: 'app-music-player',
   templateUrl: './music-player.component.html',
@@ -18,15 +21,19 @@ export class MusicPlayerComponent implements OnInit {
   src: String;
   listMusic: dtoMusic[] = [];
 
+  mostrarComponente = true;
   des: boolean = false;
 
   selectedFile: File;
-
+  usuario2: User;
   usuario: any;
   isMenuOpen = false;
 
-  title:string = "Sound Thezer";
-  subtitle:string = "";
+  title: string = 'Sound Thezer';
+  subtitle: string = '';
+
+  idUser: any;
+  id: any;
 
   addMusic: FormGroup;
   dtoMusic: dtoMusic | undefined;
@@ -34,8 +41,9 @@ export class MusicPlayerComponent implements OnInit {
   selectedVideoId: string;
 
   constructor(
+    private aRoute: ActivatedRoute,
+    private _loginService: LoginService,
     private fb: FormBuilder,
-    private _sharedService: SharedService,
     private http: HttpClient,
     private _videoService: VideoService,
     private _musicService: MusicService,
@@ -46,11 +54,18 @@ export class MusicPlayerComponent implements OnInit {
       description: ['', Validators.required],
       url: ['', [Validators.required]],
     });
-    this.usuario = this._sharedService.getUsuario();
+    this.idUser = this.aRoute.snapshot.paramMap.get('id')!;
+    this.id = this.aRoute.snapshot.paramMap.get('idVideo')!;
   }
 
   ngOnInit(): void {
     this.getMusic();
+    this.getUser();
+  }
+  getUser() {
+    this._loginService.getUser(this.idUser).subscribe((data) => {
+      this.usuario2 = data.result;
+    });
   }
   //-------------------------------------------------------------------------LISTAR MUSICA
   getMusic() {
@@ -96,10 +111,10 @@ export class MusicPlayerComponent implements OnInit {
   }
   //-------------------------------------------------------------------------DESCARGAR MUSICA
   descargarAudioUsuario(id: any) {
-    this.des= true;
+    this.des = true;
     console.log('Descargando..');
     this.http
-      .get('http://localhost:3030/api/musics/downloadById/' + id, {
+      .get('http://soundthezerb.ccontrolz.com/api/musics/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(
@@ -113,7 +128,7 @@ export class MusicPlayerComponent implements OnInit {
           link.click();
 
           window.URL.revokeObjectURL(url);
-          this.des= false;
+          this.des = false;
         },
         (error) => {
           this.toastr.error('No se pudo descargar tu musica', 'Error!');
@@ -133,13 +148,12 @@ export class MusicPlayerComponent implements OnInit {
       }
     );
   }
-  traerMusica(id:any){
-    this._musicService.getMusic(id).subscribe(data =>{
+  traerMusica(id: any) {
+    this._musicService.getMusic(id).subscribe((data) => {
       this.title = data.result.name;
       this.subtitle = data.result.description;
-    })
+    });
   }
-
 
   //-------------------------------------------------------------------------REPRODUCIR MUSICA LOCAL
 
@@ -171,12 +185,10 @@ export class MusicPlayerComponent implements OnInit {
     audioElement.pause();
     audioElement.currentTime = 0;
   }
-  mostrarComponente = true;
-
+  //--------------------------------------------------------------------------MENU
   toggleComponente() {
     this.mostrarComponente = !this.mostrarComponente;
   }
-
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

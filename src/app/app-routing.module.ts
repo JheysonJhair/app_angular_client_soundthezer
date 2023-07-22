@@ -6,17 +6,22 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  { path: '' , component: LoginComponent},
-  { path: 'register' , component: RegisterComponent},
-  { path: 'video' , component: VideoPlayerComponent},
-  { path: 'update/:id', component: VideoPlayerComponent},
-  { path: 'update', component: VideoPlayerComponent},
-  { path: 'music' , component: MusicPlayerComponent},
+  // Rutas para el usuario
+  { path: '', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+
+  // Rutas para Video
+  { path: 'login/:id/video', component: VideoPlayerComponent },
+  { path: 'login/:id/update/:idvideo', component: VideoPlayerComponent },
+
+
+  // Rutas para Musica
+  { path: 'login/:id/music', component: MusicPlayerComponent },
   { path: '**', redirectTo: '/', pathMatch:'full'}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,32 +1,47 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConvertidorDialogMusicComponent } from '../convertidor-dialog-music/convertidor-dialog-music.component';
-import { SharedService } from 'src/app/services/shared.service';
+import { User } from 'src/app/interfaces/User';
+import { LoginService } from 'src/app/services/login.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-asidetwo',
   templateUrl: './asidetwo.component.html',
-  styleUrls: ['./asidetwo.component.css']
+  styleUrls: ['./asidetwo.component.css'],
 })
 export class AsidetwoComponent {
   isButtonDisabled = false;
-  usuario: any;
+  idUser: any;
+  id: any;
 
-  constructor(public dialog: MatDialog, private _sharedService: SharedService) {
-    this.usuario = this._sharedService.getUsuario();
+  usuario: User;
+  progresoDescarga = 0;
+  constructor(
+    private _loginService: LoginService,
+    public dialog: MatDialog,
+    private aRoute: ActivatedRoute
+  ) {
+    this.idUser = this.aRoute.snapshot.paramMap.get('id')!;
+    this.id = this.aRoute.snapshot.paramMap.get('idVideo')!;
+  }
+  ngOnInit(): void {
+    this.getUser();
+  }
+  getUser() {
+    this._loginService.getUser(this.idUser).subscribe((data) => {
+      this.usuario = data.result;
+    });
   }
 
   openDialog(): void {
     this.isButtonDisabled = true;
     const dialogRef = this.dialog.open(ConvertidorDialogMusicComponent, {
       width: '400px',
-      panelClass: 'dialog-center'
-
+      panelClass: 'dialog-center',
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.isButtonDisabled = false;
-      console.log('Diálogo cerrado');
     });
   }
-
 }

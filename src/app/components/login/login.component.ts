@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/User';
 import { LoginService } from 'src/app/services/login.service';
-import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -20,14 +15,21 @@ export class LoginComponent {
   User: User | undefined;
 
   constructor(
-    private _sharedService: SharedService,
     private fb: FormBuilder,
     private _loginService: LoginService,
     private router: Router,
     private toastr: ToastrService
   ) {
     this.accesUser = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+          ),
+        ],
+      ],
       password: ['', [Validators.required, Validators.pattern(/.{8,}/)]],
     });
   }
@@ -38,17 +40,16 @@ export class LoginComponent {
       password: this.accesUser?.get('password')?.value,
     };
 
-    this._loginService.getLogin(user.email,user.password).subscribe(
+    this._loginService.getLogin(user.email, user.password).subscribe(
       (result) => {
         const Usuario = {
           id: result.data.id,
           name: result.data.name,
-          email:result.data.email,
+          email: result.data.email,
           state: true,
         };
-        this._sharedService.setUsuario(Usuario);
         this.toastr.success('Acceso', 'Bienvenido!');
-        this.router.navigate(['/video']);
+        this.router.navigate(['/login/' + Usuario.id + '/video']);
       },
       (error) => {
         this.toastr.error('Registrate ya!', 'No tienes cuenta');
@@ -57,16 +58,15 @@ export class LoginComponent {
     );
   }
   //-----------------------------------------------------------------------ACCESO GOOGLE
-  accesUserGoogle(){
+  accesUserGoogle() {
     this._loginService.insertLoginGoogle().subscribe(
       (data) => {
-        if(data.result == 'ok'){
+        if (data.result == 'ok') {
           this.toastr.success('Acceso', 'Bienvenido!');
           this.router.navigate(['/video']);
-        }else{
+        } else {
           this.toastr.error('Oppss, algo salio mal!', 'Error');
         }
-
       },
       (error) => {
         this.toastr.error('Registrate ya!', 'No tienes cuenta');
@@ -75,16 +75,15 @@ export class LoginComponent {
     );
   }
   //-----------------------------------------------------------------------ACCESO FACEBOOK
-  accesUserFacebook(){
+  accesUserFacebook() {
     this._loginService.insertLoginGoogle().subscribe(
       (data) => {
-        if(data.result == 'ok'){
+        if (data.result == 'ok') {
           this.toastr.success('Acceso', 'Bienvenido!');
           this.router.navigate(['/video']);
-        }else{
+        } else {
           this.toastr.error('Oppss, algo salio mal!', 'Error');
         }
-
       },
       (error) => {
         this.toastr.error('Registrate ya!', 'No tienes cuenta');

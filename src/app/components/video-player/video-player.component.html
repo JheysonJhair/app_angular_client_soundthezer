@@ -1,5 +1,5 @@
 <div class="container">
-  <div  *ngIf="mostrarComponente">
+  <div *ngIf="mostrarComponente">
     <app-aside></app-aside>
   </div>
   <div class="cv">
@@ -14,35 +14,38 @@
           />
         </div>
         <div>
-          <h1>{{ title}}</h1>
-          <h5>{{ subtitle}}</h5>
+          <h1>{{ title }}</h1>
+          <h5>{{ subtitle }}</h5>
           <div class="row">
             <div>
               <i class="fa-brands fa-soundcloud"></i>
             </div>
             <div class="ppp">
-              <p>Escucha con Sound Thezer, para ayudar a reducir la velocidad y relajarse.</p>
+              <p>
+                Escucha con Sound Thezer, para ayudar a reducir la velocidad y
+                relajarse.
+              </p>
             </div>
           </div>
         </div>
         <mat-progress-bar
-        *ngIf="progresoDescarga > 0 && progresoDescarga < 100"
-        mode="determinate"
-        [value]="progresoDescarga"
-      ></mat-progress-bar>
+          *ngIf="progresoDescarga > 0 && progresoDescarga < 100"
+          mode="determinate"
+          [value]="progresoDescarga"
+        ></mat-progress-bar>
       </div>
       <div class="contenedor">
         <div class="video-player-wrapper">
           <iframe
-          id="videoIframe"
-          width="550"
-          height="300"
-          [src]="safeVideoUrl"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        >
-        </iframe>
+            id="videoIframe"
+            width="550"
+            height="300"
+            [src]="safeVideoUrl"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          >
+          </iframe>
         </div>
       </div>
     </div>
@@ -95,8 +98,8 @@
           </button>
           <div *ngIf="edit == true">
             <button
+              (click)="actualizarPagina()"
               class="cance"
-              [routerLink]="['/video']"
               type="button"
               type="submit"
             >
@@ -112,7 +115,7 @@
         <div class="card-body">
           <h3 class="h">Listado de Reproduccion</h3>
           <div class="cn">
-            <table *ngIf="listVideo.length > 0"  class="table table-hover mt-3">
+            <table *ngIf="listVideo.length > 0" class="table table-hover mt-3">
               <thead>
                 <tr>
                   <th class="bol">Música</th>
@@ -125,7 +128,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let video of listVideo" (click)="verVideo(video.url, video.id)">
+                <tr
+                  *ngFor="let video of listVideo"
+                  (click)="verVideo(video.url, video.id)"
+                >
                   <td>{{ video.name | titlecase }}</td>
                   <td>{{ video.description | titlecase }}</td>
                   <td>{{ video.url }}</td>
@@ -145,7 +151,7 @@
                   </td>
                   <td>
                     <i
-                      [routerLink]="['/update', video.id]"
+                      (click)="irAVideoPlayerUpdate(video.id)"
                       class="far fa-solid fa-pen-to-square text-info"
                       [ngClass]="{ 'disabled-icon': edit }"
                     >

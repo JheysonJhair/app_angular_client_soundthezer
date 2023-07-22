@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class LoginService {
   private myAppUrl = 'http://localhost:3030/';
   private myUrlGet = 'api/users/getall/';
+  private myUrlGetUser = 'api/users/getbyid/';
   private myApiInsert = 'api/users/insert/';
   private myUrlGoogle = 'api/users/google';
   private myUrlLoginMail = 'api/users/login?email=';
@@ -16,6 +17,9 @@ export class LoginService {
 
   getListUser(): Observable<any> {
     return this.http.get<any>(this.myAppUrl + this.myUrlGet);
+  }
+  getUser(id: any): Observable<any>{
+    return this.http.get(this.myAppUrl + this.myUrlGetUser + id);
   }
   getLogin(mail: any, pass: any): Observable<any>{
     return this.http.get(this.myAppUrl + this.myUrlLoginMail + mail + this.myUrlLoginPass + pass);

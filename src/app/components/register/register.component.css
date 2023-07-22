@@ -29,9 +29,9 @@
 
 .text {
   color: #ffffff;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
 }
 
 .text strong {
@@ -175,7 +175,7 @@ button.disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-/* MENOR A 500PX*/
+/* RESPONSIVE */
 @media screen and (max-width: 1025px) {
   img {
     content: url("../../../assets/Logoblack.png");

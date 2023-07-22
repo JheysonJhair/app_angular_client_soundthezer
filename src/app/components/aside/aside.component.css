@@ -200,6 +200,7 @@ p {
 .ps {
   color: #ccc;
 }
+/* RESPONSIVE*/
 @media screen and (max-width: 1025px) {
   .cnt {
     height: 100%;

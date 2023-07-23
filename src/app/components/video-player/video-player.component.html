@@ -92,7 +92,7 @@
             Invalido
           </span>
         </div>
-        <div>
+        <div class="u">
           <button type="submit" [disabled]="addVideo.invalid" type="submit">
             Aceptar
           </button>
@@ -115,7 +115,7 @@
         <div class="card-body">
           <h3 class="h">Listado de Reproduccion</h3>
           <div class="cn">
-            <table *ngIf="listVideo.length > 0" class="table table-hover mt-3">
+            <table *ngIf="listVideo.length > 0" class="table table-hover mt-3 responsive-table">
               <thead>
                 <tr>
                   <th class="bol">Música</th>

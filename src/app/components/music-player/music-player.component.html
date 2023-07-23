@@ -66,7 +66,6 @@
           <source [src]="src" type="audio/mp3" />
           Tu navegador no admite la reproducción de audio.
         </audio>
-        <!--<input type="file" (change)="onFileSelected($event)" accept="audio/*" />-->
         <label
           style="
             padding-left: 5px;
@@ -93,7 +92,7 @@
         <div class="card-body">
           <h3 class="h">Listado de músicas a descargar</h3>
           <div class="cn">
-            <table *ngIf="listMusic.length > 0" class="table table-hover mt-3">
+            <table *ngIf="listMusic.length > 0" class="table table-hover mt-3 responsive-table">
               <thead>
                 <tr>
                   <th class="bol">Artista</th>

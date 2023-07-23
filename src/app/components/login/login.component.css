@@ -65,7 +65,7 @@ body {
 /* Title */
 h1 {
   color: #fff;
-  font-size: 40px;
+  font-size: 33px;
   font-weight: 600;
 }
 /* Input - label*/
@@ -217,6 +217,7 @@ button.disabled {
     position: absolute;
     width: 100%;
     padding: 0px;
+    padding-bottom: 75px;
   }
   h1 {
     font-size: 30px;

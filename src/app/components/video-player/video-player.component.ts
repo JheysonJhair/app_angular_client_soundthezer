@@ -102,9 +102,7 @@ export class VideoPlayerComponent implements OnInit {
     );
   }
   //--------------------------------------------------------------- ES EDIT? REGISTRAR - EDITAR
-  //--------------------------------------------------------------- ES EDIT? REGISTRAR - EDITAR
   esEdit() {
-    console.log('ENTRAMOS');
     if (this.id) {
       this.accion = 'Editar';
       this.edit = true;

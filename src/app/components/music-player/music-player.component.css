@@ -317,6 +317,9 @@ h5 {
 .menu-item:hover {
   background-color: #f5f5f5;
 }
+table.responsive-table {
+  width: 100%;
+}
 /* RESPONSIVE */
 @media screen and (max-width: 1025px) {
   .btn {
@@ -350,6 +353,9 @@ h5 {
   .borra i {
     display: none;
   }
+  .l{
+    width: 100px;
+  }
   .lista {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -372,5 +378,9 @@ h5 {
   .contenedor {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+  }
+  table.responsive-table th:nth-child(3),
+  table.responsive-table td:nth-child(3) {
+    display: none;
   }
 }

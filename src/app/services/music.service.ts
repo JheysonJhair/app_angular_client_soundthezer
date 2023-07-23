@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MusicService {
-  private myAppUrl = 'http://localhost:3030/';
+  private myAppUrl = 'https://soundthezerb.ccontrolz.com/';
   private myUrlGet = 'api/musics/getall/';
   private myApiInsert = 'api/musics/insert/';
   private myUrlDelete = 'api/musics/delete/';
@@ -36,7 +35,7 @@ export class MusicService {
     const musicData = { url };
 
     this.http
-      .post('http://soundthezerb.ccontrolz.com/api/musics/download?url=',url, {
+      .post(this.myAppUrl+'api/musics/download?url=',url, {
         responseType: 'blob' as 'json',
       })
       .subscribe(
@@ -50,7 +49,7 @@ export class MusicService {
   }
 
   playMusicById(id: number): Observable<Blob> {
-    const url = `http://soundthezerb.ccontrolz.com/api/musics/downloadById/${id}`;
+    const url = this.myAppUrl+`api/musics/downloadById/${id}`;
     return this.http.get(url, { responseType: 'blob' });
   }
 }

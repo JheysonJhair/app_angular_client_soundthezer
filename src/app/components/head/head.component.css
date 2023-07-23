@@ -66,6 +66,7 @@ a {
   width: 200px; /* Puedes ajustar el ancho del div según tus necesidades */
   height: 60px; /* Puedes ajustar la altura del div según tus necesidades */
 }
+
 .img-fluid {
   width: 45px;
   height: 45px;
@@ -122,7 +123,6 @@ button:hover {
   width: 110px;
   cursor: pointer;
 }
-
 .menu-item:hover {
   background-color: #f5f5f5;
 }
@@ -133,6 +133,9 @@ button:hover {
   }
   ul {
     padding: 0;
+  }
+  .l{
+    width: 100px;
   }
   .bl {
     padding: 2px;

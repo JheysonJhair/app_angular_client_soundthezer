@@ -177,11 +177,12 @@ button.disabled {
 }
 /* RESPONSIVE */
 @media screen and (max-width: 1025px) {
-  img {
-    content: url("../../../assets/Logoblack.png");
-  }
+
   .header {
     background-color: #ffffff;
+  }
+  .text{
+    color: #000000;
   }
   body {
     display: inline;

@@ -1,0 +1,69 @@
+<div class="container">
+  <div *ngIf="mostrarComponente">
+    <app-aside></app-aside>
+  </div>
+  <div class="cv">
+    <app-head></app-head>
+    <i (click)="toggleComponente()" class="btn fa-solid fa-house"></i>
+    <div class="grid-container">
+      <h2>Tus músicas favoritas aquí</h2>
+      <div class="grid-row">
+        <div class="grid-item">
+          <img src="../../../assets/img/font/6.png" alt="" />
+          <h3>Bachata</h3>
+          <p>Música bailable</p>
+        </div>
+        <div class="grid-item">
+          <img src="../../../assets/img/font/7.png" alt="" />
+          <h3>Techno</h3>
+          <p>Musica urbana</p>
+        </div>
+        <div class="grid-item">
+          <img src="../../../assets/img/font/8.png" alt="" />
+          <h3>Regueton</h3>
+          <p>Musica urbana</p>
+        </div>
+        <div class="grid-item">
+          <img src="../../../assets/img/font/9.png" alt="" />
+          <h3>Cumbia</h3>
+          <p>Música tradicional</p>
+        </div>
+        <div class="grid-item">
+          <img src="../../../assets/img/font/10.png" alt="" />
+          <h3>Salsa</h3>
+          <p>Musica bailable</p>
+        </div>
+      </div>
+      <h2>Listas destacadas</h2>
+      <div class="grid-row">
+        <div class="grid-row">
+          <div class="grid-item">
+            <img src="../../../assets/img/font/1.png" alt="" />
+            <h3>Mambo</h3>
+            <p>Musica urbana</p>
+          </div>
+          <div class="grid-item">
+            <img src="../../../assets/img/font/2.png" alt="" />
+            <h3>Rock</h3>
+            <p>Musica popular</p>
+          </div>
+          <div class="grid-item">
+            <img src="../../../assets/img/font/3.png" alt="" />
+            <h3>Pop</h3>
+            <p>Música popular</p>
+          </div>
+          <div class="grid-item">
+            <img src="../../../assets/img/font/4.png" alt="" />
+            <h3>Jazz</h3>
+            <p>Afro Norteamericanos</p>
+          </div>
+          <div class="grid-item">
+            <img src="../../../assets/img/font/5.png" alt="" />
+            <h3>Blues</h3>
+            <p>Música tradicional</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

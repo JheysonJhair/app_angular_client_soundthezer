@@ -75,6 +75,12 @@ p {
   color: #fff;
   font-weight: 100;
 }
+.bt-fav{
+
+  all: unset;
+  font-size: 11px;
+  padding: 8px;
+}
 /* boton 1*/
 .bn {
   background-color: #fff;

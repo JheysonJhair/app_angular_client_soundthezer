@@ -26,6 +26,7 @@ import { AsidetwoComponent } from './components/asidetwo/asidetwo.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ConvertidorDialogComponent } from './components/convertidor-dialog/convertidor-dialog.component';
 import { ConvertidorDialogMusicComponent } from './components/convertidor-dialog-music/convertidor-dialog-music.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { ConvertidorDialogMusicComponent } from './components/convertidor-dialog
     AsidetwoComponent,
     RegisterComponent,
     ConvertidorDialogComponent,
-    ConvertidorDialogMusicComponent
+    ConvertidorDialogMusicComponent,
+    FavoritesComponent
   ],
   imports: [
     MatProgressBarModule,

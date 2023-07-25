@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MusicService {
-  private myAppUrl = 'https://soundthezerb.ccontrolz.com/';
+  private myAppUrl = 'http://localhost:3030/';
   private myUrlGet = 'api/musics/getall/';
   private myApiInsert = 'api/musics/insert/';
   private myUrlDelete = 'api/musics/delete/';

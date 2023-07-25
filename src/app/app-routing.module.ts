@@ -4,6 +4,7 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
 import { MusicPlayerComponent } from './components/music-player/music-player.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 const routes: Routes = [
   // Rutas para el usuario
@@ -17,6 +18,10 @@ const routes: Routes = [
 
   // Rutas para Musica
   { path: 'login/:id/music', component: MusicPlayerComponent },
+
+
+  // Rutas para favoritos
+  { path: 'login/:id/favorites', component: FavoritesComponent },
   { path: '**', redirectTo: '/', pathMatch:'full'}
 ];
 

@@ -212,7 +212,7 @@ export class VideoPlayerComponent implements OnInit {
       this.progresoDescarga = 70;
     }, 2000);
     this.http
-      .get('http://soundthezerb.ccontrolz.com/api/videos/downloadById/' + id, {
+      .get('http://localhost:3030/api/videos/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(

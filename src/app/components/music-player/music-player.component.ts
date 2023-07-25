@@ -114,7 +114,7 @@ export class MusicPlayerComponent implements OnInit {
     this.des = true;
     console.log('Descargando..');
     this.http
-      .get('http://soundthezerb.ccontrolz.com/api/musics/downloadById/' + id, {
+      .get('http://localhost:3030/api/musics/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private myAppUrl = 'https://soundthezerb.ccontrolz.com/';
+  private myAppUrl = 'http://localhost:3030/';
   private myUrlGet = 'api/users/getall/';
   private myUrlGetUser = 'api/users/getbyid/';
   private myApiInsert = 'api/users/insert/';

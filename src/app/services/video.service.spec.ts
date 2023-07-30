@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { VideoService } from './video.service';
 
 describe('VideoService', () => {

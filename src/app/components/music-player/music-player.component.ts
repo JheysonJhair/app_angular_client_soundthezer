@@ -62,12 +62,17 @@ export class MusicPlayerComponent implements OnInit {
     this.getMusic();
     this.getUser();
   }
+
+  //-------------------------------------------------------------------------TRAER USUARIO
+
   getUser() {
     this._loginService.getUser(this.idUser).subscribe((data) => {
       this.usuario2 = data.result;
     });
   }
+
   //-------------------------------------------------------------------------LISTAR MUSICA
+
   getMusic() {
     this._musicService.getListMusic().subscribe(
       (data) => {
@@ -79,12 +84,13 @@ export class MusicPlayerComponent implements OnInit {
       }
     );
   }
+
   //-------------------------------------------------------------------------ELIMINAR MUSICA
+
   deleteMusic(videoId: any | undefined) {
     if (videoId) {
       this.selectedVideoId = videoId;
     }
-    // Traer video
     this._videoService.getVideo(this.selectedVideoId).subscribe((data) => {
       this.listMusic = data.result;
       const videoJSON = {
@@ -109,7 +115,9 @@ export class MusicPlayerComponent implements OnInit {
       }
     );
   }
+
   //-------------------------------------------------------------------------DESCARGAR MUSICA
+
   descargarAudioUsuario(id: any) {
     this.des = true;
     console.log('Descargando..');
@@ -136,8 +144,8 @@ export class MusicPlayerComponent implements OnInit {
       );
   }
   //------------------------------------------------------------------------------REPRODUCIR MUSICA
+
   playMusic(id: any): void {
-    console.log('Traendo música');
     this._musicService.playMusicById(id).subscribe(
       (blob: Blob) => {
         this.visible = false;
@@ -185,7 +193,9 @@ export class MusicPlayerComponent implements OnInit {
     audioElement.pause();
     audioElement.currentTime = 0;
   }
+
   //--------------------------------------------------------------------------MENU
+
   toggleComponente() {
     this.mostrarComponente = !this.mostrarComponente;
   }

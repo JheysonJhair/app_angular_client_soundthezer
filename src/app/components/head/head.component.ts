@@ -24,6 +24,7 @@ export class HeadComponent {
   ngOnInit(): void {
     this.getUser();
   }
+  //-------------------------------------------------------------------- TRAER USUARIO
   getUser() {
     this._loginService.getUser(this.idUser).subscribe((data) => {
       this.usuario = data.result;

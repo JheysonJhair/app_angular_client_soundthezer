@@ -9,7 +9,7 @@
 /* contenedor realative*/
 .cv {
   position: relative;
-  background-color: #171717;;
+  background-color: #171717;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
@@ -33,17 +33,20 @@
   background-color: #282828;
   flex: 1;
   display: flex;
-
-
   color: white;
   font-size: 20px;
   border-radius: 7px;
   flex-direction: column;
   padding: 15px;
+  transition: transform 0.3s;
 }
 
+.grid-item:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  background-color: #464444a2;
+}
 h2 {
-
   padding: 10px;
   font-size: 21px;
   font-weight: 600;
@@ -52,10 +55,11 @@ h2 {
 .grid-item img {
   justify-content: center;
   width: 100%;
-  max-width: 100%; /* Ajusta el ancho máximo de la imagen para evitar que sea demasiado grande */
+  max-width: 100%;
 }
 
-.grid-item h3, .grid-item p {
+.grid-item h3,
+.grid-item p {
   margin: 10px 0;
 }
 
@@ -77,6 +81,7 @@ h2 {
 
   display: none;
 }
+/* RESPONSIVE */
 @media screen and (max-width: 1025px) {
   .container {
     position: relative;
@@ -84,7 +89,7 @@ h2 {
     grid-template-columns: 1fr 1fr;
     width: 100%;
   }
-  .cv{
+  .cv {
     padding: 20px;
   }
   .grid-container {
@@ -100,7 +105,7 @@ h2 {
     display: block;
     flex-direction: column;
     flex: 1;
-    gap:  0px; /* Separación pequeña entre los divs */
+    gap: 0px; /* Separación pequeña entre los divs */
   }
   .grid-item {
     margin-bottom: 10px;
@@ -109,4 +114,3 @@ h2 {
     display: block;
   }
 }
-

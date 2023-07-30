@@ -14,6 +14,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { MusicService } from 'src/app/services/music.service';
 import { dtoMusic } from 'src/app/interfaces/Music';
+import { favoritesService } from 'src/app/services/favorites.service';
 @Component({
   selector: 'app-video-player',
   templateUrl: './video-player.component.html',
@@ -27,10 +28,13 @@ export class VideoPlayerComponent implements OnInit {
   des: boolean = false;
   selectedVideoId: string;
   static idUsar: any;
-
+  captura: any;
   listVideo: dtoVideo[] = [];
   searchTerm = '';
   listMusic: dtoMusic[] = [];
+
+  showList = false;
+  tipo: string = '';
 
   addVideo: FormGroup;
   accion = 'Registrar';
@@ -40,6 +44,16 @@ export class VideoPlayerComponent implements OnInit {
 
   title: string = 'Sound Thezer';
   subtitle: string = '';
+  imageNames: string[] = [
+    'img0.jpg',
+    'img1.png',
+    'img2.png',
+    'img3.png',
+    'img4.png',
+    'img5.png'
+  ];
+
+  imageUrl: string = '../../../assets/img/img0.jpg';
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -48,6 +62,7 @@ export class VideoPlayerComponent implements OnInit {
     private router: Router,
     private _videoService: VideoService,
     private _musicService: MusicService,
+    private _favoriteService: favoritesService,
     private aRoute: ActivatedRoute,
     private toastr: ToastrService
   ) {
@@ -70,6 +85,36 @@ export class VideoPlayerComponent implements OnInit {
     this.verVideo(this.defaultVideoUrl, 0);
     this.getVideo();
     this.esEdit();
+  }
+  //-----------------------------------------------------------------------------------
+  capturarfavorites(index: number) {
+    this.listVideo[index].showList = !this.listVideo[index].showList;
+  }
+  agregarFavorito(name:string, id:any) {
+    if (name) {
+      const videoFavorito = {
+        name: name,
+        type: 1,
+        idUser: this.idUser,
+        idVideo: id,
+      };
+
+      this._favoriteService.insertFavorite(videoFavorito).subscribe(
+        (data) => {
+          this.getVideo();
+          this.toastr.success(
+            'Agregado a favoritos',
+            'Completado!'
+          );
+          this.addVideo.reset();
+        },
+        (error) => {
+          this.toastr.error('No se puedo agregar', 'Error');
+          console.log(error);
+        }
+      );
+    }
+    this.showList = false;
   }
   //------------------------------------------------------------------------LISTAR VIDEO
   getVideo() {
@@ -175,6 +220,7 @@ export class VideoPlayerComponent implements OnInit {
       );
     }
   }
+
   //------------------------------------------------------------------------REPRODUCIR VIDEO
 
   verVideo(url: string, id: any) {
@@ -185,7 +231,12 @@ export class VideoPlayerComponent implements OnInit {
     this._videoService.getVideo(id).subscribe((data) => {
       this.title = data.result.name;
       this.subtitle = data.result.description;
+
+      const randomIndex = Math.floor(Math.random() * this.imageNames.length);
+      const randomImageName = this.imageNames[randomIndex];
+      this.imageUrl = `../../../assets/img/${randomImageName}`;
     });
+
   }
 
   extraerVideoId(url: string): string {
@@ -194,12 +245,14 @@ export class VideoPlayerComponent implements OnInit {
   }
 
   //------------------------------------------------------------------VALIDACIONES URL VIDEO
+
   validateYouTubeUrl(control: AbstractControl): { [key: string]: any } | null {
     const urlPattern = /^https:\/\/youtu\.be\/[a-zA-Z0-9_-]{11}$/;
     const validUrl = urlPattern.test(control.value);
 
     return validUrl ? null : { invalidUrl: true };
   }
+
   //-----------------------------------------------------------------DESCARGAR VIDEO USUARIO
 
   descargarVideoUsuario(id: any) {
@@ -236,7 +289,9 @@ export class VideoPlayerComponent implements OnInit {
         }
       );
   }
+
   //-----------------------------------------------------------------------AGREGAR PLAY LIST
+
   addPlayMusic(videoId: any | undefined) {
     if (videoId !== null) {
       this.selectedVideoId = videoId;
@@ -273,7 +328,9 @@ export class VideoPlayerComponent implements OnInit {
   toggleComponente() {
     this.mostrarComponente = !this.mostrarComponente;
   }
+
   //--------------------------------------------------------------BUSCAR VIDEO
+
   get filteredListVideo(): any[] {
     return this.listVideo.filter(
       (video) =>

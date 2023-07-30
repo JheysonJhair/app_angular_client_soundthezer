@@ -8,10 +8,7 @@
     <div class="cont">
       <div class="c1">
         <div class="img">
-          <img
-            src="../../../assets/img/c8e0605567e98d794a7f43a7050bd998.jpg"
-            alt=""
-          />
+          <img [src]="imageUrl" alt="" />
         </div>
         <div>
           <h1>{{ title }}</h1>
@@ -115,7 +112,10 @@
         <div class="card-body">
           <h3 class="h">Listado de Reproduccion</h3>
           <div class="cn">
-            <table *ngIf="listVideo.length > 0" class="table table-hover mt-3 responsive-table">
+            <table
+              *ngIf="listVideo.length > 0"
+              class="table table-hover mt-3 responsive-table"
+            >
               <thead>
                 <tr>
                   <th class="bol">Música</th>
@@ -129,12 +129,40 @@
               </thead>
               <tbody>
                 <tr
-                  *ngFor="let video of listVideo"
+                  *ngFor="let video of listVideo; let i = index"
                   (click)="verVideo(video.url, video.id)"
                 >
                   <td>{{ video.name | titlecase }}</td>
                   <td>{{ video.description | titlecase }}</td>
                   <td>{{ video.url }}</td>
+                  <td>
+                    <i
+                      (click)="capturarfavorites(i)"
+                      [ngClass]="{ 'disabled-icon': edit || des }"
+                      class="fa-solid fa-heart text-red"
+                    ></i>
+                  </td>
+                  <div *ngIf="listVideo[i].showList" class="names-list">
+                    <ul>
+                      <ul>
+                        <li (click)="agregarFavorito('bachata', video.id)">
+                          Bachata
+                        </li>
+                        <li (click)="agregarFavorito('balada', video.id)">
+                          Balada
+                        </li>
+                        <li (click)="agregarFavorito('regueton', video.id)">
+                          Regueton
+                        </li>
+                        <li (click)="agregarFavorito('cumbia', video.id)">
+                          Cumbia
+                        </li>
+                        <li (click)="agregarFavorito('salsa', video.id)">
+                          Salsa
+                        </li>
+                      </ul>
+                    </ul>
+                  </div>
                   <td>
                     <i
                       (click)="descargarVideoUsuario(video.id)"

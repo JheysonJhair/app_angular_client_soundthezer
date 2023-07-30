@@ -68,7 +68,7 @@ export class ConvertidorDialogMusicComponent {
           this.toastr.success('Descarga completada!', 'Enhorabuena!');
         },
         (error) => {
-          this.toastr.error('No se pudo descargar tu musica', 'Error!',error);
+          this.toastr.error('No se pudo descargar tu musica', 'Error!', error);
         }
       );
   }

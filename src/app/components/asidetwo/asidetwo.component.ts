@@ -28,12 +28,13 @@ export class AsidetwoComponent {
   ngOnInit(): void {
     this.getUser();
   }
+  //------------------------------------------------------------------------- USUARIO
   getUser() {
     this._loginService.getUser(this.idUser).subscribe((data) => {
       this.usuario = data.result;
     });
   }
-
+  //------------------------------------------------------------------------- CONVERTIDOR MP4
   openDialog(): void {
     this.isButtonDisabled = true;
     const dialogRef = this.dialog.open(ConvertidorDialogMusicComponent, {

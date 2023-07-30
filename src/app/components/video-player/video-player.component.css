@@ -29,7 +29,6 @@
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
-
 }
 /* div icono y subtitle*/
 .row > div {
@@ -53,16 +52,17 @@ h1 {
   font-size: 40px;
   color: #fff;
   margin: 7px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   font-weight: bolder;
 }
 h5 {
-  font-size: 20px;
-  color: #fff;
+  font-size: 10px;
+  color: #ffffffb6;
   margin-bottom: 7px;
   text-transform: uppercase;
   font-weight: bolder;
+  margin-left: 5px;
 }
 /* parrafo*/
 p {
@@ -166,6 +166,9 @@ h3 {
 .text-info {
   color: rgb(35, 174, 255);
 }
+.text-red {
+  color: rgb(239, 70, 70);
+}
 .text-danger {
   color: rgb(242, 83, 83);
 }
@@ -214,9 +217,7 @@ td {
   cursor: pointer;
 }
 /* title no hay*/
-h5 {
-  margin: 15px;
-}
+
 /* ayuda disabled */
 .disabled-icon {
   pointer-events: none;
@@ -241,9 +242,27 @@ i {
 table.responsive-table {
   width: 100%;
 }
+/*lista*/
+.icon-and-list {
+  display: inline-flex;
+  align-items: center;
+}
+
+.names-list ul {
+  color: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.names-list li {
+  cursor: pointer;
+  margin: 5px 0;
+}
+
 /* RESPONSIVE */
+
 @media screen and (max-width: 1025px) {
-  .row{
+  .row {
     display: flex;
     align-items: center;
   }
@@ -252,7 +271,7 @@ table.responsive-table {
     text-align: right;
     padding-right: 10px;
   }
-  .u{
+  .u {
     text-align: center;
   }
   .row input {
@@ -286,9 +305,8 @@ table.responsive-table {
   form {
     display: block;
     padding-left: 10px;
-
   }
-  h3{
+  h3 {
     padding: 0px;
   }
   p {
@@ -304,14 +322,14 @@ table.responsive-table {
     right: 0;
     bottom: 0;
   }
-  .cn{
+  .cn {
     max-height: 140px;
   }
-  h1{
+  h1 {
     font-size: 25px;
     margin: 0px;
   }
-  h5{
+  h5 {
     font-size: 10px;
     margin: 1px;
   }

@@ -3,5 +3,6 @@ export interface dtoVideo{
   name: 			    string,
   description: 	  string,
   url:            string,
-  state?:          boolean
+  state?:          boolean,
+  showList: boolean,
 }

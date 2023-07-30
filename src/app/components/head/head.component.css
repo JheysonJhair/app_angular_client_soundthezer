@@ -63,8 +63,8 @@ a {
   display: flex;
   align-items: center;
   margin-right: 20px;
-  width: 200px; /* Puedes ajustar el ancho del div según tus necesidades */
-  height: 60px; /* Puedes ajustar la altura del div según tus necesidades */
+  width: 200px;
+  height: 60px;
 }
 
 .img-fluid {
@@ -80,7 +80,7 @@ a {
 }
 
 .text strong {
-  font-weight: bold; /* Aplicar negrita al texto dentro de la etiqueta <strong> */
+  font-weight: bold;
 }
 /* botones quitando style*/
 button {
@@ -134,7 +134,7 @@ button:hover {
   ul {
     padding: 0;
   }
-  .l{
+  .l {
     width: 100px;
   }
   .bl {

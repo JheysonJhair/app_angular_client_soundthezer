@@ -5,6 +5,7 @@ import { MusicPlayerComponent } from './components/music-player/music-player.com
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { ListFavoritesComponent } from './components/list-favorites/list-favorites.component';
 
 const routes: Routes = [
   // Rutas para el usuario
@@ -15,14 +16,16 @@ const routes: Routes = [
   { path: 'login/:id/video', component: VideoPlayerComponent },
   { path: 'login/:id/update/:idvideo', component: VideoPlayerComponent },
 
-
   // Rutas para Musica
   { path: 'login/:id/music', component: MusicPlayerComponent },
 
-
   // Rutas para favoritos
   { path: 'login/:id/favorites', component: FavoritesComponent },
-  { path: '**', redirectTo: '/', pathMatch:'full'}
+
+  // Rutas para favoritos
+  { path: 'login/:id/favorites/:name', component: ListFavoritesComponent },
+
+  { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 
 @NgModule({

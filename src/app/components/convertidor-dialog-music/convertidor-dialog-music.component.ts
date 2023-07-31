@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ConvertidorDialogMusicComponent {
   addMusica: FormGroup;
-  private downloadUrl = 'http://localhost:3030/api/musics/download';
+  private downloadUrl = 'https://soundthezerb.ccontrolz.com/api/musics/download';
 
   constructor(
     private fb: FormBuilder,

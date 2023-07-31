@@ -5,4 +5,6 @@ export interface dtoVideo{
   url:            string,
   state?:          boolean,
   showList: boolean,
+  download?: boolean,
+  habil: boolean
 }

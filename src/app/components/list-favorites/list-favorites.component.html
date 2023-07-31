@@ -34,13 +34,13 @@
         </div>
       </div>
     </div>
-    <i (click)="toggleComponente()" class="btn fa-solid fa-house"></i>
+    <i (click)="toggleComponente()" class="btn fa-solid fa-bars"></i>
     <div class="cont">
       <div class="c1">
         <h2 class="ms">{{ nameMusic | titlecase }}</h2>
         <div class="img">
           <img
-            src="../../../assets/img/c8e0605567e98d794a7f43a7050bd998.jpg"
+            src="../../../assets/img/img0.jpg"
             alt=""
           />
         </div>
@@ -58,7 +58,7 @@
           </div>
         </div>
       </div>
-      <div class="contenedor">
+      <div class="contenedor2">
         <div class="video-player-wrapper">
           <iframe
             id="videoIframe"
@@ -76,7 +76,16 @@
     <div class="lista">
       <div class="card">
         <div class="card-body">
-          <h3 class="h">Listado de tus videos favoritos</h3>
+          <div>
+            <h3 class="h">Listado de tus videos favoritos</h3>
+            <div *ngIf="listVideo.length !== 0" class="container2">
+              <div class="ct2">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text">
+              </div>
+              <button (click)="deleteListFavorites()">Limpiar favoritos</button>
+            </div>
+          </div>
           <div class="cn">
             <table
               *ngIf="listVideo.length > 0"
@@ -116,6 +125,9 @@
               </tbody>
             </table>
           </div>
+        </div>
+        <div *ngIf="listVideo.length == 0" class="row mt-5">
+          <h5>No hay videos por mostrar.</h5>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
@@ -55,6 +55,7 @@ export class ListFavoritesComponent implements OnInit {
     private _favoriteService: favoritesService,
     private toastr: ToastrService
   ) {
+    this.handleResize();
     this.idUser = this.aRoute.snapshot.paramMap.get('id')!;
     this.nameMusic = this.aRoute.snapshot.paramMap.get('name')!;
     this.id = this.aRoute.snapshot.paramMap.get('idVideo')!;
@@ -86,7 +87,7 @@ export class ListFavoritesComponent implements OnInit {
   }
   //----------------------------------------------------------------------- ELIMINAR FAVORITO
   deleteFavorites(id: any) {
-    this._favoriteService.deleteFavorites(this.idUser, id).subscribe(
+    this._favoriteService.deleteFavorites(this.idUser, id, this.nameMusic).subscribe(
       (data) => {
         this.getFavorites();
         this.toastr.error(
@@ -101,7 +102,22 @@ export class ListFavoritesComponent implements OnInit {
       }
     );
   }
-
+  deleteListFavorites(){
+    this._favoriteService.deleteListFavorites(this.nameMusic).subscribe(
+      (data) => {
+        this.getFavorites();
+        this.toastr.error(
+          'La lista de favoritos fue eliminado con exito',
+          'Registro eliminado!'
+        );
+        this.getFavorites();
+      },
+      (error) => {
+        this.toastr.error('Opss ocurrio un error', 'Error');
+        console.log(error);
+      }
+    );
+  }
   actualizarPagina() {
     this.router.navigate(['login', this.idUser, 'video']);
   }
@@ -135,7 +151,7 @@ export class ListFavoritesComponent implements OnInit {
       this.progresoDescarga = 70;
     }, 2000);
     this.http
-      .get('http://localhost:3030/api/videos/downloadById/' + id, {
+      .get('https://soundthezerb.ccontrolz.com/api/videos/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(
@@ -160,6 +176,15 @@ export class ListFavoritesComponent implements OnInit {
       );
   }
   //-----------------------------------------------------------------------------USUARIO
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.handleResize();
+  }
+
+  handleResize() {
+    this.mostrarComponente = window.innerWidth > 1025;
+  }
+
   toggleComponente() {
     this.mostrarComponente = !this.mostrarComponente;
   }

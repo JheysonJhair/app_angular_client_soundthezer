@@ -9,10 +9,12 @@
 /* contenedor realative*/
 .cv {
   position: relative;
+  height: 100vh;
 }
 /*-------------------------------*/
 /* contenedor video*/
 .cont {
+  height: 40vh;
   display: grid;
   grid-template-columns: 4fr 4fr;
   grid-gap: 10px;
@@ -109,6 +111,7 @@ form {
 }
 /* title cont */
 .card-body .h {
+  height: 3.5vh;
   text-transform: uppercase;
 }
 /*subtitle h3*/
@@ -148,8 +151,8 @@ button {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   width: 100%;
-  height: calc(100% - 502px);
-  position: absolute;
+  height: 45.5vh;
+  position: relative;
   left: 0;
   right: 0;
   bottom: 0;
@@ -172,7 +175,12 @@ h3 {
 .text-danger {
   color: rgb(242, 83, 83);
 }
-
+.text-fav{
+  font-weight: bold;
+}
+.text-fav-selected {
+  color: red;
+}
 .text-verde {
   color: hsl(141, 91%, 43%);
 }
@@ -184,7 +192,7 @@ h3 {
 }
 /* scroll */
 .cn {
-  max-height: 185px;
+  height: 35vh;
   overflow: auto;
 }
 /*tabla*/
@@ -258,7 +266,16 @@ table.responsive-table {
   cursor: pointer;
   margin: 5px 0;
 }
-
+.mov{
+  height: 3.5vh;
+  background-color: hsl(197.14, 12.07%, 22.75%);
+}
+.movil {
+  width: 200px;
+  background-color: hsl(182, 65%, 32%);
+  color: #ffffffa4;
+  padding: 5px;
+}
 /* RESPONSIVE */
 
 @media screen and (max-width: 1025px) {
@@ -312,18 +329,9 @@ table.responsive-table {
   p {
     color: #262525;
   }
-  .lista {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    width: 100%;
-    height: calc(100% - 543px);
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
+
   .cn {
-    max-height: 140px;
+    height: 40vh;
   }
   h1 {
     font-size: 25px;
@@ -340,5 +348,14 @@ table.responsive-table {
   table.responsive-table th:nth-child(3),
   table.responsive-table td:nth-child(3) {
     display: none;
+  }
+  /**/
+  button .movil {
+    display: block;
+  }
+
+  /* Estilo para el formulario cuando la pantalla es más grande que 1025px */
+  div[ngStyle] {
+    display: block;
   }
 }

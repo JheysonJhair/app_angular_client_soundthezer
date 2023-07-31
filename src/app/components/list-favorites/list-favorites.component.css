@@ -4,9 +4,14 @@
   grid-template-columns: 1fr 4fr;
   grid-gap: 10px;
 }
+.vvvv{
+  margin: 0px;
+  padding: 0px;
+}
 /*----------------------*/
 /* head */
 .contenedor {
+  height: 8vh;
   display: flex;
   justify-content: space-between;
   background-color: hsla(0, 36%, 29%, 0.748);
@@ -84,8 +89,9 @@ button:hover {
 }
 /* contenedor musica*/
 .cont {
+  height: 40vh;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 3fr 2fr;
   grid-gap: 10px;
   background: linear-gradient(
     to bottom,
@@ -93,7 +99,6 @@ button:hover {
     hsla(0, 40%, 15%, 0.666) 100%
   );
   padding: 23px;
-  place-items: center;
 }
 /* parrafo e icono*/
 .row {
@@ -167,6 +172,7 @@ p {
 }
 /* title list*/
 .card-body .h {
+  height: 3.5vh;
   text-transform: uppercase;
 }
 /* title */
@@ -179,9 +185,11 @@ p {
   background-color: hsla(0, 22%, 16%, 0.718);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  width: 79.5%;
-  height: calc(100% - 418px);
-  position: absolute;
+  width: 100%;
+  height: 45.5vh;
+  position: relative;
+  left: 0;
+  right: 0;
   bottom: 0;
 }
 /* font title*/
@@ -209,9 +217,40 @@ h3 {
 }
 /* scroll */
 .cn {
-  height: 270px; /* Ajusta la altura máxima según tus necesidades */
+  height: 34vh;
   overflow: auto;
 }
+.container2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffffad;
+}
+
+.container2 div {
+  display: flex;
+  align-items: center;
+}
+.container2 input{
+  align-items: center;
+  padding: 5px;
+  border-radius: 7px;
+}
+.container2 button{
+  color: #ffffffc1;
+  border-radius: 5px;
+  background-color: #4e3232;
+  padding: 5px;
+  margin-right: 10px;
+}
+.container2 i{
+  font-size: 16px;
+  margin-right: 5px
+}
+.ct2{
+  margin-left: 10px;
+}
+
 /* tabla*/
 .table {
   width: 100%;
@@ -285,6 +324,7 @@ h5 {
 table.responsive-table {
   width: 100%;
 }
+
 /* RESPONSIVE */
 @media screen and (max-width: 1025px) {
   .btn {
@@ -299,18 +339,19 @@ table.responsive-table {
     display: none;
   }
   .cont {
+    height: 60vh;
     display: block;
   }
   .cv {
     height: 100vh;
   }
   iframe {
-    width: 370px;
-    height: 200;
+    width: 360px;
+    height: 180;
   }
   h1 {
     margin-top: 20px;
-    font-size: 40px;
+    font-size: 30px;
   }
   .borra p {
     display: none;
@@ -320,16 +361,6 @@ table.responsive-table {
   }
   .l {
     width: 100px;
-  }
-  .lista {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    width: 100%;
-    height: calc(100% - 543px);
-    position: relative;
-    left: 0;
-    right: 0;
-    bottom: 0;
   }
   .cr {
     display: none;

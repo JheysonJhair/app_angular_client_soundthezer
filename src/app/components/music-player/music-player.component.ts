@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { dtoMusic } from 'src/app/interfaces/Music';
@@ -49,6 +49,7 @@ export class MusicPlayerComponent implements OnInit {
     private _musicService: MusicService,
     private toastr: ToastrService
   ) {
+    this.handleResize();
     this.addMusic = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -122,7 +123,7 @@ export class MusicPlayerComponent implements OnInit {
     this.des = true;
     console.log('Descargando..');
     this.http
-      .get('http://localhost:3030/api/musics/downloadById/' + id, {
+      .get('https://soundthezerb.ccontrolz.com/api/musics/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(
@@ -195,6 +196,15 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   //--------------------------------------------------------------------------MENU
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.handleResize();
+  }
+
+  handleResize() {
+    this.mostrarComponente = window.innerWidth > 1025;
+  }
 
   toggleComponente() {
     this.mostrarComponente = !this.mostrarComponente;

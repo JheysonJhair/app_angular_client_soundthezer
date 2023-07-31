@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class VideoService {
-  private myAppUrl = 'http://localhost:3030/';
+  private myAppUrl = 'https://soundthezerb.ccontrolz.com/';
   private myUrlGet = 'api/videos/getall/';
   private myApiInsert = 'api/videos/insert/';
   private myUrlDelete = 'api/videos/delete/';

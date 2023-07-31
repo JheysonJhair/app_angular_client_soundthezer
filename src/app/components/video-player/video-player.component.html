@@ -4,7 +4,7 @@
   </div>
   <div class="cv">
     <app-head></app-head>
-    <i (click)="toggleComponente()" class="btn fa-solid fa-house"></i>
+    <i (click)="toggleComponente()" class="btn fa-solid fa-bars"></i>
     <div class="cont">
       <div class="c1">
         <div class="img">
@@ -46,7 +46,10 @@
         </div>
       </div>
     </div>
-    <div class="form">
+      <div class="mov">
+        <button class="movil" (click)="mostrarFormulario()">AGREGAR PLAYLIST</button>
+      </div>
+    <div  *ngIf="mostrar" [ngStyle]="{'display': formularioVisible ? 'block' : 'none'}" class="form">
       <div class="h">
         <h3>{{ accion }} PlayList</h3>
       </div>

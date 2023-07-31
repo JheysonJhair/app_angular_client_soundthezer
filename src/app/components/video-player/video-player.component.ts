@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   FormBuilder,
@@ -35,8 +35,12 @@ export class VideoPlayerComponent implements OnInit {
 
   showList = false;
   tipo: string = '';
-
+  mostrarComponente = true;
+  existe : boolean;
+  habilitar:boolean;
   addVideo: FormGroup;
+
+
   accion = 'Registrar';
   id: string;
   idUser: string;
@@ -66,6 +70,7 @@ export class VideoPlayerComponent implements OnInit {
     private aRoute: ActivatedRoute,
     private toastr: ToastrService
   ) {
+    this.handleResize();
     this.addVideo = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -91,30 +96,42 @@ export class VideoPlayerComponent implements OnInit {
     this.listVideo[index].showList = !this.listVideo[index].showList;
   }
   agregarFavorito(name:string, id:any) {
-    if (name) {
-      const videoFavorito = {
-        name: name,
-        type: 1,
-        idUser: this.idUser,
-        idVideo: id,
-      };
+    this._favoriteService.getByIdVideoFavorite(id).subscribe(
+      (response) => {
+        const result = response.msg;
+        this.existe = result;
+      }
+    );
 
-      this._favoriteService.insertFavorite(videoFavorito).subscribe(
-        (data) => {
-          this.getVideo();
-          this.toastr.success(
-            'Agregado a favoritos',
-            'Completado!'
-          );
-          this.addVideo.reset();
-        },
-        (error) => {
-          this.toastr.error('No se puedo agregar', 'Error');
-          console.log(error);
-        }
-      );
-    }
-    this.showList = false;
+    if(this.existe === false){
+      if (name) {
+        const videoFavorito = {
+          name: name,
+          type: 1,
+          idUser: this.idUser,
+          idVideo: id,
+        };
+
+        this._favoriteService.insertFavorite(videoFavorito).subscribe(
+          (data) => {
+            this.getVideo();
+            this.habilitar = true;
+            this.toastr.success(
+              'Agregado a favoritos',
+              'Completado!'
+            );
+            this.addVideo.reset();
+          },
+          (error) => {
+            this.toastr.error('No se puedo agregar', 'Error');
+            console.log(error);
+          }
+        );
+        this.showList = false;
+      }
+    }else{
+          this.toastr.error('Ya se agrego', 'Error');
+      }
   }
   //------------------------------------------------------------------------LISTAR VIDEO
   getVideo() {
@@ -265,7 +282,7 @@ export class VideoPlayerComponent implements OnInit {
       this.progresoDescarga = 70;
     }, 2000);
     this.http
-      .get('http://localhost:3030/api/videos/downloadById/' + id, {
+      .get('https://soundthezerb.ccontrolz.com/api/videos/downloadById/' + id, {
         responseType: 'blob',
       })
       .subscribe(
@@ -323,12 +340,26 @@ export class VideoPlayerComponent implements OnInit {
       );
     });
   }
-  mostrarComponente = true;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.handleResize();
+  }
+
+  handleResize() {
+    this.mostrarComponente = window.innerWidth > 1025;
+  }
 
   toggleComponente() {
     this.mostrarComponente = !this.mostrarComponente;
   }
 
+  //
+  mostrar: boolean = false;
+  formularioVisible: boolean = true;
+
+  mostrarFormulario() {
+    this.mostrar = !this.mostrar; // Alternar la visibilidad del formulario
+  }
   //--------------------------------------------------------------BUSCAR VIDEO
 
   get filteredListVideo(): any[] {

@@ -6,16 +6,24 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class favoritesService {
-  private myAppUrl = 'http://localhost:3030/';
-  private myUrlGet = 'api/favorites/getall/';
-  private myUrlDelete = 'api/favorites/delete?idUser=';
-  private myUrlDeleteVideo = '&id=';
-  private myUrlGetFav = 'api/favorites/getbyid/';
+  //https://soundthezerb.ccontrolz.com/
+  //http://localhost:3030/
+  private myAppUrl = 'https://soundthezerb.ccontrolz.com/';
+  private myUrlDelete = 'api/favorites/deletebyfavorite/video?idUser=';
+  private myUrlDeleteVideo = '&idVideo=';
+  private myUrlDeleteName = '&name=';
 
   private myApiInsert = 'api/favorites/insert/';
+
   private myApiGetFavUser = 'api/favorites/getbyfavorite/video?idUser=';
   private myApiGetFavUserName = '&name=';
 
+  private myApiDeleteListFav = 'api/favorites/deleteplayist?name=';
+
+  private myApiDeleteTotal = 'api/favorites/deletebyfavorite/total?idUser=';
+  private myApiDeleteTotalVideo = '&idVideo=';
+
+  private myApiGet = 'api/favorites/getverify?idVideo=';
   constructor(private http: HttpClient) { }
 
   insertFavorite(fav: any): Observable<any>{
@@ -24,14 +32,16 @@ export class favoritesService {
   getFavoritesUser(id:any, name:any){
     return this.http.get(this.myAppUrl + this.myApiGetFavUser + id + this.myApiGetFavUserName + name);
   }
-  deleteFavorites(idUser: any, idVideo: any): Observable<any> {
-    return this.http.delete(this.myAppUrl + this.myUrlDelete + idUser + this.myUrlDeleteVideo + idVideo);
+  deleteFavorites(idUser: any, idVideo: any, name: string ): Observable<any> {
+    return this.http.delete(this.myAppUrl + this.myUrlDelete + idUser + this.myUrlDeleteVideo + idVideo + this.myUrlDeleteName + name);
   }
-
-  getListFavorites(): Observable<any> {
-    return this.http.get<any>(this.myAppUrl + this.myUrlGet);
+  deleteListFavorites(name: string ): Observable<any> {
+    return this.http.delete(this.myAppUrl + this.myApiDeleteListFav + name);
   }
-  getFavorites(id: any): Observable<any>{
-    return this.http.get(this.myAppUrl + this.myUrlGetFav + id);
+  deleteFavoritesTotal(idUser:any, idVideo:any): Observable<any>{
+    return this.http.delete(this.myAppUrl + this.myApiDeleteTotal + idUser + this.myApiDeleteTotalVideo + idVideo);
+  }
+  getByIdVideoFavorite(id:any): Observable<any>{
+    return this.http.get(this.myAppUrl + this.myApiGet + id );
   }
 }

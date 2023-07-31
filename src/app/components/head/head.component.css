@@ -1,5 +1,6 @@
 /* contenedor*/
 .contenedor {
+  height: 8vh;
   display: flex;
   justify-content: space-between;
   background-color: hsl(198.26, 14.29%, 31.57%);

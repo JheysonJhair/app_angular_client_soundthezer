@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -11,8 +11,18 @@ export class FavoritesComponent {
   idUser: any;
 
   constructor(private router: Router, private aRoute: ActivatedRoute) {
+    this.handleResize();
     this.idUser = this.aRoute.snapshot.paramMap.get('id')!;
   }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.handleResize();
+  }
+
+  handleResize() {
+    this.mostrarComponente = window.innerWidth > 1025;
+  }
+
   toggleComponente() {
     this.mostrarComponente = !this.mostrarComponente;
   }

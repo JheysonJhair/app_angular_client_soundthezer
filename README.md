@@ -1,27 +1,53 @@
-# FTMusicVideoPlayer
+<div align="center">
+    <a href="https://github.com/JheysonJhair/FTsoundthezer.git">
+      <img src="public/logo.jpg" width="148px" />
+    </a>
+    <h1>SoundThezer</h1>
+    <p align="center">
+        Frontend Developer Jhair
+    </p>
+</div>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.3.
+## Preview
 
-## Development server
+![Preview](public/preview.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Tecnologías
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Este proyecto utiliza las siguientes tecnologías:
 
-## Build
+- Angular
+- CSS
+- BACKEND:
+```bash
+git clone https://github.com/Edsghot/playmusicVideo-BK
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Cómo levantar el proyecto
 
-## Running unit tests
+1. Clona el repositorio.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+git clone https://github.com/JheysonJhair/FTsoundthezer.git
+```
 
-## Running end-to-end tests
+```bash
+cd FTsoundthezer
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Instala las dependencias con `npm install`.
 
-## Further help
+```bash
+npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. Ejecuta el comando `ng serve` para iniciar el servidor de desarrollo.
+
+```bash
+ng serve
+```
+
+4. Abre tu navegador y visita `http://localhost:4200/`.
+
+¡Listo! Ahora puedes comenzar a trabajar la aplicación sin problemas.

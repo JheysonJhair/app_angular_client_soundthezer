@@ -29,7 +29,7 @@ Bienvenido a **Soundthezer**, una aplicación diseñada para facilitar la descar
 
 2. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/JheysonJhair/app_angular_client_soundthezer
+   git clone https://github.com/JheysonJhair/app_angular_client_soundthezer.git
    cd app_angular_client_soundthezer
 2. **Instala las dependencias con `npm install`.**
 
